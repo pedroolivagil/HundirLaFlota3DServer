@@ -1,0 +1,79 @@
+RewriteEngine On
+#En local
+RewriteBase /myprojectsorg/
+#en el servidor
+# RewriteBase /
+RewriteCond %{http_referer} ^(.*)$
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^index$ / [NC,R=302]
+ 
+# Reescribir la URL solicitada por el usuario
+#   Entrada:  ^URL amigable$
+#   Salida:   ruta desde .htacces hasta *.php
+
+# RewriteRule ^mantenimiento$ maintenance.html
+
+# Menús Y links
+RewriteRule ^home|index$ index.php
+RewriteRule ^login$ www/login.php
+RewriteRule ^login-user www/php/login_user.php
+RewriteRule ^signup$ www/signup.php
+RewriteRule ^signup-user$ www/php/signup_user.php
+RewriteRule ^signup-finish$ www/signup_finish.php
+RewriteRule ^legal-warning$ www/aviso_legal.php
+RewriteRule ^logout$ www/php/logout_user.php
+RewriteRule ^user-panel$ www/user_panel.php
+RewriteRule ^user-panel/pag/([0-9]+)$ www/user_panel.php?pagina=$1
+RewriteRule ^user-profile$ www/user_profile.php
+RewriteRule ^user-profile/edit$ www/user_profile.php?editable=true
+
+# Errors
+RewriteRule ^login-error$ www/login.php?fail=error
+RewriteRule ^signup-error$ www/signup.php?fail=error
+RewriteRule ^signup-warning$ www/signup.php?fail=warning
+
+
+# RewriteRule ^lineas-de-voz$ www/lineasvoz.php 
+# RewriteRule ^centralitas-virtuales$ www/centralitas.php
+# RewriteRule ^internet-aire$ www/aire.php
+# RewriteRule ^internet-profesional$ www/profesional.php
+# RewriteRule ^clientes$ www/clientes.php
+# RewriteRule ^area-clientes$ www/areacliente.php
+# RewriteRule ^perfil$ www/areacliente.php?panel=perfil
+# RewriteRule ^perfil/(.+)/(.+)$ www/areacliente.php?panel=perfil&msg=$1&type=$2
+# RewriteRule ^servicios$ www/areacliente.php?panel=servicios
+# RewriteRule ^facturas$ www/areacliente.php?panel=facturas
+# RewriteRule ^first-login$ www/areacliente.php?url=cesta
+# RewriteRule ^contacto$ www/contacto.php
+# RewriteRule ^cesta|carrito|compra$ www/carrito.php
+
+# links
+# RewriteRule ^recover$ www/php/recover.php
+# RewriteRule ^contacta$ www/php/contacta.php
+# RewriteRule ^sign-in$ www/php/login.php
+# RewriteRule ^sign-in/(.+)$ www/php/login.php?url=$1
+# RewriteRule ^sign-up$ www/php/signup.php
+# RewriteRule ^sign-up/(.+)$ www/php/signup.php?url=$1
+# RewriteRule ^logout$ www/php/logout.php
+# RewriteRule ^add-to-cart/(.+)$ www/php/addservicetocart.php?id=$1
+# RewriteRule ^add-sub-to-cart/(.+)$ www/php/addsubservicetocart.php?id=$1
+# RewriteRule ^del-to-cart/(.+)$ www/php/delservicetocart.php?id=$1
+# RewriteRule ^del-sub-to-cart/(.+)$ www/php/delsubservicetocart.php?id=$1
+# RewriteRule ^unset-cart$ www/php/unset_cart.php
+# RewriteRule ^checkout-cart$ www/php/checkout.php
+# RewriteRule ^download-contract/(.+)$ www/php/download.php?id=$1&type=contract
+# RewriteRule ^download-invoice/(.+)$ www/php/download.php?id=$1&type=invoice
+# RewriteRule ^edit-form$ www/php/edit_user.php
+
+# RewriteRule ^recover-password$ www/recovery.php
+# RewriteRule ^checkout-invalid/(.*)$ www/carrito.php?m=$1
+# RewriteRule ^checkout-success$ www/checkout_success.php?b=true
+
+ErrorDocument 404 /www/404.php
+ErrorDocument 403 /www/403.php
+
+Options All -Indexes
+
+# iniciamos sesion automaticamente, es decir, sin session_start en cada página
+php_value session.auto_start 1
