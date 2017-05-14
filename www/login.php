@@ -1,6 +1,8 @@
 <?php
-$user = $_POST['user'];
-$pass = $_POST['pass'];
+require_once('../config.php');
+require_once('Tools.php');
+$user = Tools::scapeString($_POST['user']);
+$pass = Tools::scapeString($_POST['pass']);
 if(strtolower($user) == 'oliva'){
     echo '{'
     .'"response":200,'

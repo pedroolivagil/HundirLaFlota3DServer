@@ -30,7 +30,7 @@ define('DB_PASSWORD', '1234');
 define('DB_DB', 'myprojectsorg');
 define('PORT', explode(':', $_SERVER['HTTP_HOST'])[1]);
 
-define('CRYPT_KEY', 'myprojectorganizerolivadevelop');
+define('CRYPT_KEY', 'hUndIrLaFlota3DOliLogiCSTudiOsolivadevelop');
 define('SESSION_USUARIO_ID', 'id_usuario');
 define('SESSION_USUARIO_NAME', 'name_usuario');
 define('SESSION_AUTOLOGIN', 'autologin');
