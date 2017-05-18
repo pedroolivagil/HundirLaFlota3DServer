@@ -7,8 +7,10 @@ if(strtolower($user) == 'oliva'){
     echo '{'
     .'"response":200,'
     . '"user" :{'
-            .'"name":"'.$user.'",'
-            .'"age":21'
+            .'"id_user":"000011100",'
+            .'"username":"'.$user.'",'
+            .'"email":"pedro_oliva@test@mail",'
+            .'"flag_active":"true",'
         .'}'
     .'}';
 }else{
