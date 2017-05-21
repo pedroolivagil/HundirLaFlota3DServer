@@ -6,10 +6,6 @@
  */
 abstract class Tools {
     
-    public static function scapeString($string) {
-        return mysqli_real_escape_string(trim($string));
-    }
-    
     public static function encrypt($string) {
         return md5(CRYPT_KEY . '' . $string);
     }
@@ -34,4 +30,13 @@ abstract class Tools {
     public static function generateUUID($leng) {
         return substr(str_replace("-", "", UUID::generate(UUID::UUID_RANDOM, UUID::FMT_STRING)), 0, $leng);
     }
+    
+    public static function toNull($string) {
+        return (strlen($string) > 0) ? $string : NULL;
+    }
+    
+    public static function ErrorResponse(){
+        return '{"response" : 404}';
+    }
+
 }

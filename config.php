@@ -27,7 +27,7 @@ define('FONTCOLOR120', 180);
 define('DB_HOST', 'localhost');
 define('DB_USER', 'admin');
 define('DB_PASSWORD', '1234');
-define('DB_DB', 'myprojectsorg');
+define('DB_DB', 'hundirflota3d');
 define('PORT', explode(':', $_SERVER['HTTP_HOST'])[1]);
 
 define('CRYPT_KEY', 'hUndIrLaFlota3DOliLogiCSTudiOsolivadevelop');
@@ -57,16 +57,14 @@ define('_CLASS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/clases/');
 //define('_DOCS_PATH_', 'http://' . $_SERVER['SERVER_NAME'] . $port . $root . '/docs/');
 
 //session_start(); // no hace falta gracias al .htaccess
-error_reporting(E_ALL ^ E_NOTICE);
 //ini_set('display_errors',1);
 header('Content-type: text/html; charset=utf-8');
 require_once(_CLASS_PATH_ . 'Tools.php');
 require_once(_CLASS_PATH_ . 'DB.php');
-//require_once(_CLASS_PATH_ . 'Translator.php');
-//require_once(_CLASS_PATH_ . 'Template.php');
 require_once(_CLASS_PATH_ . 'BasicMethods.php');
+require_once(_CLASS_PATH_ . 'BasicMethodsEntities.php');
 require_once(_CLASS_PATH_ . 'EntityManager.php');
 require_once(_CLASS_PATH_ . 'PersistenceManager.php');
 //// Persistence
 require_once(_CLASS_PATH_ . 'entities/User.php');
-//require_once(_CLASS_PATH_ . 'entities/Project.php');
+error_reporting(E_ALL ^ E_NOTICE);
