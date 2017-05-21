@@ -1,6 +1,5 @@
 <?php
-require_once('../config.php');
-require_once('Tools.php');
+require_once('config.php');
 $user = Tools::scapeString($_POST['user']);
 $pass = Tools::scapeString($_POST['pass']);
 if(strtolower($user) == 'oliva'){

@@ -44,7 +44,7 @@ $root = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/HundirLaFlota3DServer' : ''
 //define('MAILBODY_RECOVERY', $_SERVER['DOCUMENT_ROOT'] . $root . '/forms/recovery.txt');
 //define('_LEGAL_FILE_', 'legal.txt');
 
-//define('_CLASS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/php/');
+define('_CLASS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/clases/');
 //define('_PAGES_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/');
 //define('_PHP_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/php/');
 //define('_TEMP_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/temp/');
@@ -60,13 +60,13 @@ $root = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/HundirLaFlota3DServer' : ''
 error_reporting(E_ALL ^ E_NOTICE);
 //ini_set('display_errors',1);
 header('Content-type: text/html; charset=utf-8');
-//require_once(_CLASS_PATH_ . 'Tools.php');
-//require_once(_CLASS_PATH_ . 'db/Database.php');
+require_once(_CLASS_PATH_ . 'Tools.php');
+require_once(_CLASS_PATH_ . 'DB.php');
 //require_once(_CLASS_PATH_ . 'Translator.php');
 //require_once(_CLASS_PATH_ . 'Template.php');
-//require_once(_CLASS_PATH_ . 'BasicMethods.php');
-//require_once(_CLASS_PATH_ . 'EntityManager.php');
-//require_once(_CLASS_PATH_ . 'PersistenceManager.php');
+require_once(_CLASS_PATH_ . 'BasicMethods.php');
+require_once(_CLASS_PATH_ . 'EntityManager.php');
+require_once(_CLASS_PATH_ . 'PersistenceManager.php');
 //// Persistence
-//require_once(_CLASS_PATH_ . 'entities/User.php');
+require_once(_CLASS_PATH_ . 'entities/User.php');
 //require_once(_CLASS_PATH_ . 'entities/Project.php');
