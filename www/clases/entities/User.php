@@ -69,6 +69,7 @@ class User extends PersistenceManager implements BasicMethodsEntities {
             COL_USERNAME => $username,
             COL_FLAG_ACTIVO => $active
         );
+        var_dump($params);
         $usuario = DB::preparedQuery(UsuarioFindByUserName, $params);
         if ($usuario != NULL) {
             return FALSE;
@@ -131,7 +132,7 @@ class User extends PersistenceManager implements BasicMethodsEntities {
     function setUsername($username) {
         $this->username = parent::updateField($this->username, $username);
     }
-    
+
     function setCorreo($correo) {
         $this->correo = parent::updateField($this->correo, $correo);
     }

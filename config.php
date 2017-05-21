@@ -25,8 +25,8 @@ define('FONTCOLOR120', 180);
 
 // DB Constants
 define('DB_HOST', 'localhost');
-define('DB_USER', 'admin');
-define('DB_PASSWORD', '1234');
+define('DB_USER', 'root');
+define('DB_PASSWORD', '');
 define('DB_DB', 'hundirflota3d');
 define('PORT', explode(':', $_SERVER['HTTP_HOST'])[1]);
 
@@ -68,3 +68,5 @@ require_once(_CLASS_PATH_ . 'PersistenceManager.php');
 //// Persistence
 require_once(_CLASS_PATH_ . 'entities/User.php');
 error_reporting(E_ALL ^ E_NOTICE);
+header("Content-Type: text/plain");
+DB::init_db();

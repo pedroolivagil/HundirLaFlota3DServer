@@ -1,10 +1,8 @@
 <?php
-
 require_once('config.php');
 //$username = $_POST['user'];
 $username = strtolower('oliva');
 $password = $_POST['pass'];
-DB::init_db();
 $user = User::findByUserName($username);
 if ($user) {
 //    echo '{'
@@ -16,8 +14,9 @@ if ($user) {
 //            .'"flag_active":"true",'
 //        .'}'
 //    .'}';
-    print_r($user);
+    var_dump($user);
 } else {
-    print_r(Tools::ErrorResponse());
+    var_dump(Tools::ErrorResponse());
 }
+var_dump(DB::getProblems());
 DB::close_db();

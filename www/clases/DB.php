@@ -25,7 +25,8 @@ class DB/* extends mysqli */ {
             return self::$conexion->query('SELECT 1;');
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            self::init_db();          // Don't catch exception here, so that re-connect fail will throw exception
+            self::init_db();
+            // Don't catch exception here, so that re-connect fail will throw exception
             return FALSE;
         }
     }
