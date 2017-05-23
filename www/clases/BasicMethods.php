@@ -11,5 +11,7 @@ interface BasicMethods {
 
     public function update($table, $newValues, $params);
 
-    public static function findById($id, $table);
+    public function findByParam($field, $paramValue, $table);
+
+    public function findById($id, $table);
 }

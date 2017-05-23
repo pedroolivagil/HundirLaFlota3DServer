@@ -30,7 +30,7 @@ class DB/* extends mysqli */ {
 
     private function check() {
         try {
-            return $this->conexion->query('SELECT 1;');
+            return $this->conexion->query('SELECT 1');
         } catch (PDOException $e) {
             error_log($e->getMessage());
             $this->init_db();

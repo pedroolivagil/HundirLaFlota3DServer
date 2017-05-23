@@ -20,20 +20,8 @@ class User extends PersistenceManager implements BasicMethodsEntities {
     private $id_pais;
     private $poblacion;
 
-    function __construct($id_usuario, $username, $correo, $password, $fullname, $nif = null, $birth_date = null, $telefono = null, $id_pais = null, $poblacion = null, $flag_activo = NULL, $fecha_alta = NULL) {
+    function __construct() {
         parent::__construct();
-        $this->id_usuario = Tools::toNull($id_usuario);
-        $this->username = Tools::toNull($username);
-        $this->correo = Tools::toNull($correo);
-        $this->password = Tools::toNull($password);
-        $this->fecha_alta = Tools::toNull($fecha_alta);
-        $this->flag_activo = Tools::toNull($flag_activo);
-        $this->nif = Tools::toNull($nif);
-        $this->fullname = Tools::toNull($fullname);
-        $this->birth_date = Tools::toNull($birth_date);
-        $this->telefono = Tools::toNull($telefono);
-        $this->setId_pais(Tools::toNull($id_pais));
-        $this->poblacion = Tools::toNull($poblacion);
     }
 
     public function create() {
@@ -63,17 +51,29 @@ class User extends PersistenceManager implements BasicMethodsEntities {
         return new User($usuario[0][COL_ID_USUARIO], $usuario[0]['username'], $usuario[0]['correo'], $usuario[0]['password'], $usuario[0]['fullname'], $usuario[0]['nif'], $usuario[0]['birth_date'], $usuario[0]['telefono'], $usuario[0]['id_pais'], $usuario[0]['poblacion'], $usuario[0]['flag_activo'], $usuario[0]['fecha_alta']);
     }
 
-    public static function findByUserName($username, $active = true) {
+    public function findByUserName($username, $active = true) {
         /* return User with user id data */
-        $params = array(
-            COL_USERNAME => strtolower(trim($username)),
-            COL_FLAG_ACTIVO => $active
-        );
-        $usuario = DB::GetInstance()->preparedQuery(UsuarioFindByUserName, $params);
-        if ($usuario != NULL) {
-            return FALSE;
-        }
-        return new User($usuario[0][COL_ID_USUARIO], $usuario[0]['username'], $usuario[0]['correo'], $usuario[0]['password'], $usuario[0]['fullname'], $usuario[0]['nif'], $usuario[0]['birth_date'], $usuario[0]['telefono'], $usuario[0]['id_pais'], $usuario[0]['poblacion'], $usuario[0]['flag_activo'], $usuario[0]['fecha_alta']);
+//        $params = array(
+//            COL_USERNAME => strtolower(trim($username)),
+//            COL_FLAG_ACTIVO => $active
+//        );
+//        $usuario = DB::GetInstance()->preparedQuery(UsuarioFindByUserName, $params);
+//        if ($usuario != NULL) {
+//            return FALSE;
+//        }
+        $usuario = parent::getEm()->findByParam(COL_USERNAME, $username, TABLE_USUARIO);
+        $this->setId_usuario($usuario[0][COL_ID_USUARIO]);
+        $this->setBirth_date($usuario[0]['birth_date']);
+        $this->setCorreo($usuario[0]['correo']);
+        $this->setFecha_alta($usuario[0]['fecha_alta']);
+        $this->setFlag_activo($usuario[0]['flag_activo']);
+        $this->setFullname($usuario[0]['fullname']);
+        $this->setId_pais($usuario[0]['id_pais']);
+        $this->setNif($usuario[0]['nif']);
+        $this->setPoblacion($usuario[0]['poblacion']);
+        $this->setTelefono($usuario[0]['telefono']);
+        $this->setUsername($usuario[0]['username']);
+        $this->setUser_pass($usuario[0]['password']);
     }
 
     function getId_usuario() {

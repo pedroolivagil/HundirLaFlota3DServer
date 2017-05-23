@@ -8,42 +8,55 @@
 class EntityManager implements BasicMethods {
 
     public function create($params, $table) {
-        DB::begin_trans();
-        DB::insert($params, $table);
-        if (DB::getProblems() == 0) {
-            DB::commit_trans();
+        DB::GetInstance()->begin_trans();
+        DB::GetInstance()->insert($params, $table);
+        if (DB::GetInstance()->getProblems() == 0) {
+            DB::GetInstance()->commit_trans();
             return TRUE;
         } else {
-            DB::rollBack_trans();
+            DB::GetInstance()->rollBack_trans();
             return FALSE;
         }
     }
 
     public function update($table, $newValues, $params) {
-        DB::begin_trans();
-        DB::update($table, $newValues, $params);
-        if (DB::getProblems() == 0) {
-            DB::commit_trans();
+        DB::GetInstance()->begin_trans();
+        DB::GetInstance()->update($table, $newValues, $params);
+        if (DB::GetInstance()->getProblems() == 0) {
+            DB::GetInstance()->commit_trans();
             return TRUE;
         } else {
-            DB::rollBack_trans();
+            DB::GetInstance()->rollBack_trans();
             return FALSE;
         }
     }
 
     public function delete($table, $newValues, $params) {
-        DB::begin_trans();
-        DB::deleteLogic($table, $newValues, $params);
-        if (DB::getProblems() == 0) {
-            DB::commit_trans();
+        DB::GetInstance()->begin_trans();
+        DB::GetInstance()->deleteLogic($table, $newValues, $params);
+        if (DB::GetInstance()->getProblems() == 0) {
+            DB::GetInstance()->commit_trans();
             return TRUE;
         } else {
-            DB::rollBack_trans();
+            DB::GetInstance()->rollBack_trans();
             return FALSE;
         }
     }
 
-    public static function findById($id, $table) {
+    /**
+     * 
+     * @param type $field nombre del campo a 
+     * @param type $paramValue
+     * @param type $table
+     */
+    public function findByParam($field, $paramValue, $table) {
+        $param = array(
+            "param" => $paramValue
+        );
+        DB::GetInstance()->preparedQuery('SELECT t.* FROM ' . $table . ' t WHERE t.'.$field.' = :param', $param);
+    }
+
+    public function findById($id, $table) {
         
     }
 

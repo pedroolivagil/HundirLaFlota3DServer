@@ -3,8 +3,9 @@ require_once('config.php');
 //$username = $_POST['user'];
 $username = strtolower('oliva');
 $password = $_POST['pass'];
-$user = User::findByUserName($username);
-if ($user) {
+$user = new User();
+$user->findByUserName($username);
+if ($user->getId_usuario() != NULL) {
 //    echo '{'
 //    .'"response":200,'
 //    . '"user" :{'
