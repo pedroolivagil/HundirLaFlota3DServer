@@ -69,3 +69,5 @@ require_once(_CLASS_PATH_ . 'PersistenceManager.php');
 //// Persistence
 require_once(_CLASS_PATH_ . 'entities/User.php');
 error_reporting(E_ALL ^ E_NOTICE);
+
+DB::GetInstance()->init_db();

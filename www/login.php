@@ -18,5 +18,5 @@ if ($user) {
 } else {
     var_dump(Tools::ErrorResponse());
 }
-var_dump(DB::getProblems());
-DB::close_db();
+var_dump(DB::GetInstance()->getProblems());
+DB::GetInstance()->close_db();
