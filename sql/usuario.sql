@@ -63,8 +63,3 @@ ALTER TABLE `usuario`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
----------------------------------------------------
--- Inserts 
----------------------------------------------------
-INSERT INTO `usuario` (`id_usuario`, `username`, `password`, `correo`, `fecha_alta`, `fullname`, `birth_date`, `flag_activo`, `nif`, `telefono`, `id_pais`, `poblacion`) VALUES (NULL, 'oliva', '1234', 'poliva@oliva.com', CURRENT_TIMESTAMP, 'Pedro Oliva', '1991-08-20', '1', '39929519R', '663631377', '1', 'Salou');

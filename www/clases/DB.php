@@ -5,62 +5,70 @@
  *
  * @author Oliva
  */
-require_once('Queries.php');
 
 class DB/* extends mysqli */ {
 
-    private static $conexion;
-    private static $problems;
-
-    private static function setProblems($problems) {
-        self::$problems = $problems;
+    private static $instance;
+    
+    private $conexion;
+    private $problems;
+    
+    public static function GetInstance(){
+        if(self::$instance == NULL){
+            self::$instance = new DB();
+        }
+        return self::$instance;
     }
 
-    private static function addProblem() {
-        self::$problems++;
+    private function setProblems($problems) {
+        $this->problems = $problems;
     }
 
-    private static function check() {
+    private function addProblem() {
+        $this->problems++;
+    }
+
+    private function check() {
         try {
-            return self::$conexion->query('SELECT 1;');
+            return $this->conexion->query('SELECT 1;');
         } catch (PDOException $e) {
             error_log($e->getMessage());
-            self::init_db();
+            $this->init_db();
             // Don't catch exception here, so that re-connect fail will throw exception
             return FALSE;
         }
     }
 
-    private static function initConexion() {
+    private function initConexion() {
         try {
             // Conectar
-            self::$conexion = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_DB, DB_USER, DB_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8';"));
+            $this->conexion = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_DB, DB_USER, DB_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8';"));
             // Establecer el nivel de errores a EXCEPTION
-            self::$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            self::addProblem();
+            $this->addProblem();
             error_log($e->getMessage());
         }
     }
 
-    public static function init_db() {
-        self::setProblems(0);
-        self::initConexion();
+    public function init_db() {
+        $this->setProblems(0);
+        $this->initConexion();
     }
 
-    public static function close_db() {
-        self::$conexion = NULL;
+    public function close_db() {
+        $this->conexion = NULL;
     }
 
-    public static function getProblems() {
-        return self::$problems;
+    public function getProblems() {
+        return $this->problems;
     }
 
-    public static function findAll($table = NULL) {
+    public function findAll($table = NULL) {
         $result_final = NULL;
-        if (self::check()) {
+        if ($this->check()) {
             if ($table != NULL) {
-                if (($result = self::$conexion->query('SELECT * FROM ' . $table . ' WHERE flag_activo = true;', MYSQLI_USE_RESULT)) !== FALSE) {
+                if (($result = $this->conexion->query('SELECT * FROM ' . $table . ' WHERE flag_activo = true;', MYSQLI_USE_RESULT)) !== FALSE) {
                     $result_final = $result->fetchAll(PDO::FETCH_CLASS);
                 }
             }
@@ -69,119 +77,119 @@ class DB/* extends mysqli */ {
         return NULL;
     }
 
-    public static function execute($query = NULL) {
+    public function execute($query = NULL) {
         $result_final = NULL;
         try {
-            if (self::check()) {
-                if ($query != NULL && ($result = self::$conexion->query($query, MYSQLI_USE_RESULT)) !== FALSE) {
+            if ($this->check()) {
+                if ($query != NULL && ($result = $this->conexion->query($query, MYSQLI_USE_RESULT)) !== FALSE) {
                     $result_final = $result->fetchAll(PDO::FETCH_CLASS);
                 }
             }
         } catch (PDOException $e) {
-            self::addProblem();
+            $this->addProblem();
             error_log($e->getMessage());
         }
         return $result_final;
     }
 
-    public static function preparedQuery($query, $params = NULL) {
+    public function preparedQuery($query, $params = NULL) {
         $result_final = NULL;
         try {
-            if (self::check()) {
-                if ($query != NULL && $params != NULL) {
-                    $sentencia = self::$conexion->prepare($query);
-                    $sentencia->execute($params);
-                    $result_final = $sentencia->fetchAll(PDO::FETCH_CLASS);
-                } else if ($query != NULL && $params == NULL) {
-                    $sentencia = self::$conexion->prepare($query);
-                    $sentencia->execute();
+            if ($this->check()) {
+                if ($query != NULL) {
+                    $sentencia = $this->conexion->prepare($query);
+                    if ($params != NULL) {
+                        $sentencia->execute($params);
+                    } else {
+                        $sentencia->execute();
+                    }
                     $result_final = $sentencia->fetchAll(PDO::FETCH_CLASS);
                 }
                 return json_decode(json_encode($result_final, TRUE), TRUE);
             }
         } catch (PDOException $e) {
-            self::addProblem();
+            $this->addProblem();
             error_log($e->getMessage());
         }
         return $result_final;
     }
 
-    public static function preparedQueryToJSON($query = NULL, $params = NULL) {
+    public function preparedQueryToJSON($query = NULL, $params = NULL) {
         $result_final = NULL;
         try {
-            if (self::check()) {
+            if ($this->check()) {
                 if ($query != NULL && $params != NULL) {
-                    $sentencia = self::$conexion->prepare($query);
+                    $sentencia = $this->conexion->prepare($query);
                     $sentencia->execute($params);
                     $result_final = $sentencia->fetchAll(PDO::FETCH_CLASS);
                 } else if ($query != NULL && $params == NULL) {
-                    $sentencia = self::$conexion->prepare($query);
+                    $sentencia = $this->conexion->prepare($query);
                     $sentencia->execute();
                     $result_final = $sentencia->fetchAll(PDO::FETCH_CLASS);
                 }
                 return json_encode($result_final);
             }
         } catch (PDOException $e) {
-            self::addProblem();
+            $this->addProblem();
             error_log($e->getMessage());
         }
         return $result_final;
     }
 
-    public static function begin_trans() {
-        if (self::check()) {
+    public function begin_trans() {
+        if ($this->check()) {
             try {
-                return self::$conexion->beginTransaction();
+                return $this->conexion->beginTransaction();
             } catch (PDOException $e) {
-                self::addProblem();
+                $this->addProblem();
                 error_log($e->getMessage());
                 return FALSE;
             }
         }
     }
 
-    public static function commit_trans() {
-        if (self::check()) {
+    public function commit_trans() {
+        if ($this->check()) {
             try {
-                return self::$conexion->commit();
+                return $this->conexion->commit();
             } catch (PDOException $e) {
-                self::addProblem();
+                $this->addProblem();
                 error_log($e->getMessage());
                 return FALSE;
             }
         }
     }
 
-    public static function rollBack_trans() {
-        if (self::check()) {
+    public function rollBack_trans() {
+        if ($this->check()) {
             try {
-                return self::$conexion->rollBack();
+                return $this->conexion->rollBack();
             } catch (PDOException $e) {
-                self::addProblem();
+                $this->addProblem();
                 error_log($e->getMessage());
                 return FALSE;
             }
         }
     }
 
-    public static function insert($arrayFieldsValues, $table) {
-        if (self::check()) {
+    public function insert($arrayFieldsValues, $table) {
+        if ($this->check()) {
             try {
                 $claves = array_keys($arrayFieldsValues);
                 $values = array_values($arrayFieldsValues);
-                $sentencia = self::$conexion->prepare("INSERT INTO " . $table . "(" . implode(",", $claves) . ") VALUES('" . implode("','", $values) . "');");
+                $sentencia = $this->conexion->prepare("INSERT INTO " . $table . "(" . implode(",", $claves) . ") VALUES('" . implode("','", $values) . "');");
                 $sentencia->execute();
                 return TRUE;
             } catch (PDOException $e) {
-                self::addProblem();
+                $this->addProblem();
                 error_log($e->getMessage());
                 return FALSE;
             }
         }
     }
 
-    public static function update($table, $newValues, $params = null, $strict = true) {
-        if (self::check()) {
+    public function update($table, $newValues, $params = null, $strict = true) {
+        if ($this->check()) {
             try {
                 $set = " SET ";
                 if ($newValues != null) {
@@ -210,22 +218,22 @@ class DB/* extends mysqli */ {
                             }
                         }
                     }
-                    $sentencia = self::$conexion->prepare("UPDATE " . $table . " " . $set . " " . $where . ";");
+                    $sentencia = $this->conexion->prepare("UPDATE " . $table . " " . $set . " " . $where . ";");
                     $sentencia->execute();
                     return TRUE;
                 } else {
                     return FALSE;
                 }
             } catch (PDOException $e) {
-                self::addProblem();
+                $this->addProblem();
                 error_log($e->getMessage());
                 return FALSE;
             }
         }
     }
 
-    public static function deleteLogic($table, $newValues, $params = null, $strict = true) {
-        if (self::check()) {
+    public function deleteLogic($table, $newValues, $params = null, $strict = true) {
+        if ($this->check()) {
             try {
                 $set = " SET ";
                 if ($newValues != null) {
@@ -254,22 +262,22 @@ class DB/* extends mysqli */ {
                             }
                         }
                     }
-                    $sentencia = self::$conexion->prepare("UPDATE " . $table . " " . $set . " " . $where . ";");
+                    $sentencia = $this->conexion->prepare("UPDATE " . $table . " " . $set . " " . $where . ";");
                     $sentencia->execute();
                     return TRUE;
                 } else {
                     return FALSE;
                 }
             } catch (PDOException $e) {
-                self::addProblem();
+                $this->addProblem();
                 error_log($e->getMessage());
                 return FALSE;
             }
         }
     }
 
-    public static function delete($table, $params = null, $strict = true) {
-        if (self::check()) {
+    public function delete($table, $params = null, $strict = true) {
+        if ($this->check()) {
             try {
                 $where = "";
                 if ($params != null) {
@@ -287,24 +295,24 @@ class DB/* extends mysqli */ {
                         }
                     }
                 }
-                $sentencia = self::$conexion->prepare("DELETE FROM " . $table . " " . $where . ";");
+                $sentencia = $this->conexion->prepare("DELETE FROM " . $table . " " . $where . ";");
                 $sentencia->execute();
                 return TRUE;
             } catch (PDOException $e) {
-                self::addProblem();
+                $this->addProblem();
                 error_log($e->getMessage());
                 return FALSE;
             }
         }
     }
 
-    public static function logger($action = "", $coment = "", $user = "") {
-        if (self::check()) {
+    public function logger($action = "", $coment = "", $user = "") {
+        if ($this->check()) {
             try {
-                $sentencia = self::$conexion->prepare("INSERT INTO " . TABLE_ERROR_LOG . "(accion, id_usuario, comentario) VALUES('$action','$user','$coment');");
+                $sentencia = $this->conexion->prepare("INSERT INTO " . TABLE_ERROR_LOG . "(accion, id_usuario, comentario) VALUES('$action','$user','$coment');");
                 $sentencia->execute();
             } catch (PDOException $e) {
-                self::addProblem();
+                $this->addProblem();
                 error_log($e->getMessage());
             }
         }

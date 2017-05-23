@@ -56,7 +56,7 @@ class User extends PersistenceManager implements BasicMethodsEntities {
             COL_ID_USUARIO => $id,
             COL_FLAG_ACTIVO => $active
         );
-        $usuario = DB::preparedQuery(UsuarioFindById, $params);
+        $usuario = DB::GetInstance()->preparedQuery(UsuarioFindById, $params);
         if ($usuario != NULL) {
             return FALSE;
         }
@@ -66,11 +66,10 @@ class User extends PersistenceManager implements BasicMethodsEntities {
     public static function findByUserName($username, $active = true) {
         /* return User with user id data */
         $params = array(
-            COL_USERNAME => $username,
+            COL_USERNAME => strtolower(trim($username)),
             COL_FLAG_ACTIVO => $active
         );
-        var_dump($params);
-        $usuario = DB::preparedQuery(UsuarioFindByUserName, $params);
+        $usuario = DB::GetInstance()->preparedQuery(UsuarioFindByUserName, $params);
         if ($usuario != NULL) {
             return FALSE;
         }

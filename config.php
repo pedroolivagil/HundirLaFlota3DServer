@@ -26,7 +26,7 @@ define('FONTCOLOR120', 180);
 // DB Constants
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', '1234');
 define('DB_DB', 'hundirflota3d');
 define('PORT', explode(':', $_SERVER['HTTP_HOST'])[1]);
 
@@ -60,6 +60,7 @@ define('_CLASS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/clases/');
 //ini_set('display_errors',1);
 header('Content-type: text/html; charset=utf-8');
 require_once(_CLASS_PATH_ . 'Tools.php');
+require_once(_CLASS_PATH_ . 'Queries.php');
 require_once(_CLASS_PATH_ . 'DB.php');
 require_once(_CLASS_PATH_ . 'BasicMethods.php');
 require_once(_CLASS_PATH_ . 'BasicMethodsEntities.php');
@@ -68,5 +69,3 @@ require_once(_CLASS_PATH_ . 'PersistenceManager.php');
 //// Persistence
 require_once(_CLASS_PATH_ . 'entities/User.php');
 error_reporting(E_ALL ^ E_NOTICE);
-header("Content-Type: text/plain");
-DB::init_db();
