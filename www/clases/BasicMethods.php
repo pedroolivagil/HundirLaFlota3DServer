@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * @author Oliva
@@ -11,7 +12,7 @@ interface BasicMethods {
 
     public function update($table, $newValues, $params);
 
-    public function findByParam($field, $paramValue, $table);
+    public function findByParam($namedQuery, $params);
 
     public function findById($id, $table);
 }

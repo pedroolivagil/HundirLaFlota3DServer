@@ -1,9 +1,12 @@
 <?php
 require_once('config.php');
+DB::GetInstance()->init_db();
 //$username = $_POST['user'];
 $username = strtolower('oliva');
 $password = $_POST['pass'];
 $user = new User();
+var_dump(DB::GetInstance()->findAll("usuario"));
+var_dump($user->getEm()->findByParam(UsuarioFindByUserName, $username));
 $user->findByUserName($username);
 if ($user->getId_usuario() != NULL) {
 //    echo '{'

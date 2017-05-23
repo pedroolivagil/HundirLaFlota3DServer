@@ -19,11 +19,14 @@ class PersistenceManager {
         $this->em = new EntityManager();
     }
 
-    protected function getEm() {
+    public function getEm() {
+        if ($this->em == NULL) {
+            $this->em = new EntityManager();
+        }
         return $this->em;
     }
 
-    protected function updateField($field, $value, $nullable = FALSE) {
+    public function updateField($field, $value, $nullable = FALSE) {
         $newVal = '';
         if ($value != $field) {
             if ($nullable) {

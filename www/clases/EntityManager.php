@@ -49,15 +49,18 @@ class EntityManager implements BasicMethods {
      * @param type $paramValue
      * @param type $table
      */
-    public function findByParam($field, $paramValue, $table) {
-        $param = array(
-            "param" => $paramValue
-        );
-        DB::GetInstance()->preparedQuery('SELECT t.* FROM ' . $table . ' t WHERE t.'.$field.' = :param', $param);
+    public function findByParam($namedQuery, $params) {
+        if(!defined($namedQuery)){
+            return null;
+        }
+        return DB::GetInstance()->preparedQuery($namedQuery, $params);
     }
 
-    public function findById($id, $table) {
-        
+    public function findById($namedQuery, $params) {
+        if(!defined($namedQuery)){
+            return null;
+        }
+        return DB::GetInstance()->preparedQuery($namedQuery, $params);
     }
 
 }

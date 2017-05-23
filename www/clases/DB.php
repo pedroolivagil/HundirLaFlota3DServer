@@ -5,16 +5,14 @@
  *
  * @author Oliva
  */
-
 class DB/* extends mysqli */ {
 
     private static $instance;
-    
     private $conexion;
     private $problems;
-    
-    public static function GetInstance(){
-        if(self::$instance == NULL){
+
+    public static function GetInstance() {
+        if (self::$instance == NULL) {
             self::$instance = new DB();
         }
         return self::$instance;
@@ -29,14 +27,10 @@ class DB/* extends mysqli */ {
     }
 
     private function check() {
-        try {
-            return $this->conexion->query('SELECT 1');
-        } catch (PDOException $e) {
-            error_log($e->getMessage());
+        if ($this->conexion == NULL) {
             $this->init_db();
-            // Don't catch exception here, so that re-connect fail will throw exception
-            return FALSE;
         }
+        return $this->conexion != NULL;
     }
 
     private function initConexion() {
@@ -96,6 +90,7 @@ class DB/* extends mysqli */ {
         $result_final = NULL;
         try {
             if ($this->check()) {
+                var_dump($query);
                 if ($query != NULL) {
                     $sentencia = $this->conexion->prepare($query);
                     if ($params != NULL) {

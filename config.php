@@ -28,7 +28,8 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '1234');
 define('DB_DB', 'hundirflota3d');
-define('PORT', explode(':', $_SERVER['HTTP_HOST'])[1]);
+//define('PORT', explode(':', $_SERVER['HTTP_HOST'])[1]);
+define('PORT', 8080);
 
 define('CRYPT_KEY', 'hUndIrLaFlota3DOliLogiCSTudiOsolivadevelop');
 define('SESSION_USUARIO_ID', 'id_usuario');
@@ -55,7 +56,6 @@ define('_CLASS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/clases/');
 //define('_CSS_PATH_', 'http://' . $_SERVER['SERVER_NAME'] . $port . $root . '/css/');
 //define('_JS_PATH_', 'http://' . $_SERVER['SERVER_NAME'] . $port . $root . '/js/');
 //define('_DOCS_PATH_', 'http://' . $_SERVER['SERVER_NAME'] . $port . $root . '/docs/');
-
 //session_start(); // no hace falta gracias al .htaccess
 //ini_set('display_errors',1);
 header('Content-type: text/html; charset=utf-8');
@@ -69,5 +69,3 @@ require_once(_CLASS_PATH_ . 'PersistenceManager.php');
 //// Persistence
 require_once(_CLASS_PATH_ . 'entities/User.php');
 error_reporting(E_ALL ^ E_NOTICE);
-
-DB::GetInstance()->init_db();

@@ -13,7 +13,7 @@ interface BasicMethodsEntities {
 
     public function delete();
 
-    public static function findById($id);
+    public function findById($id);
 
     public function toArray();
     

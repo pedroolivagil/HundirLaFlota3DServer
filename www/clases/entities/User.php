@@ -22,6 +22,7 @@ class User extends PersistenceManager implements BasicMethodsEntities {
 
     function __construct() {
         parent::__construct();
+        parent::getEm();
     }
 
     public function create() {
@@ -38,7 +39,7 @@ class User extends PersistenceManager implements BasicMethodsEntities {
         return parent::getEm()->delete(TABLE_USUARIO, $this->toArray(), $id);
     }
 
-    public static function findById($id, $active = true) {
+    public function findById($id, $active = true) {
         /* return User with user id data */
         $params = array(
             COL_ID_USUARIO => $id,
@@ -53,15 +54,19 @@ class User extends PersistenceManager implements BasicMethodsEntities {
 
     public function findByUserName($username, $active = true) {
         /* return User with user id data */
-//        $params = array(
-//            COL_USERNAME => strtolower(trim($username)),
-//            COL_FLAG_ACTIVO => $active
-//        );
-//        $usuario = DB::GetInstance()->preparedQuery(UsuarioFindByUserName, $params);
-//        if ($usuario != NULL) {
-//            return FALSE;
-//        }
-        $usuario = parent::getEm()->findByParam(COL_USERNAME, $username, TABLE_USUARIO);
+        if ($username == NULL) {
+            return FALSE;
+        }
+        $params = array(
+            COL_USERNAME => strtolower(trim($username)),
+            COL_FLAG_ACTIVO => $active
+        );
+        var_dump($params);
+        var_dump(UsuarioFindByUserName);
+        $usuario = parent::getEm()->findByParam(UsuarioFindByUserName, $params);
+        if ($usuario == NULL) {
+            return FALSE;
+        }
         $this->setId_usuario($usuario[0][COL_ID_USUARIO]);
         $this->setBirth_date($usuario[0]['birth_date']);
         $this->setCorreo($usuario[0]['correo']);
