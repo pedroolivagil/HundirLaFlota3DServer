@@ -37,7 +37,7 @@ class _EntitySerialize implements Serializable {
         
     }
 
-    public function setObject($object) {
+    protected function setObject($object) {
         $this->object = $object;
     }
 

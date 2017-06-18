@@ -29,6 +29,13 @@ class UserController extends _PersistenseManager {
         return new User($retorno[0]);
     }
 
+    public function create(&$data = NULL) {
+        if (Tools::isNotNull($data)) {
+            $data
+            parent::persist($data);
+        }
+    }
+
     public function update($id, $newData = NULL) {
         $key = array(
             COL_ID_USER => $id

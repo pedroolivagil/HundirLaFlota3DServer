@@ -53,10 +53,6 @@ class User extends _EntitySerialize {
         return $this->email;
     }
 
-    function set_id($_id) {
-        $this->_id = $_id;
-    }
-
     function setId_user($id_user) {
         $this->id_user = $id_user;
     }
@@ -77,11 +73,20 @@ class User extends _EntitySerialize {
         $this->email = $email;
     }
 
+    /**
+     * 
+     * @param type $propsUnserialized Array de nombre de propiedades a excluir
+     * @return type
+     */
     public function serialize($propsUnserialized = null) {
-        if(Tools::isNotNull($propsUnserialized)){
-            
+        $properties = get_object_vars($this);
+        unset($properties['_id']);
+        if (Tools::isNotNull($propsUnserialized)) {
+            foreach ($propsUnserialized as $property) {
+                unset($properties[$property]);
+            }
         }
-        parent::setObject(get_object_vars($this));
+        parent::setObject($properties);
         return parent::serialize();
     }
 
