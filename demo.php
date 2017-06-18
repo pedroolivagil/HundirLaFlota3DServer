@@ -36,7 +36,7 @@ header('Content-type: application/json; charset=utf-8');
 $user = new User;
 $user->setEmail("nevoUsuario@rfger.werge");
 $user->setUsername("TestNuevoUsuario");
-$user->setFlag_activo(TRUE);
+$user->setFlagActivo(TRUE);
 $user->setPassword("1234567890");
 $manager = new UserController();
 $manager->create($user);

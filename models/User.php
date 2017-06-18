@@ -29,15 +29,15 @@ class User extends _EntitySerialize {
         $this->email = $arrayValues['email'];
     }
 
-    function get_id() {
+    function getId() {
         return $this->_id;
     }
 
-    function getId_user() {
+    function getIdUser() {
         return $this->id_user;
     }
 
-    function getFlag_activo() {
+    function getFlagActivo() {
         return $this->flag_activo;
     }
 
@@ -53,11 +53,11 @@ class User extends _EntitySerialize {
         return $this->email;
     }
 
-    function setId_user($id_user) {
+    function setIdUser($id_user) {
         $this->id_user = $id_user;
     }
 
-    function setFlag_activo($flag_activo) {
+    function setFlagActivo($flag_activo) {
         $this->flag_activo = $flag_activo;
     }
 

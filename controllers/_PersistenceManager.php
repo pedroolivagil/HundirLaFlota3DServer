@@ -21,6 +21,10 @@ class _PersistenceManager {
         $this->collectionName = $collectionName;
     }
 
+    public function count(){
+        return $this->db->count($this->collectionName);
+    }
+    
     protected function find() {
         return $this->db->find($this->collectionName);
     }

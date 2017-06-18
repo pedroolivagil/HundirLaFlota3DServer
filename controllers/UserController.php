@@ -11,7 +11,7 @@
  *
  * @author Oliva
  */
-class UserController extends _PersistenseManager {
+class UserController extends _PersistenceManager {
 
     public function __construct() {
         parent::__construct('usuarios');
@@ -31,7 +31,7 @@ class UserController extends _PersistenseManager {
 
     public function create(&$data = NULL) {
         if (Tools::isNotNull($data)) {
-            $data
+            $data->setId_user(parent::count() + 1);
             parent::persist($data);
         }
     }
