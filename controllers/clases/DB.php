@@ -66,6 +66,20 @@ class DB implements DBMethods {
     /**
      * 
      * @param type string $collectionName Nombre de la colección
+     * @return type integer Total de documentos en una colección
+     */
+    public function count($collectionName) {
+        try {
+            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
+            return $collection->count();
+        } catch (Exception $e) {
+            return NULL;
+        }
+    }
+
+    /**
+     * 
+     * @param type string $collectionName Nombre de la colección
      * @return type array()
      */
     public function find($collectionName) {

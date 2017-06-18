@@ -63,7 +63,7 @@ require_once(_CLASES_PATH_ . 'Tools.php');
 require_once(_CLASES_PATH_ . 'vendor/autoload.php');
 require_once(_CLASES_PATH_ . 'DBMethods.php');
 require_once(_CLASES_PATH_ . 'DB.php');
-require_once(_CONTROLLERS_PATH_ . 'PersistenseManager.php');
+require_once(_CONTROLLERS_PATH_ . '_PersistenseManager.php');
 require_once(_CONTROLLERS_PATH_ . 'UserController.php');
 
 // Models

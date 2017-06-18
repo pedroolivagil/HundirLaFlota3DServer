@@ -12,13 +12,14 @@
  * @author Oliva
  */
 class User extends _EntitySerialize {
+
     private $_id;
     private $id_user;
     private $flag_activo;
     private $username;
     private $password;
     private $email;
-    
+
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues['_id'];
         $this->id_user = $arrayValues['id_user'];
@@ -27,4 +28,61 @@ class User extends _EntitySerialize {
         $this->password = $arrayValues['pass'];
         $this->email = $arrayValues['email'];
     }
+
+    function get_id() {
+        return $this->_id;
+    }
+
+    function getId_user() {
+        return $this->id_user;
+    }
+
+    function getFlag_activo() {
+        return $this->flag_activo;
+    }
+
+    function getUsername() {
+        return $this->username;
+    }
+
+    function getPassword() {
+        return $this->password;
+    }
+
+    function getEmail() {
+        return $this->email;
+    }
+
+    function set_id($_id) {
+        $this->_id = $_id;
+    }
+
+    function setId_user($id_user) {
+        $this->id_user = $id_user;
+    }
+
+    function setFlag_activo($flag_activo) {
+        $this->flag_activo = $flag_activo;
+    }
+
+    function setUsername($username) {
+        $this->username = $username;
+    }
+
+    function setPassword($password) {
+        $this->password = $password;
+    }
+
+    function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function serialize($propsUnserialized = null) {
+        if(Tools::isNotNull($propsUnserialized)){
+            
+        }
+        parent::setObject(get_object_vars($this));
+        return parent::serialize();
+    }
+
 }

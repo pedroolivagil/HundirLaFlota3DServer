@@ -33,6 +33,7 @@ header('Content-type: application/json; charset=utf-8');
 //foreach ($cursor_users as $document) {
 //    print_r($document);
 //}
-
 $user = (new UserController())->findById(1);
 print_r($user);
+
+print_r($user->serialize());

@@ -13,6 +13,8 @@
  */
 class _EntitySerialize implements Serializable {
 
+    private $object;
+
     public function __construct() {
         //obtengo un array con los parámetros enviados a la función
         $params = func_get_args();
@@ -35,8 +37,16 @@ class _EntitySerialize implements Serializable {
         
     }
 
+    public function setObject($object) {
+        $this->object = $object;
+    }
+
     public function serialize() {
-        return json_encode(get_object_vars($this), JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
+        try {
+            return json_encode($this->object, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
+        } catch (Exception $e) {
+            throw new Exception($e . ': ' . json_last_error_msg());
+        }
     }
 
     public function unserialize($serialized) {

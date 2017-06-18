@@ -11,7 +11,7 @@
  *
  * @author Oliva
  */
-class UserController extends PersistenseManager {
+class UserController extends _PersistenseManager {
 
     public function __construct() {
         parent::__construct('usuarios');
