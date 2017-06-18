@@ -11,6 +11,29 @@
  *
  * @author Oliva
  */
-class UserController{
+class UserController extends PersistenseManager {
+
+    public function __construct() {
+        parent::__construct('usuarios');
+    }
+
+    public function findById($id) {
+        $key = array(
+            COL_ID_USER => $id
+        );
+        $result = parent::findByKey($key);
+        $retorno = array();
+        foreach ($result as $document) {
+            array_push($retorno, $document);
+        }
+        return new User($retorno[0]);
+    }
+
+    public function update($id, $newData = NULL) {
+        $key = array(
+            COL_ID_USER => $id
+        );
+        return parent::merge($key, $newData);
+    }
 
 }

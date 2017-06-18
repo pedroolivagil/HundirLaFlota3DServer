@@ -5,16 +5,16 @@
  *
  * @author Oliva
  */
-class DB {
+class DB implements DBMethods {
 
     private static $instance;
     private $manager;
 
     public static function getInstance() {
-        if (Tools::isNotNull($manager)) {
-            $instance = new DB();
+        if (Tools::isNull(self::$instance)) {
+            self::$instance = new DB();
         }
-        return $instance;
+        return self::$instance;
     }
 
     public function getManager() {
@@ -28,17 +28,17 @@ class DB {
 
     /**
      * Crea un documento en la colección
-     * @param type string $collection
-     * @param type array $data
+     * @param type string $collection Nombre de la colección
+     * @param type array $data Array de datos para insertar
      * @return boolean
      */
-    public function create($collection = NULL, &$data = NULL) {
+    public function persist($collectionName = NULL, &$data = NULL) {
         try {
-            if (Tools::isNull($collection) or Tools::isNull($data)) {
+            if (Tools::isNull($collectionName) or Tools::isNull($data)) {
                 return FALSE;
             }
-            $colection = $this->manager->selectCollection(DB_DB, $collection);
-            return $colection->insert($data);
+            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
+            return $collection->insert($data);
         } catch (Exception $e) {
             return FALSE;
         }
@@ -46,49 +46,74 @@ class DB {
 
     /**
      * Borra un documento de manera superficial. Solo desactiva el documento con un bool
-     * @param type string $collection
-     * @param type array $key
+     * @param type string $collection Nombre de la colección
+     * @param type array $key Array [key_id => value] para el borrado
      * @return boolean
      */
-    public function delete($collection = NULL, &$key = NULL) {
+    public function remove($collectionName = NULL, &$key = NULL) {
         try {
-            if (Tools::isNull($collection) or Tools::isNull($key)) {
+            if (Tools::isNull($collectionName) or Tools::isNull($key)) {
                 return FALSE;
             }
-            $colection = $this->manager->selectCollection(DB_DB, $collection);
+            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
             $flagFalse = array('$set' => array(FLAG_ACTIVO => FALSE));
-            return $colection->update($key, $flagFalse);
+            return $collection->update($key, $flagFalse);
         } catch (Exception $e) {
             return FALSE;
         }
     }
 
-    public function find() {
-        
+    /**
+     * 
+     * @param type string $collectionName Nombre de la colección
+     * @return type array()
+     */
+    public function find($collectionName) {
+        try {
+            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
+            return $collection->find();
+        } catch (Exception $e) {
+            return NULL;
+        }
     }
 
-    public function findByKey($key) {
-        
+    /**
+     * 
+     * @param type string $collectionName $collection Nombre de la colección
+     * @param type array $key  Array [key_id => value]
+     * @return type
+     */
+    public function findByKey($collectionName, $key) {
+        try {
+            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
+            return $collection->find($key);
+        } catch (Exception $e) {
+            return NULL;
+        }
     }
 
     /**
      * Hac un update el documento seleccionado
-     * @param type $collection
-     * @param type array $key
-     * @param type array $newData
+     * @param type $collection Nombre de la colección
+     * @param type array $key Array [key_id => value] para el borrado
+     * @param type array $newData Array con los nuevos datos
      * @return boolean
      */
-    public function update($collection = NULL, &$key = NULL, $newData = NULL) {
+    public function merge($collectionName = NULL, &$key = NULL, $newData = NULL) {
         try {
-            if (Tools::isNull($collection) or Tools::isNull($key) or Tools::isNull($newDate)) {
+            if (Tools::isNull($collectionName) or Tools::isNull($key) or Tools::isNull($newDate)) {
                 return FALSE;
             }
-            $colection = $this->manager->selectCollection(DB_DB, $collection);
+            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
             $flagFalse = array('$set' => $newData);
-            return $colection->update($key, $flagFalse);
+            return $collection->update($key, $flagFalse);
         } catch (Exception $e) {
             return FALSE;
         }
+    }
+
+    public function close() {
+        $this->manager->close();
     }
 
 }

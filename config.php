@@ -23,22 +23,16 @@ define('FONTEXTRA', 14);
 define('FONTCOLORDEF', 50);
 define('FONTCOLOR120', 180);
 
-// DB Constants
-define('DB_HOST', 'ds123662.mlab.com');
-define('DB_USER', 'userhundirlaflota3d');
-define('DB_PASSWORD', '1ATN1pgkujiA8lW');
-define('DB_DB', 'hundirlaflota3d');
-define('DB_PORT', 23662);
-
 define('CRYPT_KEY', 'hUndIrLaFlota3DOliLogiCSTudiOsolivadevelop');
 define('SESSION_USUARIO_ID', 'id_usuario');
 define('SESSION_USUARIO_NAME', 'name_usuario');
 define('SESSION_AUTOLOGIN', 'autologin');
 
 // Columns
-define('FLAG_ACTIVO','flag_activo');
+define('FLAG_ACTIVO', 'flag_activo');
 
 // '/myprojectsorg' solo para ámbito local
+define('PORT', 8080);
 $port = ':' . PORT;
 $root = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/HundirLaFlota3DServer' : '';
 //define('MAILBODY_NEWUSER', $_SERVER['DOCUMENT_ROOT'] . $root . '/forms/newuser.txt');
@@ -47,7 +41,9 @@ $root = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/HundirLaFlota3DServer' : ''
 //define('MAILBODY_RECOVERY', $_SERVER['DOCUMENT_ROOT'] . $root . '/forms/recovery.txt');
 //define('_LEGAL_FILE_', 'legal.txt');
 
-define('_CLASS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/clases/');
+define('_CONTROLLERS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/controllers/');
+define('_CLASES_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/controllers/clases/');
+define('_MODELS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/models/');
 //define('_PAGES_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/');
 //define('_PHP_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/php/');
 //define('_TEMP_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/temp/');
@@ -61,13 +57,18 @@ define('_CLASS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/clases/');
 //session_start(); // no hace falta gracias al .htaccess
 //ini_set('display_errors',1);
 header('Content-type: text/html; charset=utf-8');
-require_once(_CLASS_PATH_ . 'Tools.php');
-require_once(_CLASS_PATH_ . 'Queries.php');
-require_once(_CLASS_PATH_ . 'DB.php');
-require_once(_CLASS_PATH_ . 'BasicMethods.php');
-require_once(_CLASS_PATH_ . 'BasicMethodsEntities.php');
-require_once(_CLASS_PATH_ . 'EntityManager.php');
-require_once(_CLASS_PATH_ . 'PersistenceManager.php');
-//// Persistence
-require_once(_CLASS_PATH_ . 'entities/User.php');
+// Controllers
+require_once(_CLASES_PATH_ . 'ConstantsDB.php');
+require_once(_CLASES_PATH_ . 'Tools.php');
+require_once(_CLASES_PATH_ . 'vendor/autoload.php');
+require_once(_CLASES_PATH_ . 'DBMethods.php');
+require_once(_CLASES_PATH_ . 'DB.php');
+require_once(_CONTROLLERS_PATH_ . 'PersistenseManager.php');
+require_once(_CONTROLLERS_PATH_ . 'UserController.php');
+
+// Models
+require_once(_MODELS_PATH_ . '_EntitySerialize.php');
+require_once(_MODELS_PATH_ . 'User.php');
+
+
 error_reporting(E_ALL ^ E_NOTICE);
