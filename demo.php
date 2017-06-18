@@ -7,20 +7,20 @@ $uri = "mongodb://userhundirlaflota3d:1ATN1pgkujiA8lW@ds123662.mlab.com:23662/hu
 try {
 //    $manager = new MongoDB\Driver\Manager($uri);
     $manager = new MongoClient($uri);
-    $db = $manager->selectDB($database);
     $usuarios = $manager->selectCollection($database, "usuarios");
 
-    $cursor = $usuarios->find(['id_user' => 1]);
+    $cursor = $usuarios->find(['flag_activo' => TRUE]);
     foreach ($cursor as $document) {
         print_r($document);
     }
-    $newuser = array(
-        'id_user' => 4,
-        'username' => 'erger',
-        'pass' => '1234567890',
-        'email' => 'onion_oliva@hotmail.com'
-    );
-    $usuarios->insert($newuser);
+    echo '--------------------------------------------------------------------';
+//    $newuser = array(
+//        'id_user' => 4,
+//        'username' => 'erger',
+//        'pass' => '1234567890',
+//        'email' => 'onion_oliva@hotmail.com'
+//    );
+//    $usuarios->insert($newuser);
     echo '--------------------------------------------------------------------';
     $cursor = $usuarios->find();
     foreach ($cursor as $document) {

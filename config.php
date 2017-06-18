@@ -24,17 +24,19 @@ define('FONTCOLORDEF', 50);
 define('FONTCOLOR120', 180);
 
 // DB Constants
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASSWORD', '1234');
-define('DB_DB', 'hundirflota3d');
-//define('PORT', explode(':', $_SERVER['HTTP_HOST'])[1]);
-define('PORT', 8080);
+define('DB_HOST', 'ds123662.mlab.com');
+define('DB_USER', 'userhundirlaflota3d');
+define('DB_PASSWORD', '1ATN1pgkujiA8lW');
+define('DB_DB', 'hundirlaflota3d');
+define('DB_PORT', 23662);
 
 define('CRYPT_KEY', 'hUndIrLaFlota3DOliLogiCSTudiOsolivadevelop');
 define('SESSION_USUARIO_ID', 'id_usuario');
 define('SESSION_USUARIO_NAME', 'name_usuario');
 define('SESSION_AUTOLOGIN', 'autologin');
+
+// Columns
+define('FLAG_ACTIVO','flag_activo');
 
 // '/myprojectsorg' solo para ámbito local
 $port = ':' . PORT;
