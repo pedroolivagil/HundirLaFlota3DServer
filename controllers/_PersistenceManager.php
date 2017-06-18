@@ -11,7 +11,7 @@
  *
  * @author Oliva
  */
-class _PersistenseManager {
+class _PersistenceManager {
 
     protected $db;
     protected $collectionName;
