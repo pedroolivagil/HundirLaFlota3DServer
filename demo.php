@@ -1,7 +1,7 @@
 <?php
 
 require_once('config.php');
-//header('Content-type: application/json; charset=utf-8');
+header('Content-type: application/json; charset=utf-8');
 //$database = 'hundirlaflota3d';
 //$uri = "mongodb://userhundirlaflota3d:1ATN1pgkujiA8lW@ds123662.mlab.com:23662/hundirlaflota3d";
 //try {
@@ -33,15 +33,12 @@ require_once('config.php');
 //foreach ($cursor_users as $document) {
 //    print_r($document);
 //}
-$user = new User;
-$user->setEmail("nevoUsuario@rfger.werge");
-$user->setUsername("TestNuevoUsuario");
-$user->setFlagActivo(TRUE);
-$user->setPassword("1234567890");
 $manager = new UserController();
-if($manager->create($user)){
-    echo 'CREATE - OK';
-    $manager->create($user);
+$user = $manager->findById(1);
+if($manager->delete($user)){
+    echo 'FINAL: ';
+    print_r($manager->findById(1));
+    echo 'remove - OK';
 }else{
     echo 'error';
 }

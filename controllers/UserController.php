@@ -38,11 +38,17 @@ class UserController extends _PersistenceManager {
         }
     }
 
-    public function update($id, $newData = NULL) {
-        $key = array(
-            COL_ID_USER => $id
-        );
-        return parent::merge($key, $newData);
+    public function update($data = NULL) {
+        if (!is_null($data)) {
+            $key = array(COL_ID_USER => $data->getIdUser());
+            return parent::merge($key, $data->serialize(array(COL_OBJECT)));
+        }
     }
 
+    public function delete($data = NULL) {
+        if (!is_null($data)) {
+            $key = array(COL_ID_USER => $data->getIdUser());
+            return parent::remove($key, $data->serialize(array(COL_OBJECT)));
+        }
+    }
 }

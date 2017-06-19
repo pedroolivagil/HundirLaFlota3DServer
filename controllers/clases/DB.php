@@ -27,54 +27,6 @@ class DB implements DBMethods {
     }
 
     /**
-     * Crea un documento en la colección
-     * @param type string $collection Nombre de la colección
-     * @param type array $data Array de datos para insertar
-     * @return boolean
-     */
-    public function persist($collectionName = NULL, $data = NULL) {
-        try {
-            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            return $collection->insert($data);
-        } catch (Exception $e) {
-            return FALSE;
-        }
-    }
-
-    /**
-     * Borra un documento de manera superficial. Solo desactiva el documento con un bool
-     * @param type string $collection Nombre de la colección
-     * @param type array $key Array [key_id => value] para el borrado
-     * @return boolean
-     */
-    public function remove($collectionName = NULL, &$key = NULL) {
-        try {
-            if (Tools::isNull($collectionName) or Tools::isNull($key)) {
-                return FALSE;
-            }
-            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            $flagFalse = array('$set' => array(FLAG_ACTIVO => FALSE));
-            return $collection->update($key, $flagFalse);
-        } catch (Exception $e) {
-            return FALSE;
-        }
-    }
-
-    /**
-     * 
-     * @param type string $collectionName Nombre de la colección
-     * @return type integer Total de documentos en una colección
-     */
-    public function count($collectionName) {
-        try {
-            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            return $collection->count();
-        } catch (Exception $e) {
-            return NULL;
-        }
-    }
-
-    /**
      * 
      * @param type string $collectionName Nombre de la colección
      * @return type array()
@@ -104,22 +56,64 @@ class DB implements DBMethods {
     }
 
     /**
+     * Crea un documento en la colección
+     * @param type string $collection Nombre de la colección
+     * @param type array $data Array de datos para insertar
+     * @return boolean
+     */
+    public function persist($collectionName = NULL, $data = NULL) {
+        try {
+            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
+            return $collection->insert($data);
+        } catch (Exception $e) {
+            return FALSE;
+        }
+    }
+
+    /**
+     * Borra un documento de manera superficial. Solo desactiva el documento con un bool
+     * @param type string $collection Nombre de la colección
+     * @param type array $key Array [key_id => value] para el borrado
+     * @return boolean
+     */
+    public function remove($collectionName = NULL, $key = NULL, $data = NULL) {
+        try {
+            $data[COL_FLAG_ACTIVO] = FALSE;
+            return $this->merge($collectionName, $key, $data);
+        } catch (Exception $e) {
+            return FALSE;
+        }
+    }
+
+    /**
      * Hac un update el documento seleccionado
      * @param type $collection Nombre de la colección
      * @param type array $key Array [key_id => value] para el borrado
      * @param type array $newData Array con los nuevos datos
      * @return boolean
      */
-    public function merge($collectionName = NULL, &$key = NULL, $newData = NULL) {
+    public function merge($collectionName = NULL, $key = NULL, $data = NULL) {
         try {
-            if (Tools::isNull($collectionName) or Tools::isNull($key) or Tools::isNull($newDate)) {
-                return FALSE;
-            }
             $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            $flagFalse = array('$set' => $newData);
-            return $collection->update($key, $flagFalse);
+            unset($data[COL_ID_DOCUMENT]);
+            $newData = array('$set' => $data);
+            return $collection->update($key, $newData);
         } catch (Exception $e) {
             return FALSE;
+        }
+    }
+
+    /**
+     * 
+     * @param type string $collectionName Nombre de la colección
+     * @return type integer Total de documentos en una colección
+     */
+    public function count($collectionName) {
+        try {
+            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
+            return $collection->count();
+        } catch (Exception $e) {
+            return NULL;
         }
     }
 

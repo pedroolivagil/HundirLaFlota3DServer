@@ -33,8 +33,9 @@ class _PersistenceManager {
         return $this->db->findByKey($this->collectionName, $key);
     }
 
-    protected function merge(&$key = NULL, $newData = NULL) {
-        
+    protected function merge($key = NULL, $data = NULL) {
+        $data = json_decode($data, true);
+        return $this->db->merge($this->collectionName, $key, $data);
     }
 
     protected function persist($data = NULL) {
@@ -42,8 +43,10 @@ class _PersistenceManager {
         return $this->db->persist($this->collectionName, $data);
     }
 
-    protected function remove(&$key = NULL) {
-        
+    protected function remove($key = NULL, $data = NULL) {
+        $data = json_decode($data, true);
+        $data[COL_FLAG_ACTIVO] = FALSE;
+        return $this->db->remove($this->collectionName, $key, $data);
     }
 
     public function close() {
