@@ -1,7 +1,7 @@
 <?php
 
 require_once('config.php');
-header('Content-type: application/json; charset=utf-8');
+//header('Content-type: application/json; charset=utf-8');
 //$database = 'hundirlaflota3d';
 //$uri = "mongodb://userhundirlaflota3d:1ATN1pgkujiA8lW@ds123662.mlab.com:23662/hundirlaflota3d";
 //try {
@@ -39,4 +39,9 @@ $user->setUsername("TestNuevoUsuario");
 $user->setFlagActivo(TRUE);
 $user->setPassword("1234567890");
 $manager = new UserController();
-$manager->create($user);
+if($manager->create($user)){
+    echo 'CREATE - OK';
+    $manager->create($user);
+}else{
+    echo 'error';
+}

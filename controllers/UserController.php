@@ -30,9 +30,11 @@ class UserController extends _PersistenceManager {
     }
 
     public function create(&$data = NULL) {
-        if (Tools::isNotNull($data)) {
-            $data->setId_user(parent::count() + 1);
-            parent::persist($data);
+        if (!is_null($data)) {
+            $total = parent::count();
+            $data->setIdUser($total + 1);
+            $data->setFechaAlta(time());
+            return parent::persist($data->serialize(array(COL_ID_DOCUMENT, COL_OBJECT)));
         }
     }
 

@@ -50,7 +50,6 @@ class _EntitySerialize implements Serializable {
     }
 
     public function unserialize($serialized) {
-        throw new Exception("Method not implemented");
     }
 
 }

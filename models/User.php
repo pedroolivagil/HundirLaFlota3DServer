@@ -16,6 +16,7 @@ class User extends _EntitySerialize {
     private $_id;
     private $id_user;
     private $flag_activo;
+    private $fecha_alta;
     private $username;
     private $password;
     private $email;
@@ -53,6 +54,10 @@ class User extends _EntitySerialize {
         return $this->email;
     }
 
+    function getFechaAlta() {
+        return $this->fecha_alta;
+    }
+
     function setIdUser($id_user) {
         $this->id_user = $id_user;
     }
@@ -73,6 +78,10 @@ class User extends _EntitySerialize {
         $this->email = $email;
     }
 
+    function setFechaAlta($fecha_alta) {
+        $this->fecha_alta = $fecha_alta;
+    }
+
     /**
      * 
      * @param type $propsUnserialized Array de nombre de propiedades a excluir
@@ -80,7 +89,6 @@ class User extends _EntitySerialize {
      */
     public function serialize($propsUnserialized = null) {
         $properties = get_object_vars($this);
-        unset($properties['_id']);
         if (Tools::isNotNull($propsUnserialized)) {
             foreach ($propsUnserialized as $property) {
                 unset($properties[$property]);

@@ -21,10 +21,10 @@ class _PersistenceManager {
         $this->collectionName = $collectionName;
     }
 
-    public function count(){
+    public function count() {
         return $this->db->count($this->collectionName);
     }
-    
+
     protected function find() {
         return $this->db->find($this->collectionName);
     }
@@ -37,8 +37,9 @@ class _PersistenceManager {
         
     }
 
-    protected function persist(&$data = NULL) {
-        
+    protected function persist($data = NULL) {
+        $data = json_decode($data, true);
+        return $this->db->persist($this->collectionName, $data);
     }
 
     protected function remove(&$key = NULL) {

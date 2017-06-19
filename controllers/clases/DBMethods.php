@@ -17,7 +17,7 @@ interface DBMethods {
      * @param type array $data Array de datos para insertar
      * @return boolean
      */
-    function persist($collectionName = NULL, &$data = NULL);
+    function persist($collectionName = NULL, $data = NULL);
 
     /**
      * Borra un documento de manera superficial. Solo desactiva el documento con un bool

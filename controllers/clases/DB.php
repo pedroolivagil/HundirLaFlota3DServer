@@ -32,11 +32,8 @@ class DB implements DBMethods {
      * @param type array $data Array de datos para insertar
      * @return boolean
      */
-    public function persist($collectionName = NULL, &$data = NULL) {
+    public function persist($collectionName = NULL, $data = NULL) {
         try {
-            if (Tools::isNull($collectionName) or Tools::isNull($data)) {
-                return FALSE;
-            }
             $collection = $this->manager->selectCollection(DB_DB, $collectionName);
             return $collection->insert($data);
         } catch (Exception $e) {
