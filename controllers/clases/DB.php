@@ -121,4 +121,34 @@ class DB implements DBMethods {
         $this->manager->close();
     }
 
+    /**
+     * Crea una colección en la base de datos
+     * 
+     * @param type $collectionName
+     * @return type boolean si se realizó con éxito
+     */
+    protected function persistCollection($collectionName) {
+        try {
+            $db = $this->manager->selectDB(DB_DB);
+            return $db->createCollection($collectionName);
+        } catch (Exception $e) {
+            return NULL;
+        }
+    }
+
+    /**
+     * Borra una colección en la base de datos
+     * 
+     * @param type $collectionName
+     * @return type boolean si se realizó con éxito
+     */
+    protected function removeCollection($collectionName) {
+        try {
+            $db = $this->manager->selectDB(DB_DB);
+            return $db->dropCollection($collectionName);
+        } catch (Exception $e) {
+            return NULL;
+        }
+    }
+
 }
