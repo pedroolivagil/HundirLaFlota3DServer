@@ -33,12 +33,12 @@ header('Content-type: application/json; charset=utf-8');
 //foreach ($cursor_users as $document) {
 //    print_r($document);
 //}
-$manager = new UserController();
-$user = $manager->findById(1);
-if($manager->delete($user)){
-    echo 'FINAL: ';
-    print_r($manager->findById(1));
-    echo 'remove - OK';
-}else{
-    echo 'error';
-}
+//$manager = new UserController();
+//$user = $manager->findById(1);
+//if($manager->delete($user)){
+//    echo 'FINAL: ';
+//    print_r($manager->findById(1));
+//    echo 'remove - OK';
+//}else{
+//    echo 'error';
+//}

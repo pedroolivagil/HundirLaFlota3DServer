@@ -19,12 +19,17 @@ class ScriptDB {
     public function __construct() {
         $this->db = new DBManager();
         $this->listCollections = array(
-            'users',
-            '',
-            '',
-            '',
-            '',
-            ''
+            TABLE_AMUNITION,
+            TABLE_CITY,
+            TABLE_GAME,
+            TABLE_GAME_PLAYER_STATUS,
+            TABLE_GAME_USER,
+            TABLE_LEVEL,
+            TABLE_LOG_USER,
+            TABLE_PLAYER_STATUS,
+            TABLE_SETTINGS,
+            TABLE_SHIP,
+            TABLE_USER
         );
     }
 
@@ -37,7 +42,7 @@ class ScriptDB {
     public function initCleanDB() {
         foreach ($this->listCollections as $collection) {
             $this->db->dropCollection($collection);
-        }        
+        }
     }
 
 }
