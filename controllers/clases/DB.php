@@ -127,7 +127,7 @@ class DB implements DBMethods {
      * @param type $collectionName
      * @return type boolean si se realizó con éxito
      */
-    protected function persistCollection($collectionName) {
+    public function persistCollection($collectionName) {
         try {
             $db = $this->manager->selectDB(DB_DB);
             return $db->createCollection($collectionName);
@@ -142,7 +142,7 @@ class DB implements DBMethods {
      * @param type $collectionName
      * @return type boolean si se realizó con éxito
      */
-    protected function removeCollection($collectionName) {
+    public function removeCollection($collectionName) {
         try {
             $db = $this->manager->selectDB(DB_DB);
             return $db->dropCollection($collectionName);

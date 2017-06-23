@@ -11,13 +11,14 @@
  *
  * @author Oliva
  */
+include_once('../config.php');
 class ScriptDB {
 
     public $db;
     public $listCollections;
 
     public function __construct() {
-        $this->db = new DBManager();
+        $this->db = DB::getInstance();
         $this->listCollections = array(
             TABLE_AMUNITION,
             TABLE_CITY,
@@ -35,14 +36,22 @@ class ScriptDB {
 
     public function initCreateDB() {
         foreach ($this->listCollections as $collection) {
-            $this->db->createCollection($collection);
+            $this->db->persistCollection($collection);
         }
     }
 
     public function initCleanDB() {
         foreach ($this->listCollections as $collection) {
-            $this->db->dropCollection($collection);
+            $this->db->removeCollection($collection);
         }
+    }
+    
+    public function loadDefaultData() {
+        
     }
 
 }
+
+$script = new ScriptDB();
+$script->initCleanDB();
+$script->initCreateDB();
