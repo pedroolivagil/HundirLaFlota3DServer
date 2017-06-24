@@ -34,7 +34,8 @@ class DB implements DBMethods {
     public function find($collectionName) {
         try {
             $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            return $collection->find();
+            $cursor = $collection->find();
+            return $cursor;
         } catch (Exception $e) {
             return NULL;
         }
@@ -49,7 +50,24 @@ class DB implements DBMethods {
     public function findByKey($collectionName, $key) {
         try {
             $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            return $collection->find($key);
+            $cursor = $collection->find($key);
+            return $cursor;
+        } catch (Exception $e) {
+            return NULL;
+        }
+    }
+
+    /**
+     * 
+     * @param type string $collectionName $collection Nombre de la colección
+     * @param type array $key  Array [key_id => value]
+     * @return type
+     */
+    public function findOneByKey($collectionName, $key) {
+        try {
+            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
+            $object = $collection->findOne($key);
+            return $object;
         } catch (Exception $e) {
             return NULL;
         }

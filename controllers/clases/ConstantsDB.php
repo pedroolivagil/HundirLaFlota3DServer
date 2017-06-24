@@ -9,6 +9,7 @@ define('DB_PORT', 23662);
 
 define('COL_ID_DOCUMENT', '_id');
 define('COL_ID_USER', 'id_user');
+define('COL_USERNAME', 'username');
 define('COL_FLAG_ACTIVO', 'flag_activo');
 define('COL_OBJECT', 'object');
 

@@ -14,7 +14,7 @@
 class UserController extends _PersistenceManager {
 
     public function __construct() {
-        parent::__construct('usuarios');
+        parent::__construct(TABLE_USER);
     }
 
     public function findById($id) {
@@ -29,26 +29,29 @@ class UserController extends _PersistenceManager {
         return new User($retorno[0]);
     }
 
-    public function create(&$data = NULL) {
-        if (!is_null($data)) {
+    public function create($data) {
+        $key = array(
+            COL_USERNAME => $data->getUsername()
+        );
+        $find = parent::findOneByKey($key);
+        if ($find == NULL) {
             $total = parent::count();
             $data->setIdUser($total + 1);
             $data->setFechaAlta(time());
+            $data->setFlagActivo(TRUE);
             return parent::persist($data->serialize(array(COL_ID_DOCUMENT, COL_OBJECT)));
         }
+        return FALSE;
     }
 
-    public function update($data = NULL) {
-        if (!is_null($data)) {
-            $key = array(COL_ID_USER => $data->getIdUser());
-            return parent::merge($key, $data->serialize(array(COL_OBJECT)));
-        }
+    public function update($data) {
+        $key = array(COL_ID_USER => $data->getIdUser());
+        return parent::merge($key, $data->serialize(array(COL_OBJECT)));
     }
 
-    public function delete($data = NULL) {
-        if (!is_null($data)) {
-            $key = array(COL_ID_USER => $data->getIdUser());
-            return parent::remove($key, $data->serialize(array(COL_OBJECT)));
-        }
+    public function delete($data) {
+        $key = array(COL_ID_USER => $data->getIdUser());
+        return parent::remove($key, $data->serialize(array(COL_OBJECT)));
     }
+
 }

@@ -30,23 +30,46 @@ class _PersistenceManager {
     }
 
     protected function findByKey($key) {
-        return $this->db->findByKey($this->collectionName, $key);
+        $keys = array_keys($key);
+        $values = array_values($key);
+        $clave = array(
+            $keys[0] => new \MongoDB\BSON\Regex(preg_quote($values[0]), 'i')
+        );
+        return $this->db->findByKey($this->collectionName, $clave);
     }
 
-    protected function merge($key = NULL, $data = NULL) {
-        $data = json_decode($data, true);
-        return $this->db->merge($this->collectionName, $key, $data);
+    protected function findOneByKey($key) {
+        $keys = array_keys($key);
+        $values = array_values($key);
+        $clave = array(
+            $keys[0] => new \MongoDB\BSON\Regex(preg_quote($values[0]), 'i')
+        );
+        return $this->db->findOneByKey($this->collectionName, $clave);
     }
 
-    protected function persist($data = NULL) {
-        $data = json_decode($data, true);
-        return $this->db->persist($this->collectionName, $data);
+    protected function merge($key, $data) {
+        if (!is_null($data)) {
+            $data = json_decode($data, true);
+            return $this->db->merge($this->collectionName, $key, $data);
+        }
+        return FALSE;
     }
 
-    protected function remove($key = NULL, $data = NULL) {
-        $data = json_decode($data, true);
-        $data[COL_FLAG_ACTIVO] = FALSE;
-        return $this->db->remove($this->collectionName, $key, $data);
+    protected function persist($data) {
+        if (!is_null($data)) {
+            $data = json_decode($data, true);
+            return $this->db->persist($this->collectionName, $data);
+        }
+        return FALSE;
+    }
+
+    protected function remove($key, $data) {
+        if (!is_null($data)) {
+            $data = json_decode($data, true);
+            $data[COL_FLAG_ACTIVO] = FALSE;
+            return $this->db->remove($this->collectionName, $key, $data);
+        }
+        return FALSE;
     }
 
     public function close() {
