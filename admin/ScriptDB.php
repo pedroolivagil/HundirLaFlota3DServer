@@ -133,12 +133,7 @@ class ScriptDB {
                     ))
         );
         foreach ($users as $usuario) {
-            if ($userManager->create($usuario)) {
-                echo "Usuario " . $usuario->getUsername() . " -> OK";
-            } else {
-                echo "El usuario " . $usuario->getUsername() . " ya existe";
-            }
-            echo "<br />-----------------------------------------------<br />";
+            $userManager->create($usuario);
         }
     }
 
