@@ -1,82 +1,90 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of User
+ * Description of Ship
  *
  * @author Oliva
  */
-class User extends _EntitySerialize {
+class Ship extends _EntitySerialize {
 
     private $_id;
-    private $id_user;
+    private $id_ship;
     private $flag_activo;
+    private $code;
+    private $health;
+    private $size;
     private $fecha_alta;
-    private $username;
-    private $password;
-    private $email;
+    private $trans;
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues['_id'];
-        $this->id_user = $arrayValues['id_user'];
+        $this->id_ship = $arrayValues['id_ship'];
         $this->flag_activo = $arrayValues['flag_activo'];
-        $this->username = $arrayValues['username'];
-        $this->password = $arrayValues['pass'];
-        $this->email = $arrayValues['email'];
+        $this->code = $arrayValues['code'];
+        $this->health = $arrayValues['health'];
+        $this->size = $arrayValues['size'];
         $this->fecha_alta = $arrayValues['fecha_alta'];
+        $this->trans = $arrayValues['trans'];
     }
 
     public function getId() {
         return $this->_id;
     }
 
-    public function getIdUser() {
-        return $this->id_user;
+    public function getIdShip() {
+        return $this->id_ship;
     }
 
     public function getFlagActivo() {
         return $this->flag_activo;
     }
 
-    public function getUsername() {
-        return $this->username;
+    public function getCode() {
+        return $this->code;
     }
 
-    public function getPassword() {
-        return $this->password;
+    public function getHealth() {
+        return $this->health;
     }
 
-    public function getEmail() {
-        return $this->email;
+    public function getSize() {
+        return $this->size;
     }
 
     public function getFechaAlta() {
         return $this->fecha_alta;
     }
 
-    public function setIdUser($id_user) {
-        $this->id_user = $id_user;
+    public function getTrans() {
+        return $this->trans;
+    }
+
+    public function setTrans($id_trans) {
+        $this->id_trans = $trans;
+    }
+
+    public function setId($_id) {
+        $this->_id = $_id;
+    }
+
+    public function setIdShip($id_ship) {
+        $this->id_ship = $id_ship;
     }
 
     public function setFlagActivo($flag_activo) {
         $this->flag_activo = $flag_activo;
     }
 
-    public function setUsername($username) {
-        $this->username = $username;
+    public function setCode($code) {
+        $this->code = $code;
     }
 
-    public function setPassword($password) {
-        $this->password = $password;
+    public function setHealth($health) {
+        $this->health = $health;
     }
 
-    public function setEmail($email) {
-        $this->email = $email;
+    public function setSize($size) {
+        $this->size = $size;
     }
 
     public function setFechaAlta($fecha_alta) {

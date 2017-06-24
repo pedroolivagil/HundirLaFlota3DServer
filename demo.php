@@ -2,43 +2,85 @@
 
 require_once('config.php');
 header('Content-type: application/json; charset=utf-8');
-//$database = 'hundirlaflota3d';
-//$uri = "mongodb://userhundirlaflota3d:1ATN1pgkujiA8lW@ds123662.mlab.com:23662/hundirlaflota3d";
-//try {
-////    $manager = new MongoDB\Driver\Manager($uri);
-//    $manager = new MongoClient($uri);
-//    $usuarios = $manager->selectCollection($database, "usuarios");
-//
-//    $cursor = $usuarios->find(['flag_activo' => TRUE]);
-//    foreach ($cursor as $document) {
-//        print_r($document);
-//    }
-//    echo '--------------------------------------------------------------------';
-////    $newuser = array(
-////        'id_user' => 4,
-////        'username' => 'erger',
-////        'pass' => '1234567890',
-////        'email' => 'onion_oliva@hotmail.com'
-////    );
-////    $usuarios->insert($newuser);
-//    echo '--------------------------------------------------------------------';
-//    $cursor = $usuarios->find();
-//    foreach ($cursor as $document) {
-//        print_r($document);
-//    }
-//} catch (Exception $e) {
-//    print_r($e->getMessage());
-//}
-//$cursor_users = DB::getInstance()->find('usuarios');
-//foreach ($cursor_users as $document) {
-//    print_r($document);
-//}
-//$manager = new UserController();
-//$user = $manager->findById(1);
-//if($manager->delete($user)){
-//    echo 'FINAL: ';
-//    print_r($manager->findById(1));
-//    echo 'remove - OK';
-//}else{
-//    echo 'error';
-//}
+
+$manager = new ShipController();
+
+$ships = array(
+    new Ship(array(
+        'code' => 'explorador',
+        'health' => '1',
+        'size' => '1',
+        'trans' => array(
+            new ShipTrans(array(
+                'texto' => 'Explorador',
+                'id_idioma' => '1'
+                    )),
+            new ShipTrans(array(
+                'texto' => 'Explorer',
+                'id_idioma' => '2'
+                    ))
+        )
+            )),
+    new Ship(array(
+        'code' => 'fragata',
+        'health' => '2',
+        'size' => '2',
+        'trans' => array(
+            new ShipTrans(array(
+                'texto' => 'Fragata',
+                'id_idioma' => '1'
+                    )),
+            new ShipTrans(array(
+                'texto' => 'Frigate',
+                'id_idioma' => '2'
+                    ))
+        )
+            )),
+    new Ship(array(
+        'code' => 'bergantin',
+        'health' => '3',
+        'size' => '3',
+        'trans' => array(
+            new ShipTrans(array(
+                'texto' => 'Bergantín',
+                'id_idioma' => '1'
+                    )),
+            new ShipTrans(array(
+                'texto' => 'Brigantine',
+                'id_idioma' => '2'
+                    ))
+        )
+            )),
+    new Ship(array(
+        'code' => 'galeon',
+        'health' => '4',
+        'size' => '4',
+        'trans' => array(
+            new ShipTrans(array(
+                'texto' => 'Galeón',
+                'id_idioma' => '1'
+                    )),
+            new ShipTrans(array(
+                'texto' => 'Galleon',
+                'id_idioma' => '2'
+                    ))
+        )
+            )),
+    new Ship(array(
+        'code' => 'naval',
+        'health' => '5',
+        'size' => '5',
+        'trans' => array(
+            new ShipTrans(array(
+                'texto' => 'Buque de guerra',
+                'id_idioma' => '1'
+                    )),
+            new ShipTrans(array(
+                'texto' => 'Warship',
+                'id_idioma' => '2'
+                    ))
+        )
+            ))
+);
+
+$manager->create($data);

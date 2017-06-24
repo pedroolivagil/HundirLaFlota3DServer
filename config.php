@@ -65,10 +65,10 @@ require_once(_CLASES_PATH_ . 'DBMethods.php');
 require_once(_CLASES_PATH_ . 'DB.php');
 require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
 require_once(_CONTROLLERS_PATH_ . 'UserController.php');
-
+require_once(_CONTROLLERS_PATH_ . 'ShipController.php');
 // Models
 require_once(_MODELS_PATH_ . '_EntitySerialize.php');
 require_once(_MODELS_PATH_ . 'User.php');
-
+require_once(_MODELS_PATH_ . 'Ship.php');
 
 error_reporting(E_ALL ^ E_NOTICE);

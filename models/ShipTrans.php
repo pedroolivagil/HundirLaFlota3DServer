@@ -7,76 +7,60 @@
  */
 
 /**
- * Description of User
+ * Description of ShipTrans
  *
  * @author Oliva
  */
-class User extends _EntitySerialize {
+class ShipTrans extends _EntitySerialize {
 
     private $_id;
-    private $id_user;
+    private $texto;
+    private $id_idioma;
     private $flag_activo;
     private $fecha_alta;
-    private $username;
-    private $password;
-    private $email;
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues['_id'];
-        $this->id_user = $arrayValues['id_user'];
         $this->flag_activo = $arrayValues['flag_activo'];
-        $this->username = $arrayValues['username'];
-        $this->password = $arrayValues['pass'];
-        $this->email = $arrayValues['email'];
         $this->fecha_alta = $arrayValues['fecha_alta'];
+        $this->texto = $arrayValues['texto'];
+        $this->id_idioma = $arrayValues['id_idioma'];
     }
 
     public function getId() {
         return $this->_id;
     }
 
-    public function getIdUser() {
-        return $this->id_user;
+    public function getTexto() {
+        return $this->texto;
+    }
+
+    public function getIdIdioma() {
+        return $this->id_idioma;
     }
 
     public function getFlagActivo() {
         return $this->flag_activo;
     }
 
-    public function getUsername() {
-        return $this->username;
-    }
-
-    public function getPassword() {
-        return $this->password;
-    }
-
-    public function getEmail() {
-        return $this->email;
-    }
-
     public function getFechaAlta() {
         return $this->fecha_alta;
     }
 
-    public function setIdUser($id_user) {
-        $this->id_user = $id_user;
+    public function setId($id) {
+        $this->_id = $id;
+    }
+
+    public function setTexto($texto) {
+        $this->texto = $texto;
+    }
+
+    public function setIdIdioma($id_idioma) {
+        $this->id_idioma = $id_idioma;
     }
 
     public function setFlagActivo($flag_activo) {
         $this->flag_activo = $flag_activo;
-    }
-
-    public function setUsername($username) {
-        $this->username = $username;
-    }
-
-    public function setPassword($password) {
-        $this->password = $password;
-    }
-
-    public function setEmail($email) {
-        $this->email = $email;
     }
 
     public function setFechaAlta($fecha_alta) {

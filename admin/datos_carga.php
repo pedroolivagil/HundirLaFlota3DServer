@@ -6,9 +6,11 @@ header('Content-type: text/plain; charset=utf-8');
 $script = new ScriptDB();
 // Iniciamos los controladores
 $userManager = new UserController();
+$shipManager = new ShipController();
 
 // Datos
 $fileUsers = file("users.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$fileShips = file("ships.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
 // Insertamos los datos a la BBDD
 echo "\nUsuarios";
