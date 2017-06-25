@@ -82,10 +82,4 @@ require_once('config.php');
 //        )
 //            ))
 //);
-
 //$manager->create($data);
-
-$userController = new UserController();
-
-$user = $userController->findById(2);
-var_dump($user);

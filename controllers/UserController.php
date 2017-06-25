@@ -22,14 +22,13 @@ class UserController extends _PersistenceManager {
             COL_ID_USER => $id
         );
         $result = parent::findOneByKey($key);
-//        $retorno = array();
-//        foreach ($result as $document) {
-//            array_push($retorno, $document);
-//        } 
         return new User($result);
     }
 
-    public function findByField($key) {
+    public function findAllByUsername($username) {
+        $key = array(
+            COL_USERNAME => $username
+        );
         return parent::findByKey($key);
     }
 

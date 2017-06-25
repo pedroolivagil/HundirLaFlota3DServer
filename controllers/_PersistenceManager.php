@@ -31,18 +31,18 @@ class _PersistenceManager {
 
     protected function findByKey($key) {
         $keys = array_keys($key);
-        $values = array_values($key);
+        $val = $key[$keys[0]];
         $clave = array(
-            $keys[0] => new \MongoDB\BSON\Regex(preg_quote($values[0]), 'i')
+            $keys[0] => $val
         );
         return $this->db->findByKey($this->collectionName, $clave);
     }
 
     protected function findOneByKey($key) {
         $keys = array_keys($key);
-        $values = array_values($key);
+        $val = $key[$keys[0]];
         $clave = array(
-            $keys[0] => new \MongoDB\BSON\Regex(preg_quote($values[0]), 'i')
+            $keys[0] => $val
         );
         return $this->db->findOneByKey($this->collectionName, $clave);
     }

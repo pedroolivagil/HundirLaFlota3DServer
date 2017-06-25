@@ -22,10 +22,6 @@ class ShipController extends _PersistenceManager {
             COL_ID_SHIP => $id
         );
         $result = parent::findOneByKey($key);
-//        $retorno = array();
-//        foreach ($result as $document) {
-//            array_push($retorno, $document);
-//        }
         return new Ship($result);
     }
 

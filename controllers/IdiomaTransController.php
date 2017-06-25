@@ -22,10 +22,6 @@ class IdiomaTransController extends _PersistenceManager {
             COL_ID_IDIOMA => $id
         );
         $result = parent::findOneByKey($key);
-//        $retorno = array();
-//        foreach ($result as $document) {
-//            array_push($retorno, $document);
-//        }
         return new IdiomaTrans($result);
     }
 
