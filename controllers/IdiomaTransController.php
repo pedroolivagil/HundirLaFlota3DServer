@@ -11,36 +11,32 @@
  *
  * @author Oliva
  */
-class UserController extends _PersistenceManager {
+class IdiomaTransController extends _PersistenceManager {
 
     public function __construct() {
-        parent::__construct(TABLE_USER);
+        parent::__construct(TABLE_IDIOMA_TRANS);
     }
 
     public function findById($id) {
         $key = array(
-            COL_ID_USER => $id
+            COL_ID_IDIOMA => $id
         );
         $result = parent::findOneByKey($key);
 //        $retorno = array();
 //        foreach ($result as $document) {
 //            array_push($retorno, $document);
-//        } 
-        return new User($result);
-    }
-
-    public function findByField($key) {
-        return parent::findByKey($key);
+//        }
+        return new IdiomaTrans($result);
     }
 
     public function create($data) {
         $key = array(
-            COL_USERNAME => $data->getUsername()
+            COL_TEXTO => $data->getTexto()
         );
         $find = parent::findOneByKey($key);
         if ($find == NULL) {
             $total = parent::count();
-            $data->setIdUser($total + 1);
+            $data->setIdIdioma($total + 1);
             $data->setFechaAlta(time());
             $data->setFlagActivo(TRUE);
             return parent::persist($data->serialize(array(COL_ID_DOCUMENT, COL_OBJECT)));
@@ -49,12 +45,12 @@ class UserController extends _PersistenceManager {
     }
 
     public function update($data) {
-        $key = array(COL_ID_USER => $data->getIdUser());
+        $key = array(COL_ID_IDIOMA => $data->getIdIdioma());
         return parent::merge($key, $data->serialize(array(COL_OBJECT)));
     }
 
     public function delete($data) {
-        $key = array(COL_ID_USER => $data->getIdUser());
+        $key = array(COL_ID_IDIOMA => $data->getIdIdioma());
         return parent::remove($key, $data->serialize(array(COL_OBJECT)));
     }
 

@@ -26,11 +26,14 @@ class ScriptDB {
             TABLE_GAME,
             TABLE_GAME_PLAYER_STATUS,
             TABLE_GAME_USER,
+            TABLE_IDIOMA,
+            TABLE_IDIOMA_TRANS,
             TABLE_LEVEL,
             TABLE_LOG_USER,
             TABLE_PLAYER_STATUS,
             TABLE_SETTINGS,
             TABLE_SHIP,
+            TABLE_SHIP_TRANS,
             TABLE_USER
         );
     }

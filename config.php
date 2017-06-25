@@ -66,9 +66,13 @@ require_once(_CLASES_PATH_ . 'DB.php');
 require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
 require_once(_CONTROLLERS_PATH_ . 'UserController.php');
 require_once(_CONTROLLERS_PATH_ . 'ShipController.php');
+require_once(_CONTROLLERS_PATH_ . 'IdiomaController.php');
 // Models
 require_once(_MODELS_PATH_ . '_EntitySerialize.php');
+require_once(_MODELS_PATH_ . 'IdiomaTrans.php');
+require_once(_MODELS_PATH_ . 'Idioma.php');
 require_once(_MODELS_PATH_ . 'User.php');
 require_once(_MODELS_PATH_ . 'Ship.php');
+require_once(_MODELS_PATH_ . 'ShipTrans.php');
 
 error_reporting(E_ALL ^ E_NOTICE);
