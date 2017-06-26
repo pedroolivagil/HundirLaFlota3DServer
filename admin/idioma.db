@@ -1,2 +1,2 @@
-{ "id_idioma" : 1, "codigo_iso" : "ES", "flag_activo" : true, "fecha_alta" : 1498436968, "trans" : [ { "texto" : "Español" }, { "texto" : "Spanish" } ] }
-{ "id_idioma" : 2, "codigo_iso" : "EN", "flag_activo" : true, "fecha_alta" : 1498436969, "trans" : [ { "texto" : "Inglés" }, { "texto" : "English" } ] }
+{ "_id" : { "$oid" : "595057eb9df7a22570002daa" }, "id_idioma" : 1, "codigo_iso" : "ES", "flag_activo" : true, "fecha_alta" : 1498437611, "trans" : [ { "texto" : "Español", "id_idioma" : 1 }, { "texto" : "Spanish", "id_idioma" : 2 } ] }
+{ "_id" : { "$oid" : "595057ec9df7a22570002dab" }, "id_idioma" : 2, "codigo_iso" : "EN", "flag_activo" : true, "fecha_alta" : 1498437612, "trans" : [ { "texto" : "Inglés", "id_idioma" : 1 }, { "texto" : "English", "id_idioma" : 2 } ] }

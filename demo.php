@@ -88,10 +88,12 @@ $manger = new IdiomaController();
 //{ "id_idioma" : 1, "codigo_iso" : "ES", "flag_activo" : true, "fecha_alta" : 1498325106, "id_trans" : 1}
 $es_trans = array(
     array(
-        'texto' => 'Español'
+        'texto' => 'Español',
+        'id_idioma' => 1
     ),
     array(
-        'texto' => 'Spanish'
+        'texto' => 'Spanish',
+        'id_idioma' => 2
     )
 );
 $es = new Idioma(array(
@@ -107,10 +109,12 @@ if ($manger->create($es)) {
 //{ "id_idioma" : 2, "codigo_iso" : "EN", "flag_activo" : true, "fecha_alta" : 1498325106, "id_trans" : 2}
 $en_trans = array(
     array(
-        'texto' => 'Inglés'
+        'texto' => 'Inglés',
+        'id_idioma' => 1
     ),
     array(
-        'texto' => 'English'
+        'texto' => 'English',
+        'id_idioma' => 2
     )
 );
 $en = new Idioma(array(
