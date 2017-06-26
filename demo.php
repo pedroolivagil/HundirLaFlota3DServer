@@ -83,3 +83,43 @@ require_once('config.php');
 //            ))
 //);
 //$manager->create($data);
+
+$manger = new IdiomaController();
+//{ "id_idioma" : 1, "codigo_iso" : "ES", "flag_activo" : true, "fecha_alta" : 1498325106, "id_trans" : 1}
+$es_trans = array(
+    array(
+        'texto' => 'Español'
+    ),
+    array(
+        'texto' => 'Spanish'
+    )
+);
+$es = new Idioma(array(
+    'codigo_iso' => 'ES',
+    'trans' => $es_trans
+        ));
+//var_dump($es);
+if ($manger->create($es)) {
+    echo '<br />ES OK!';
+} else {
+    echo '<br />ES Fail!';
+}
+//{ "id_idioma" : 2, "codigo_iso" : "EN", "flag_activo" : true, "fecha_alta" : 1498325106, "id_trans" : 2}
+$en_trans = array(
+    array(
+        'texto' => 'Inglés'
+    ),
+    array(
+        'texto' => 'English'
+    )
+);
+$en = new Idioma(array(
+    'codigo_iso' => 'EN',
+    'trans' => $en_trans
+        ));
+//var_dump($en);
+if ($manger->create($en)) {
+    echo '<br />EN OK!';
+} else {
+    echo '<br />EN Fail!';
+}

@@ -13,7 +13,7 @@ define('COL_ID_USER', 'id_user');
 define('COL_USERNAME', 'username');
 
 define('COL_ID_IDIOMA', 'id_idioma');
-define('COL_TEXTO', 'texto');
+define('COL_CODIGO_ISO', 'codigo_iso');
 
 define('COL_ID_SHIP', 'id_ship');
 define('COL_SHIPCODE', 'code');
@@ -27,7 +27,6 @@ define('TABLE_GAME', 'game');
 define('TABLE_GAME_PLAYER_STATUS', 'game_player_status');
 define('TABLE_GAME_USER', 'game_user');
 define('TABLE_IDIOMA', 'idioma');
-define('TABLE_IDIOMA_TRANS', 'idioma_trans');
 define('TABLE_LEVEL', 'level');
 define('TABLE_LOG_USER', 'log_user');
 define('TABLE_PLAYER_STATUS', 'player_status');

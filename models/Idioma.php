@@ -15,7 +15,7 @@ class Idioma extends _EntitySerialize {
 
     private $_id;
     private $id_idioma;
-    private $texto;
+    private $codigo_iso;
     private $flag_activo;
     private $fecha_alta;
     private $trans;
@@ -24,7 +24,7 @@ class Idioma extends _EntitySerialize {
         $this->_id = $arrayValues['_id'];
         $this->flag_activo = $arrayValues['flag_activo'];
         $this->fecha_alta = $arrayValues['fecha_alta'];
-        $this->texto = $arrayValues['texto'];
+        $this->codigo_iso = $arrayValues['codigo_iso'];
         $this->id_idioma = $arrayValues['id_idioma'];
         $this->trans = $arrayValues['trans'];
     }
@@ -37,8 +37,8 @@ class Idioma extends _EntitySerialize {
         return $this->id_idioma;
     }
 
-    public function getTexto() {
-        return $this->texto;
+    public function getCodigoISO() {
+        return $this->codigo_iso;
     }
 
     public function getFlagActivo() {
@@ -65,8 +65,8 @@ class Idioma extends _EntitySerialize {
         $this->id_idioma = $id_idioma;
     }
 
-    public function setTexto($texto) {
-        $this->texto = $texto;
+    public function setCodigoISO($codigo_iso) {
+        $this->codigo_iso = $codigo_iso;
     }
 
     public function setFlagActivo($flag_activo) {
@@ -77,6 +77,17 @@ class Idioma extends _EntitySerialize {
         $this->fecha_alta = $fecha_alta;
     }
 
+    public function addTrans($trans) {
+        if (is_null($this->trans)) {
+            $this->trans = array();
+        }
+        array_push($this->trans, $trans);
+    }
+
+    public function removeTrans($trans) {
+        unset($this->trans[$trans]);
+    }
+
     /**
      * 
      * @param type $propsUnserialized Array de nombre de propiedades a excluir
@@ -84,7 +95,7 @@ class Idioma extends _EntitySerialize {
      */
     public function serialize($propsUnserialized = null) {
         $properties = get_object_vars($this);
-        if (Tools::isNotNull($propsUnserialized)) {
+        if (!is_null($propsUnserialized)) {
             foreach ($propsUnserialized as $property) {
                 unset($properties[$property]);
             }

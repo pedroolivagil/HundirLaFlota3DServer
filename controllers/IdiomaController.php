@@ -26,16 +26,18 @@ class IdiomaController extends _PersistenceManager {
     }
 
     public function create($data) {
+        var_dump($data);
         $key = array(
-            COL_TEXTO => $data->getTexto()
+            COL_TEXTO => $data->getCodigoISO()
         );
+//        $trans = $data->getTrans(); //array de traducciones
         $find = parent::findOneByKey($key);
-        if ($find == NULL) {
-            $total = parent::count();
-            $data->setIdIdioma($total + 1);
+        if (is_null($find)) {
+            $idIdioma = parent::count() + 1;
+            $data->setIdIdioma($idIdioma);
             $data->setFechaAlta(time());
             $data->setFlagActivo(TRUE);
-            return parent::persist($data->serialize(array(COL_ID_DOCUMENT, COL_OBJECT)));
+            parent::persist($data->serialize(array(COL_ID_DOCUMENT, COL_OBJECT)));
         }
         return FALSE;
     }
