@@ -27,7 +27,8 @@ class IdiomaController extends _PersistenceManager {
 
     public function create($data) {
         $key = array(
-            COL_CODIGO_ISO => $data->getCodigoISO()
+            COL_CODIGO_ISO => $data->getCodigoISO(),
+            COL_FLAG_ACTIVO => TRUE
         );
         $find = parent::findOneByKey($key);
         if (is_null($find)) {
