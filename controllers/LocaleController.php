@@ -14,7 +14,7 @@
 class IdiomaController extends _PersistenceManager {
 
     public function __construct() {
-        parent::__construct(TABLE_IDIOMA);
+        parent::__construct(TABLE_APP_LOCALE);
     }
 
     public function findById($id) {

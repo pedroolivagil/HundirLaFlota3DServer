@@ -11,7 +11,7 @@
  *
  * @author Oliva
  */
-class Idioma extends _EntitySerialize {
+class LocaleController extends _EntitySerialize {
 
     private $_id;
     private $id_idioma;

@@ -21,20 +21,28 @@ define('COL_SHIPCODE', 'code');
 define('COL_FLAG_ACTIVO', 'flag_activo');
 define('COL_OBJECT', 'object');
 
-define('TABLE_AMUNITION', 'amunition');
-define('TABLE_CITY', 'city');
-define('TABLE_GAME', 'game');
-define('TABLE_GAME_PLAYER_STATUS', 'game_player_status');
-define('TABLE_GAME_USER', 'game_user');
-define('TABLE_IDIOMA', 'idioma');
-define('TABLE_LEVEL', 'level');
-define('TABLE_LOG_USER', 'log_user');
-define('TABLE_PLAYER_STATUS', 'player_status');
-define('TABLE_SETTINGS', 'settings');
-define('TABLE_SHIP', 'ship');
-define('TABLE_SHIP_TRANS', 'ship_trans');
+//TABLASPARA EL JUEGO
 define('TABLE_USER', 'user');
-//define('TABLE_', '');
-//define('TABLE_', '');
-//define('TABLE_', '');
-//define('TABLE_', '');
+define('TABLE_USER_INFO', 'user_info');
+define('TABLE_USER_LOG', 'user_log');
+define('TABLE_POWERUP', 'powerup');
+define('TABLE_POWERUP_TYPE', 'powerup_type');
+define('TABLE_SCENARIO', 'scenario');
+define('TABLE_BATTLE', 'battle');
+define('TABLE_BATTLE_REWARD', 'battle_reward');
+define('TABLE_BATTLE_TYPE', 'battle_type');
+define('TABLE_VESSEL', 'vessel');
+define('TABLE_WEAPON', 'weapon');
+define('TABLE_WEAPON_TYPE', 'weapon_type');
+
+// TABLAS PARA RELACIONES
+define('TABLE_USER_GAME_LIST', 'user_game_list');
+define('TABLE_USER_POWERUP', 'user_powerup');
+define('TABLE_SCENARIO_BATTLE', 'scenario_battle');
+
+// TABLAS PARA LA APLICACIÓN
+define('TABLE_APP_TEXT', 'app_text');
+define('TABLE_APP_LOCALE', 'app_locale');
+//define('TABLE_APP_', '');
+//define('TABLE_APP_', '');
+//define('TABLE_APP_', '');

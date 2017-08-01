@@ -11,10 +11,10 @@
  *
  * @author Oliva
  */
-class ShipController extends _PersistenceManager {
+class VesselController extends _PersistenceManager {
 
     public function __construct() {
-        parent::__construct(TABLE_SHIP);
+        parent::__construct(TABLE_VESSEL);
     }
 
     public function findById($id) {

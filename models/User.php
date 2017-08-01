@@ -15,20 +15,22 @@ class User extends _EntitySerialize {
 
     private $_id;
     private $id_user;
-    private $flag_activo;
-    private $fecha_alta;
+    private $flag_active;
+    private $signup_date;
     private $username;
     private $password;
     private $email;
+    private $info;      // array with user info
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues['_id'];
         $this->id_user = $arrayValues['id_user'];
-        $this->flag_activo = $arrayValues['flag_activo'];
+        $this->flag_active = $arrayValues['flag_active'];
         $this->username = $arrayValues['username'];
         $this->password = $arrayValues['pass'];
         $this->email = $arrayValues['email'];
-        $this->fecha_alta = $arrayValues['fecha_alta'];
+        $this->signup_date = $arrayValues['signup_date'];
+        $this->info = new UserInfo($arrayValues['info']);
     }
 
     public function getId() {
@@ -39,8 +41,8 @@ class User extends _EntitySerialize {
         return $this->id_user;
     }
 
-    public function getFlagActivo() {
-        return $this->flag_activo;
+    public function getFlagActive() {
+        return $this->flag_active;
     }
 
     public function getUsername() {
@@ -55,16 +57,24 @@ class User extends _EntitySerialize {
         return $this->email;
     }
 
-    public function getFechaAlta() {
-        return $this->fecha_alta;
+    public function getSignupDate() {
+        return $this->signup_date;
+    }
+
+    public function getInfo() {
+        return $this->info;
+    }
+
+    public function setInfo($info) {
+        $this->info = $info;
     }
 
     public function setIdUser($id_user) {
         $this->id_user = $id_user;
     }
 
-    public function setFlagActivo($flag_activo) {
-        $this->flag_activo = $flag_activo;
+    public function setFlagActive($flag_active) {
+        $this->flag_active = $flag_active;
     }
 
     public function setUsername($username) {
@@ -79,8 +89,8 @@ class User extends _EntitySerialize {
         $this->email = $email;
     }
 
-    public function setFechaAlta($fecha_alta) {
-        $this->fecha_alta = $fecha_alta;
+    public function setSignupDate($signup_date) {
+        $this->signup_date = $signup_date;
     }
 
     /**

@@ -57,21 +57,22 @@ define('_MODELS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/models/');
 //session_start(); // no hace falta gracias al .htaccess
 //ini_set('display_errors',1);
 header('Content-type: text/html; charset=utf-8');
-// Controllers
+// Classes
 require_once(_CLASES_PATH_ . 'ConstantsDB.php');
 require_once(_CLASES_PATH_ . 'Tools.php');
 require_once(_CLASES_PATH_ . 'vendor/autoload.php');
 require_once(_CLASES_PATH_ . 'DBMethods.php');
 require_once(_CLASES_PATH_ . 'DB.php');
+// Controllers
 require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
-require_once(_CONTROLLERS_PATH_ . 'IdiomaController.php');
+require_once(_CONTROLLERS_PATH_ . 'LocaleController.php');
 require_once(_CONTROLLERS_PATH_ . 'UserController.php');
-require_once(_CONTROLLERS_PATH_ . 'ShipController.php');
+require_once(_CONTROLLERS_PATH_ . 'VesselController.php');
 // Models
 require_once(_MODELS_PATH_ . '_EntitySerialize.php');
-require_once(_MODELS_PATH_ . 'Idioma.php');
+require_once(_MODELS_PATH_ . 'Locale.php');
+require_once(_MODELS_PATH_ . 'UserInfo.php');
 require_once(_MODELS_PATH_ . 'User.php');
-require_once(_MODELS_PATH_ . 'Ship.php');
-require_once(_MODELS_PATH_ . 'ShipTrans.php');
+require_once(_MODELS_PATH_ . 'Vessel.php');
 
 error_reporting(E_ALL ^ E_NOTICE);

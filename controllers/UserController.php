@@ -40,8 +40,9 @@ class UserController extends _PersistenceManager {
         if ($find == NULL) {
             $total = parent::count();
             $data->setIdUser($total + 1);
-            $data->setFechaAlta(time());
-            $data->setFlagActivo(TRUE);
+            $data->setSignupDate(time());
+            $data->setFlagActive(TRUE);
+            $data->setInfo((array) json_decode($data->getInfo()->serialize(), TRUE));
             return parent::persist($data->serialize(array(COL_ID_DOCUMENT, COL_OBJECT)));
         }
         return FALSE;
