@@ -11,19 +11,20 @@
  *
  * @author Oliva
  */
-class User extends _EntitySerialize {
+class UserLog extends _EntitySerialize {
 
     private $_id;
-    private $id_user;
-    private $flag_active;
-    private $email_activation;
-    private $signup_date;
-    private $username;
-    private $password;
-    private $email;
-    private $info;      // array with user info
+    private $log_date;      // fecha del log
+    private $author;        // ID del usuario que realiza la acción
+    private $author_ip;     // la IP del usuario que realiza la acción
+    private $author_range;  // el rango del usuario que realiza la acción
+    private $author_cause;  // causa por la que se efectua el cambio
+    private $to_user;       // el usuario afectado
+    private $action;        // la acción realizada
+    private $new_value;     // el nuevo valor, si lo hay
+    private $old_value;     // el viejo valor, si ha sido cambiado
 
-    public function __construct1($arrayValues, $withInfo = TRUE) {
+    public function __construct1($arrayValues) {
         $this->_id = $arrayValues['_id'];
         $this->id_user = $arrayValues['id_user'];
         $this->flag_active = $arrayValues['flag_active'];
@@ -32,9 +33,7 @@ class User extends _EntitySerialize {
         $this->password = $arrayValues['pass'];
         $this->email = $arrayValues['email'];
         $this->signup_date = $arrayValues['signup_date'];
-        if ($withInfo) {
-            $this->info = new UserInfo($arrayValues['info']);
-        }
+        $this->info = new UserInfo($arrayValues['info']);
     }
 
     public function getId() {

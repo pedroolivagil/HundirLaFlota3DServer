@@ -17,9 +17,11 @@ class LocaleAppTrans extends _EntitySerialize {
     private $id_locale;
 
     public function __construct1($arrayValues) {
-        $values = json_decode($arrayValues, TRUE);
-        $this->text = $values['text'];
-        $this->id_locale = $values['id_locale'];
+        if (!is_array($arrayValues)) {
+            $arrayValues = json_decode($arrayValues, TRUE);
+        }
+        $this->text = $arrayValues['text'];
+        $this->id_locale = $arrayValues['id_locale'];
     }
 
     public function getIdLocale() {

@@ -24,8 +24,8 @@ define('FONTCOLORDEF', 50);
 define('FONTCOLOR120', 180);
 
 define('CRYPT_KEY', 'hUndIrLaFlota3DOliLogiCSTudiOsolivadevelop');
+define('SESSION_USUARIO', 'usuario');
 define('SESSION_USUARIO_ID', 'id_usuario');
-define('SESSION_USUARIO_NAME', 'name_usuario');
 define('SESSION_AUTOLOGIN', 'autologin');
 
 // '/myprojectsorg' solo para ámbito local
@@ -64,13 +64,13 @@ require_once(_CLASES_PATH_ . 'DB.php');
 require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
 require_once(_CONTROLLERS_PATH_ . 'LocaleController.php');
 require_once(_CONTROLLERS_PATH_ . 'UserController.php');
-require_once(_CONTROLLERS_PATH_ . 'VesselController.php');
+//require_once(_CONTROLLERS_PATH_ . 'VesselController.php');
 // Models
 require_once(_MODELS_PATH_ . '_EntitySerialize.php');
 require_once(_MODELS_PATH_ . 'LocaleAppTrans.php');
 require_once(_MODELS_PATH_ . 'LocaleApp.php');
 require_once(_MODELS_PATH_ . 'UserInfo.php');
 require_once(_MODELS_PATH_ . 'User.php');
-require_once(_MODELS_PATH_ . 'Vessel.php');
+//require_once(_MODELS_PATH_ . 'Vessel.php');
 
 error_reporting(E_ALL ^ E_NOTICE);

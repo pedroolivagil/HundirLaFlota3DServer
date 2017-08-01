@@ -1,6 +1,8 @@
 <?php
 
 require_once('config.php');
+
+var_dump(Tools::getSession());
 //header('Content-type: application/json; charset=utf-8');
 //
 //$manger = new IdiomaController();

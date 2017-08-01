@@ -1,13 +1,15 @@
 <?php
 
+include_once('../config.php');
 include_once('ScriptDB.php');
-header('Content-type: application/json; charset=utf-8');
+
+Tools::login(1, TRUE);
+//header('Content-type: application/json; charset=utf-8');
 
 $script = new ScriptDB();
 // Iniciamos los controladores
 $userManager = new UserController();
 $idiomaManager = new LocaleController();
-$shipManager = new VesselController();
 
 // Datos
 $fileUsers = file("user.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);

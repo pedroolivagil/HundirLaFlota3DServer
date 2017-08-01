@@ -11,7 +11,6 @@
  *
  * @author Oliva
  */
-include_once('../config.php');
 
 class ScriptDB {
 

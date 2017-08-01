@@ -50,6 +50,7 @@ class _EntitySerialize implements Serializable {
     }
 
     public function unserialize($serialized) {
+        return json_decode($serialized, TRUE);
     }
 
 }
