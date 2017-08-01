@@ -11,42 +11,44 @@
  *
  * @author Oliva
  */
-class LocaleController extends _EntitySerialize {
+class LocaleApp extends _EntitySerialize {
 
     private $_id;
-    private $id_idioma;
-    private $codigo_iso;
-    private $flag_activo;
-    private $fecha_alta;
+    private $id_locale;
+    private $code_iso;
+    private $flag_active;
+    private $add_date;
     private $trans;
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues['_id'];
-        $this->flag_activo = $arrayValues['flag_activo'];
-        $this->fecha_alta = $arrayValues['fecha_alta'];
-        $this->codigo_iso = $arrayValues['codigo_iso'];
-        $this->id_idioma = $arrayValues['id_idioma'];
-        $this->trans = $arrayValues['trans'];
+        $this->flag_active = $arrayValues['flag_active'];
+        $this->add_date = $arrayValues['add_date'];
+        $this->code_iso = $arrayValues['code_iso'];
+        $this->id_locale = $arrayValues['id_locale'];
+        foreach ($arrayValues['trans'] as $loc) {
+            $this->addTrans(new LocaleAppTrans($loc));
+        }
     }
 
     public function getId() {
         return $this->_id;
     }
 
-    public function getIdIdioma() {
-        return $this->id_idioma;
+    public function getIdLocale() {
+        return $this->id_locale;
     }
 
-    public function getCodigoISO() {
-        return $this->codigo_iso;
+    public function getCodeISO() {
+        return $this->code_iso;
     }
 
-    public function getFlagActivo() {
-        return $this->flag_activo;
+    public function getFlagActive() {
+        return $this->flag_active;
     }
 
-    public function getFechaAlta() {
-        return $this->fecha_alta;
+    public function getAddDate() {
+        return $this->add_date;
     }
 
     public function getTrans() {
@@ -61,20 +63,20 @@ class LocaleController extends _EntitySerialize {
         $this->_id = $id;
     }
 
-    public function setIdIdioma($id_idioma) {
-        $this->id_idioma = $id_idioma;
+    public function setIdLocale($id_locale) {
+        $this->id_locale = $id_locale;
     }
 
-    public function setCodigoISO($codigo_iso) {
-        $this->codigo_iso = $codigo_iso;
+    public function setCodeISO($code_iso) {
+        $this->code_iso = $code_iso;
     }
 
-    public function setFlagActivo($flag_activo) {
-        $this->flag_activo = $flag_activo;
+    public function setFlagActive($flag_active) {
+        $this->flag_active = $flag_active;
     }
 
-    public function setFechaAlta($fecha_alta) {
-        $this->fecha_alta = $fecha_alta;
+    public function setAddDate($add_date) {
+        $this->add_date = $add_date;
     }
 
     public function addTrans($trans) {

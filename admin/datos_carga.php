@@ -25,14 +25,14 @@ foreach ($fileUsers as $num_línea => $linea) {
     }
 }
 echo "\n--------------------------------------------------------------------";
-//
-//echo "\nIdiomas\n\n";
-//foreach ($fileIdioma as $num_línea => $linea) {
-//    $obj = new Idioma(json_decode($linea, TRUE));
-//    if ($idiomaManager->create($obj)) {
-//        echo "\n\tInsertado\t" . $obj->getCodigoISO();
-//    } else {
-//        echo "\n\tNO insertado\t" . $obj->getCodigoISO();
-//    }
-//}
-//echo "\n--------------------------------------------------------------------";
+
+echo "\nIdiomas\n\n";
+foreach ($fileIdioma as $num_línea => $linea) {
+    $obj = new LocaleApp(json_decode($linea, TRUE));
+    if ($idiomaManager->create($obj)) {
+        echo "\n\tInsertado\t" . $obj->getCodeISO();
+    } else {
+        echo "\n\tNO insertado\t" . $obj->getCodeISO();
+    }
+}
+echo "\n--------------------------------------------------------------------";

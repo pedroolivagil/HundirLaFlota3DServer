@@ -12,13 +12,13 @@ define('COL_ID_DOCUMENT', '_id');
 define('COL_ID_USER', 'id_user');
 define('COL_USERNAME', 'username');
 
-define('COL_ID_IDIOMA', 'id_idioma');
-define('COL_CODIGO_ISO', 'codigo_iso');
+define('COL_ID_IDIOMA', 'id_locale');
+define('COL_CODIGO_ISO', 'code_iso');
 
 define('COL_ID_SHIP', 'id_ship');
 define('COL_SHIPCODE', 'code');
 
-define('COL_FLAG_ACTIVO', 'flag_activo');
+define('COL_FLAG_ACTIVO', 'flag_active');
 define('COL_OBJECT', 'object');
 
 //TABLASPARA EL JUEGO

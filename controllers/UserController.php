@@ -22,7 +22,10 @@ class UserController extends _PersistenceManager {
             COL_ID_USER => $id
         );
         $result = parent::findOneByKey($key);
-        return new User($result);
+        if ($result != NULL) {
+            return new User($result);
+        }
+        return FALSE;
     }
 
     public function findAllByUsername($username) {

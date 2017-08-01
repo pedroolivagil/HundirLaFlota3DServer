@@ -28,9 +28,6 @@ define('SESSION_USUARIO_ID', 'id_usuario');
 define('SESSION_USUARIO_NAME', 'name_usuario');
 define('SESSION_AUTOLOGIN', 'autologin');
 
-// Columns
-define('FLAG_ACTIVO', 'flag_activo');
-
 // '/myprojectsorg' solo para ámbito local
 define('PORT', 8080);
 $port = ':' . PORT;
@@ -70,7 +67,8 @@ require_once(_CONTROLLERS_PATH_ . 'UserController.php');
 require_once(_CONTROLLERS_PATH_ . 'VesselController.php');
 // Models
 require_once(_MODELS_PATH_ . '_EntitySerialize.php');
-require_once(_MODELS_PATH_ . 'Locale.php');
+require_once(_MODELS_PATH_ . 'LocaleAppTrans.php');
+require_once(_MODELS_PATH_ . 'LocaleApp.php');
 require_once(_MODELS_PATH_ . 'UserInfo.php');
 require_once(_MODELS_PATH_ . 'User.php');
 require_once(_MODELS_PATH_ . 'Vessel.php');

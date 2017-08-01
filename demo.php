@@ -46,8 +46,17 @@ require_once('config.php');
 //} else {
 //    echo '<br />EN Fail!';
 //}
+//echo "<br /><br />--------------------------------------------------------------------<br />";
+//$Mgr = new Controller();
+//$ = $Mgr->findById(1);
+//print_r($);
 
+echo "<br /><br />--------------------------------------------------------------------<br />";
+$localeMgr = new LocaleController();
+$locale = $localeMgr->findById(1);
+var_dump($locale);
+
+echo "<br /><br />--------------------------------------------------------------------<br />";
 $userMgr = new UserController();
 $user = $userMgr->findById(1);
-
-print_r($user);
+var_dump($user);

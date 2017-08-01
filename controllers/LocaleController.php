@@ -11,7 +11,7 @@
  *
  * @author Oliva
  */
-class IdiomaController extends _PersistenceManager {
+class LocaleController extends _PersistenceManager {
 
     public function __construct() {
         parent::__construct(TABLE_APP_LOCALE);
@@ -22,32 +22,40 @@ class IdiomaController extends _PersistenceManager {
             COL_ID_IDIOMA => $id
         );
         $result = parent::findOneByKey($key);
-        return new Idioma($result);
+        if ($result != NULL) {
+            return new LocaleApp($result);
+        }
+        return FALSE;
     }
 
     public function create($data) {
         $key = array(
-            COL_CODIGO_ISO => $data->getCodigoISO(),
+            COL_CODIGO_ISO => $data->getCodeISO(),
             COL_FLAG_ACTIVO => TRUE
         );
         $find = parent::findOneByKey($key);
         if (is_null($find)) {
             $idIdioma = parent::count() + 1;
-            $data->setIdIdioma($idIdioma);
-            $data->setFechaAlta(time());
-            $data->setFlagActivo(TRUE);
+            $data->setIdLocale($idIdioma);
+            $data->setAddDate(time());
+            $data->setFlagActive(TRUE);
+            $trans = $data->getTrans();
+            $data->setTrans(NULL);
+            foreach ($trans as $loc) {
+                $data->addTrans($loc->serialize());
+            }
             return parent::persist($data->serialize(array(COL_ID_DOCUMENT, COL_OBJECT)));
         }
         return FALSE;
     }
 
     public function update($data) {
-        $key = array(COL_ID_IDIOMA => $data->getIdIdioma());
+        $key = array(COL_ID_IDIOMA => $data->getIdLocale());
         return parent::merge($key, $data->serialize(array(COL_OBJECT)));
     }
 
     public function delete($data) {
-        $key = array(COL_ID_IDIOMA => $data->getIdIdioma());
+        $key = array(COL_ID_IDIOMA => $data->getIdLocale());
         return parent::remove($key, $data->serialize(array(COL_OBJECT)));
     }
 
