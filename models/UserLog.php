@@ -20,88 +20,117 @@ class UserLog extends _EntitySerialize {
     private $author_range;  // el rango del usuario que realiza la acción
     private $author_cause;  // causa por la que se efectua el cambio
     private $to_user;       // el usuario afectado
+    private $to_table;      // la tabla afectada
     private $action;        // la acción realizada
     private $new_value;     // el nuevo valor, si lo hay
     private $old_value;     // el viejo valor, si ha sido cambiado
+    private $state;         // estado del log, pendiente, concluido o fallido
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues['_id'];
-        $this->id_user = $arrayValues['id_user'];
-        $this->flag_active = $arrayValues['flag_active'];
-        $this->email_activation = $arrayValues['email_activation'];
-        $this->username = $arrayValues['username'];
-        $this->password = $arrayValues['pass'];
-        $this->email = $arrayValues['email'];
-        $this->signup_date = $arrayValues['signup_date'];
-        $this->info = new UserInfo($arrayValues['info']);
+        $this->log_date = $arrayValues['log_date'];
+        $this->author = $arrayValues['author'];
+        $this->author_ip = $arrayValues['author_ip'];
+        $this->author_range = $arrayValues['author_range'];
+        $this->author_cause = $arrayValues['author_cause'];
+        $this->to_user = $arrayValues['to_user'];
+        $this->to_table = $arrayValues['to_table'];
+        $this->action = $arrayValues['action'];
+        $this->new_value = $arrayValues['new_value'];
+        $this->old_value = $arrayValues['old_value'];
+        $this->state = $arrayValues['state'];
     }
 
     public function getId() {
         return $this->_id;
     }
 
-    public function getIdUser() {
-        return $this->id_user;
+    public function getLogDate() {
+        return $this->log_date;
     }
 
-    public function getFlagActive() {
-        return $this->flag_active;
+    public function getAuthor() {
+        return $this->author;
     }
 
-    public function getUsername() {
-        return $this->username;
+    public function getAuthorIp() {
+        return $this->author_ip;
     }
 
-    public function getPassword() {
-        return $this->password;
+    public function getAuthorRange() {
+        return $this->author_range;
     }
 
-    public function getEmail() {
-        return $this->email;
+    public function getAuthorCause() {
+        return $this->author_cause;
     }
 
-    public function getSignupDate() {
-        return $this->signup_date;
+    public function getToUser() {
+        return $this->to_user;
     }
 
-    public function getInfo() {
-        return $this->info;
+    public function getToTable() {
+        return $this->to_table;
     }
 
-    public function getEmailActivation() {
-        return $this->email_activation;
+    public function getAction() {
+        return $this->action;
     }
 
-    public function setEmailActivation($email_activation) {
-        $this->email_activation = $email_activation;
+    public function getNewValue() {
+        return $this->new_value;
     }
 
-    public function setInfo($info) {
-        $this->info = $info;
+    public function getOldValue() {
+        return $this->old_value;
     }
 
-    public function setIdUser($id_user) {
-        $this->id_user = $id_user;
+    public function setLogDate($log_date) {
+        $this->log_date = $log_date;
     }
 
-    public function setFlagActive($flag_active) {
-        $this->flag_active = $flag_active;
+    public function getState() {
+        return $this->state;
     }
 
-    public function setUsername($username) {
-        $this->username = $username;
+    public function setState($state) {
+        $this->state = $state;
     }
 
-    public function setPassword($password) {
-        $this->password = $password;
+    public function setAuthor($author) {
+        $this->author = $author;
     }
 
-    public function setEmail($email) {
-        $this->email = $email;
+    public function setAuthorIp($author_ip) {
+        $this->author_ip = $author_ip;
     }
 
-    public function setSignupDate($signup_date) {
-        $this->signup_date = $signup_date;
+    public function setAuthorRange($author_range) {
+        $this->author_range = $author_range;
+    }
+
+    public function setAuthorCause($author_cause) {
+        $this->author_cause = $author_cause;
+    }
+
+    public function setToUser($to_user) {
+        $this->to_user = $to_user;
+    }
+
+    public function setToTable($to_table) {
+        $this->to_table = $to_table;
+    }
+
+    public function setAction($action) {
+        $this->action = $action;
+    }
+
+    public function setNewValue($new_value) {
+        $this->new_value = $new_value;
+    }
+
+    public function setOldValue($old_value) {
+        $this->old_value = $old_value;
     }
 
     /**

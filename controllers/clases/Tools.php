@@ -22,10 +22,10 @@ class Tools {
 
     public static function isUpkeep($bool) {
         // si bool es True, la pagina se queda en mantenimiento y solo visible para las ip disponibles
-        $ips = array('###.###.###.###', '###.###.###.###');
+        $ips = array(IP_UPKEEP);
         if ($bool) {
             if (!array_search(Tools::getRealIP(), $ips)) {
-                header('Location: mantenimiento');
+                //header('Location: mantenimiento');
                 exit;
             }
         }
@@ -81,6 +81,27 @@ class Tools {
     public static function getSession() {
         $user = new User(json_decode($_SESSION[SESSION_USUARIO], TRUE));
         return $user;
+    }
+
+    public static function newLog($to_user, $to_table, $action, $state = NULL, $old_value = NULL, $new_value = NULL, $author_cause = NULL) {
+        $user = self::getSession();
+        if ($user != NULL) {
+            $userLog = new UserLog();
+            $userLog->setAuthor($user->getIdUser());
+            $userLog->setAction($action);
+            $userLog->setAuthorCause($author_cause);
+            $userLog->setAuthorIp(self::getRealIP());
+            $userLog->setAuthorRange($user->getTypeUser());
+            $userLog->setLogDate(time());
+            $userLog->setNewValue($new_value);
+            $userLog->setOldValue($old_value);
+            $userLog->setToTable($to_table);
+            $userLog->setToUser($to_user);
+            $userLog->setState($state);
+            $file = fopen(_LOGS_PATH_ . TABLE_USER_LOG . EXTENSION_LOG, "a");
+            fwrite($file, $userLog->serialize() . PHP_EOL);
+            fclose($file);
+        }
     }
 
 }

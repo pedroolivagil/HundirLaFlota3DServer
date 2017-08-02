@@ -21,6 +21,7 @@ class User extends _EntitySerialize {
     private $username;
     private $password;
     private $email;
+    private $type_user;
     private $info;      // array with user info
 
     public function __construct1($arrayValues, $withInfo = TRUE) {
@@ -31,6 +32,7 @@ class User extends _EntitySerialize {
         $this->username = $arrayValues['username'];
         $this->password = $arrayValues['pass'];
         $this->email = $arrayValues['email'];
+        $this->type_user = $arrayValues['type_user'];
         $this->signup_date = $arrayValues['signup_date'];
         if ($withInfo) {
             $this->info = new UserInfo($arrayValues['info']);
@@ -71,6 +73,14 @@ class User extends _EntitySerialize {
 
     public function getEmailActivation() {
         return $this->email_activation;
+    }
+
+    public function getTypeUser() {
+        return $this->type_user;
+    }
+
+    public function setTypeUser($type_user) {
+        $this->type_user = $type_user;
     }
 
     public function setEmailActivation($email_activation) {

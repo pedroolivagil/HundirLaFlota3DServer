@@ -28,6 +28,9 @@ define('SESSION_USUARIO', 'usuario');
 define('SESSION_USUARIO_ID', 'id_usuario');
 define('SESSION_AUTOLOGIN', 'autologin');
 
+define('IP_UPKEEP', '83.46.27.12');
+define('EXTENSION_LOG', '.log');
+
 // '/myprojectsorg' solo para ámbito local
 define('PORT', 8080);
 $port = ':' . PORT;
@@ -41,6 +44,7 @@ $root = ($_SERVER['SERVER_NAME'] == 'localhost') ? '/HundirLaFlota3DServer' : ''
 define('_CONTROLLERS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/controllers/');
 define('_CLASES_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/controllers/clases/');
 define('_MODELS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/models/');
+define('_LOGS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/logs/');
 //define('_PAGES_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/');
 //define('_PHP_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/php/');
 //define('_TEMP_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/temp/');
@@ -60,17 +64,18 @@ require_once(_CLASES_PATH_ . 'Tools.php');
 require_once(_CLASES_PATH_ . 'vendor/autoload.php');
 require_once(_CLASES_PATH_ . 'DBMethods.php');
 require_once(_CLASES_PATH_ . 'DB.php');
-// Controllers
-require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
-require_once(_CONTROLLERS_PATH_ . 'LocaleController.php');
-require_once(_CONTROLLERS_PATH_ . 'UserController.php');
-//require_once(_CONTROLLERS_PATH_ . 'VesselController.php');
 // Models
 require_once(_MODELS_PATH_ . '_EntitySerialize.php');
+require_once(_MODELS_PATH_ . 'UserLog.php');
 require_once(_MODELS_PATH_ . 'LocaleAppTrans.php');
 require_once(_MODELS_PATH_ . 'LocaleApp.php');
 require_once(_MODELS_PATH_ . 'UserInfo.php');
 require_once(_MODELS_PATH_ . 'User.php');
 //require_once(_MODELS_PATH_ . 'Vessel.php');
+// Controllers
+require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
+require_once(_CONTROLLERS_PATH_ . 'LocaleController.php');
+require_once(_CONTROLLERS_PATH_ . 'UserController.php');
+//require_once(_CONTROLLERS_PATH_ . 'VesselController.php');
 
 error_reporting(E_ALL ^ E_NOTICE);

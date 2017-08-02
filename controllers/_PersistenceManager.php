@@ -22,11 +22,15 @@ class _PersistenceManager {
     }
 
     public function count() {
-        return $this->db->count($this->collectionName);
+        $result = $this->db->count($this->collectionName);
+        Tools::newLog('', $this->collectionName, 'COUNT', $this->isBadResult($result));
+        return $result;
     }
 
     protected function find() {
-        return $this->db->find($this->collectionName);
+        $result = $this->db->find($this->collectionName);
+        Tools::newLog('', $this->collectionName, 'FIND', $this->isBadResult($result));
+        return $result;
     }
 
     protected function findByKey($key) {
@@ -35,7 +39,9 @@ class _PersistenceManager {
         $clave = array(
             $keys[0] => $val
         );
-        return $this->db->findByKey($this->collectionName, $clave);
+        $result = $this->db->findByKey($this->collectionName, $clave);
+        Tools::newLog($key, $this->collectionName, 'FINDBYKEY', $this->isBadResult($result));
+        return $result;
     }
 
     protected function findOneByKey($key) {
@@ -44,36 +50,50 @@ class _PersistenceManager {
         $clave = array(
             $keys[0] => $val
         );
-        return $this->db->findOneByKey($this->collectionName, $clave);
+        $result = $this->db->findOneByKey($this->collectionName, $clave);
+        Tools::newLog($key, $this->collectionName, 'FINDONE', $this->isBadResult($result));
+        return $result;
     }
 
     protected function merge($key, $data) {
+        $result = FALSE;
         if (!is_null($data)) {
             $data = json_decode($data, true);
-            return $this->db->merge($this->collectionName, $key, $data);
+            $result = $this->db->merge($this->collectionName, $key, $data);
         }
-        return FALSE;
+        Tools::newLog($key, $this->collectionName, 'UPDATE', $this->isBadResult($result), NULL, $data);
+        return $result;
     }
 
     protected function persist($data) {
+        $result = FALSE;
         if (!is_null($data)) {
             $data = json_decode($data, true);
-            return $this->db->persist($this->collectionName, $data);
+            $result = $this->db->persist($this->collectionName, $data);
         }
-        return FALSE;
+        Tools::newLog('', $this->collectionName, 'CREATE', $this->isBadResult($result), NULL, $data);
+        return $result;
     }
 
     protected function remove($key, $data) {
+        $result = FALSE;
         if (!is_null($data)) {
             $data = json_decode($data, true);
             $data[COL_FLAG_ACTIVO] = FALSE;
-            return $this->db->remove($this->collectionName, $key, $data);
+            $result = $this->db->remove($this->collectionName, $key, $data);
         }
-        return FALSE;
+        Tools::newLog($key, $this->collectionName, 'REMOVE', $this->isBadResult($result), COL_FLAG_ACTIVO . ' = true', COL_FLAG_ACTIVO . ' = false');
+        return $result;
     }
 
     public function close() {
+        Tools::newLog('', $this->collectionName, 'CLOSE_CONECTION', $this->isBadResult($result));
         $db->close();
+    }
+
+    private function isBadResult($result) {
+        $var = is_null($result) || empty($result);
+        return ($var) ? 'FAIL!' : 'OK!';
     }
 
 }
