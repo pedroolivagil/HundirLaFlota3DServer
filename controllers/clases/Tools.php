@@ -20,6 +20,10 @@ class Tools {
         return $_SERVER['REMOTE_ADDR'];
     }
 
+    /**
+     * Poner la página en mantenimiento menos a las IPs permitidas
+     * @param type $bool
+     */
     public static function isUpkeep($bool) {
         // si bool es True, la pagina se queda en mantenimiento y solo visible para las ip disponibles
         $ips = array(IP_UPKEEP);
@@ -72,17 +76,34 @@ class Tools {
         }
     }
 
+    /**
+     * cierra sesión
+     */
     public static function logout() {
         unset($_SESSION[SESSION_USUARIO]);
         self::setCookie(SESSION_AUTOLOGIN, FALSE);
         self::setCookie(SESSION_USUARIO_ID, NULL);
     }
 
+    /**
+     * 
+     * @return \Userdevuelve el usuario de la sesión
+     */
     public static function getSession() {
         $user = new User(json_decode($_SESSION[SESSION_USUARIO], TRUE));
         return $user;
     }
 
+    /**
+     * Crea un nuevo Log de usuario
+     * @param type $to_user
+     * @param type $to_table
+     * @param type $action
+     * @param type $state
+     * @param type $old_value
+     * @param type $new_value
+     * @param type $author_cause
+     */
     public static function newLog($to_user, $to_table, $action, $state = NULL, $old_value = NULL, $new_value = NULL, $author_cause = NULL) {
         $user = self::getSession();
         if ($user != NULL) {
@@ -104,6 +125,11 @@ class Tools {
         }
     }
 
+    /**
+     * Serializa un array 
+     * @param type $value
+     * @return type
+     */
     public static function serialize($value) {
         try {
             return json_encode($value, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
@@ -112,10 +138,42 @@ class Tools {
         }
     }
 
+    /**
+     * Transforma un time() a una fecha con un patron específico
+     * @param type $time
+     * @param type $pattern
+     * @return type
+     */
     public static function formatDate($time, $pattern = 'd-m-Y H:i:s') {
         return date($pattern, $time);
     }
 
+    /**
+     * Muestra  de forma atractiva una cifra de bytes a la catidad adecuada, mb, gb,...
+     * @param type $url
+     * @param type $decimals
+     * @return type
+     */
+    public static function human_filesize($url, $decimals = 2) {
+        $bytes = filesize($url);
+        $sz = 'BKMGTP';
+        $factor = floor((strlen($bytes) - 1) / 3);
+        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
+    }
+
+    /**
+     * Convierte Bytes a Megas
+     * @param type $bytes
+     * @return type
+     */
+    public static function bytesToMegas($bytes) {
+        return $bytes / 1024 / 1024;
+    }
+
+    /**
+     * Devuelve la lista con los logs convertidos a objeto
+     * @return array
+     */
     public static function readPrintLog() {
         $listLogs = array();
         $url = _LOGS_PATH_ . TABLE_USER_LOG . EXTENSION_LOG;
@@ -136,6 +194,13 @@ class Tools {
         return $listLogs;
     }
 
+    /**
+     * Convierte un fichero a un string reemplazando los parámetros específicos
+     * @param type $url
+     * @param type $params
+     * @param type $values
+     * @return string
+     */
     public static function getContentOfFile($url, $params = false, $values = false) {
         $txt = "";
         chmod($url, 0777);
