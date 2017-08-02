@@ -30,6 +30,7 @@ define('SESSION_AUTOLOGIN', 'autologin');
 
 define('IP_UPKEEP', '83.46.27.12');
 define('EXTENSION_LOG', '.log');
+define('LOG_ACTIVE', FALSE);
 
 // '/myprojectsorg' solo para ámbito local
 define('PORT', 8080);

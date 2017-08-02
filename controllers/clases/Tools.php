@@ -105,6 +105,7 @@ class Tools {
      * @param type $author_cause
      */
     public static function newLog($to_user, $to_table, $action, $state = NULL, $old_value = NULL, $new_value = NULL, $author_cause = NULL) {
+        if(LOG_ACTIVE){
         $user = self::getSession();
         if ($user != NULL) {
             $userLog = new UserLog();
@@ -122,6 +123,8 @@ class Tools {
             $file = fopen(_LOGS_PATH_ . TABLE_USER_LOG . EXTENSION_LOG, "a");
             fwrite($file, $userLog->serialize() . PHP_EOL);
             fclose($file);
+        }
+        
         }
     }
 
