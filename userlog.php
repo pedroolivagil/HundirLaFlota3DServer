@@ -40,12 +40,22 @@ include_once('config.php');
                 top:38px;
             } 
             td {
-                overflow: hidden;
+                overflow: auto;
                 min-height: 20px;
             }
             td:first-child {
                 width: 50px !important;
                 text-align: center;
+            }
+            td.width60 {
+                width: 60px !important;
+                text-align: center;
+            }
+            td.width80 {
+                width: 80px !important;
+            }
+            td.width125 {
+                width: 125px !important;
             }
         </style>
     </head>
@@ -54,36 +64,38 @@ include_once('config.php');
             <thead>
                 <tr>
                     <td>ID</td>
-                    <td>Action</td>
-                    <td>State</td>
-                    <td>Author</td>
-                    <td>Range</td>
-                    <td>IP</td>
+                    <td class="width80">Action</td>
+                    <td class="width60">State</td>
+                    <td class="width60">Author</td>
+                    <td class="width60">Range</td>
+                    <td class="width125">IP</td>
                     <td>Table</td>
                     <td>User</td>
                     <td>Date</td>
                     <td>Old value</td>
                     <td>New value</td>
-                    <td>Cause</td>
+                    <!--<td>Cause</td>-->
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach (Tools::readPrintLog() as $key => $log) {
+                $results = Tools::readPrintLog();
+                $total = count($results);
+                foreach (array_reverse($results) as $log) {
                     ?>
                     <tr <?php echo ($log->getState() == 'OK') ? '' : 'class="danger"'; ?>>
-                        <td><?php echo $key + 1; ?></td>
-                        <td><?php echo $log->getAction(); ?></td>
-                        <td><?php echo $log->getState(); ?></td>
-                        <td><?php echo $log->getAuthor(); ?></td>
-                        <td><?php echo $log->getAuthorRange(); ?></td>
-                        <td><?php echo $log->getAuthorIp(); ?></td>
+                        <td><?php echo $total--; ?></td>
+                        <td class="width80"><?php echo $log->getAction(); ?></td>
+                        <td class="width60"><?php echo $log->getState(); ?></td>
+                        <td class="width60"><?php echo $log->getAuthor(); ?></td>
+                        <td class="width60"><?php echo $log->getAuthorRange(); ?></td>
+                        <td class="width125"><?php echo $log->getAuthorIp(); ?></td>
                         <td><?php echo $log->getToTable(); ?></td>
                         <td><?php echo Tools::serialize($log->getToUser()); ?></td>
                         <td><?php echo Tools::formatDate($log->getLogDate()); ?></td>
                         <td><?php echo Tools::serialize($log->getOldValue()); ?></td>
                         <td><?php echo Tools::serialize($log->getNewValue()); ?></td>
-                        <td><?php echo $log->getAuthorCause(); ?></td>
+                        <!--<td><?php echo $log->getAuthorCause(); ?></td>-->
                     </tr>
                     <?php
                 }

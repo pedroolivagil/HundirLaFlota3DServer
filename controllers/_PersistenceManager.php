@@ -51,7 +51,7 @@ class _PersistenceManager {
             $keys[0] => $val
         );
         $result = $this->db->findOneByKey($this->collectionName, $clave);
-        Tools::newLog($key, $this->collectionName, 'FINDONE', $this->isBadResult($result));
+        Tools::newLog($key, $this->collectionName, 'FINDONE', $this->isBadResult($result), $result);
         return $result;
     }
 
@@ -62,7 +62,7 @@ class _PersistenceManager {
             $keys[0] => $val
         );
         $result = $this->db->findOneByKey($this->collectionName, $clave);
-        Tools::newLog($key, $this->collectionName, 'EXISTS', ($this->isBadResult($result, TRUE)));
+        Tools::newLog($key, $this->collectionName, 'EXISTS', ($this->isBadResult($result, TRUE)), $result);
         return $result;
     }
 

@@ -132,7 +132,11 @@ class Tools {
      */
     public static function serialize($value) {
         try {
-            return json_encode($value, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
+            if (!is_null($value)) {
+                return json_encode($value, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
+            } else {
+                return '---';
+            }
         } catch (Exception $e) {
             return $value;
         }
