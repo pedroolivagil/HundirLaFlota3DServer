@@ -104,4 +104,47 @@ class Tools {
         }
     }
 
+    public static function serialize($value) {
+        try {
+            return json_encode($value, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
+        } catch (Exception $e) {
+            return $value;
+        }
+    }
+
+    public static function formatDate($time, $pattern = 'd-m-Y H:i:s') {
+        return date($pattern, $time);
+    }
+
+    public static function readPrintLog() {
+        $listLogs = array();
+        $url = _LOGS_PATH_ . TABLE_USER_LOG . EXTENSION_LOG;
+        chmod($url, 0777);
+        $file = fopen($url, "r") or exit("Error de lectura del log: '" . TABLE_USER_LOG . "'");
+        //Output a line of the file until the end is reached
+        while (!feof($file)) {
+            array_push($listLogs, new UserLog(json_decode(fgets($file), TRUE)));
+        }
+        fclose($file);
+        chmod($url, 0755);
+        return $listLogs;
+    }
+
+    public static function getContentOfFile($url, $params = false, $values = false) {
+        $txt = "";
+        chmod($url, 0777);
+        $file = fopen($url, "r") or exit("Error de lectura de 'Header'");
+        //Output a line of the file until the end is reached
+        while (!feof($file)) {
+            if ($params && $values) {
+                $txt .= str_replace($params, $values, fgets($file)) . "\n";
+            } else {
+                $txt .= fgets($file) . "\n";
+            }
+        }
+        fclose($file);
+        chmod($url, 0755);
+        return $txt;
+    }
+
 }
