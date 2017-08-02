@@ -122,7 +122,7 @@ class User extends _EntitySerialize {
      */
     public function serialize($propsUnserialized = null) {
         $properties = get_object_vars($this);
-        if (Tools::isNotNull($propsUnserialized)) {
+        if (!is_null($propsUnserialized)) {
             foreach ($propsUnserialized as $property) {
                 unset($properties[$property]);
             }

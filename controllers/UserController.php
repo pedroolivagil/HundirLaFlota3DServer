@@ -39,14 +39,16 @@ class UserController extends _PersistenceManager {
         $key = array(
             COL_USERNAME => $data->getUsername()
         );
-        $find = parent::findOneByKey($key);
-        if ($find == NULL) {
+        $find = parent::exists($key);
+        if (is_null($find)) {
             $total = parent::count();
             $data->setIdUser($total + 1);
             $data->setSignupDate(time());
             $data->setFlagActive(TRUE);
             $data->setEmailActivation(FALSE);
-            $data->setInfo((array) json_decode($data->getInfo()->serialize(), TRUE));
+            if (!is_null($data->getInfo())) {
+                $data->setInfo((array) json_decode($data->getInfo()->serialize(), TRUE));
+            }
             return parent::persist($data->serialize(array(COL_ID_DOCUMENT, COL_OBJECT)));
         }
         return FALSE;

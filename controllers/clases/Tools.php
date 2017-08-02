@@ -7,7 +7,7 @@ class Tools {
     }
 
     public static function isNotNull($obj) {
-        return !self::isNull($obj);
+        return self::isNull($obj);
     }
 
     public static function getRealIP() {
@@ -119,14 +119,20 @@ class Tools {
     public static function readPrintLog() {
         $listLogs = array();
         $url = _LOGS_PATH_ . TABLE_USER_LOG . EXTENSION_LOG;
-        chmod($url, 0777);
-        $file = fopen($url, "r") or exit("Error de lectura del log: '" . TABLE_USER_LOG . "'");
-        //Output a line of the file until the end is reached
-        while (!feof($file)) {
-            array_push($listLogs, new UserLog(json_decode(fgets($file), TRUE)));
+        if (file_exists($url)) {
+            chmod($url, 0777);
+            $file = fopen($url, "r") or exit("Error de lectura del log: '" . TABLE_USER_LOG . "'");
+            //Output a line of the file until the end is reached
+            while (($linea = fgets($file, 4096)) !== false) {
+                $array = json_decode($linea, TRUE);
+                array_push($listLogs, new UserLog($array));
+            }
+            if (!feof($file)) {
+                exit("Error de lectura del log: '" . TABLE_USER_LOG . "'");
+            }
+            fclose($file);
+            chmod($url, 0755);
         }
-        fclose($file);
-        chmod($url, 0755);
         return $listLogs;
     }
 

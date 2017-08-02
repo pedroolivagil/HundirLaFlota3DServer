@@ -40,7 +40,7 @@ include_once('config.php');
                 <?php
                 foreach (Tools::readPrintLog() as $key => $log) {
                     ?>
-                    <tr <?php echo ($log->getState() == 'OK!') ? '' : 'class="danger"'; ?>>
+                    <tr <?php echo ($log->getState() == 'OK') ? '' : 'class="danger"'; ?>>
                         <td><?php echo $key + 1; ?></td>
                         <td><?php echo $log->getAction(); ?></td>
                         <td><?php echo $log->getState(); ?></td>

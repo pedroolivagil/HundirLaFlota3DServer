@@ -55,6 +55,17 @@ class _PersistenceManager {
         return $result;
     }
 
+    protected function exists($key) {
+        $keys = array_keys($key);
+        $val = $key[$keys[0]];
+        $clave = array(
+            $keys[0] => $val
+        );
+        $result = $this->db->findOneByKey($this->collectionName, $clave);
+        Tools::newLog($key, $this->collectionName, 'EXISTS', ($this->isBadResult($result, TRUE)));
+        return $result;
+    }
+
     protected function merge($key, $data) {
         $result = FALSE;
         if (!is_null($data)) {
@@ -91,9 +102,9 @@ class _PersistenceManager {
         $db->close();
     }
 
-    private function isBadResult($result) {
+    private function isBadResult($result, $inverted = FALSE) {
         $var = is_null($result) || empty($result);
-        return ($var) ? 'FAIL!' : 'OK!';
+        return (($inverted) ? ((!$var) ? 'FAIL' : 'OK') : (($var) ? 'FAIL' : 'OK'));
     }
 
 }

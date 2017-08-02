@@ -33,7 +33,7 @@ class LocaleController extends _PersistenceManager {
             COL_CODIGO_ISO => $data->getCodeISO(),
             COL_FLAG_ACTIVO => TRUE
         );
-        $find = parent::findOneByKey($key);
+        $find = parent::exists($key);
         if (is_null($find)) {
             $idIdioma = parent::count() + 1;
             $data->setIdLocale($idIdioma);
