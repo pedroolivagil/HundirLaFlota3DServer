@@ -11,13 +11,19 @@ class Tools {
     }
 
     public static function getRealIP() {
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            return $_SERVER['HTTP_CLIENT_IP'];
+        if (isset($_SERVER["HTTP_CLIENT_IP"])) {
+            return $_SERVER["HTTP_CLIENT_IP"];
+        } elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+            return $_SERVER["HTTP_X_FORWARDED_FOR"];
+        } elseif (isset($_SERVER["HTTP_X_FORWARDED"])) {
+            return $_SERVER["HTTP_X_FORWARDED"];
+        } elseif (isset($_SERVER["HTTP_FORWARDED_FOR"])) {
+            return $_SERVER["HTTP_FORWARDED_FOR"];
+        } elseif (isset($_SERVER["HTTP_FORWARDED"])) {
+            return $_SERVER["HTTP_FORWARDED"];
+        } else {
+            return $_SERVER["REMOTE_ADDR"];
         }
-        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            return $_SERVER['HTTP_X_FORWARDED_FOR'];
-        }
-        return $_SERVER['REMOTE_ADDR'];
     }
 
     /**
@@ -105,26 +111,25 @@ class Tools {
      * @param type $author_cause
      */
     public static function newLog($to_user, $to_table, $action, $state = NULL, $old_value = NULL, $new_value = NULL, $author_cause = NULL) {
-        if(LOG_ACTIVE){
-        $user = self::getSession();
-        if ($user != NULL) {
-            $userLog = new UserLog();
-            $userLog->setAuthor($user->getIdUser());
-            $userLog->setAction($action);
-            $userLog->setAuthorCause($author_cause);
-            $userLog->setAuthorIp(self::getRealIP());
-            $userLog->setAuthorRange($user->getTypeUser());
-            $userLog->setLogDate(time());
-            $userLog->setNewValue($new_value);
-            $userLog->setOldValue($old_value);
-            $userLog->setToTable($to_table);
-            $userLog->setToUser($to_user);
-            $userLog->setState($state);
-            $file = fopen(_LOGS_PATH_ . TABLE_USER_LOG . EXTENSION_LOG, "a");
-            fwrite($file, $userLog->serialize() . PHP_EOL);
-            fclose($file);
-        }
-        
+        if (LOG_ACTIVE) {
+            $user = self::getSession();
+            if ($user != NULL) {
+                $userLog = new UserLog();
+                $userLog->setAuthor($user->getIdUser());
+                $userLog->setAction($action);
+                $userLog->setAuthorCause($author_cause);
+                $userLog->setAuthorIp(self::getRealIP());
+                $userLog->setAuthorRange($user->getTypeUser());
+                $userLog->setLogDate(time());
+                $userLog->setNewValue($new_value);
+                $userLog->setOldValue($old_value);
+                $userLog->setToTable($to_table);
+                $userLog->setToUser($to_user);
+                $userLog->setState($state);
+                $file = fopen(_LOGS_PATH_ . TABLE_USER_LOG . EXTENSION_LOG, "a");
+                fwrite($file, $userLog->serialize() . PHP_EOL);
+                fclose($file);
+            }
         }
     }
 
