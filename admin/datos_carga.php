@@ -10,11 +10,13 @@ $script = new ScriptDB();
 // Iniciamos los controladores
 $userManager = new UserController();
 $idiomaManager = new LocaleController();
+$powerupManager = new PowerUpController();
 
 // Datos
-$fileUsers = file("user.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-$fileIdioma = file("locale.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-$fileShips = file("vessel.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$fileUsers = file("db/user.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$fileIdioma = file("db/locale.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$filePowerup = file("db/powerup.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$fileShips = file("db/vessel.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
 // Insertamos los datos a la BBDD
 echo "\nUsuarios\n\n";
@@ -35,6 +37,17 @@ foreach ($fileIdioma as $num_línea => $linea) {
         echo "\n\tInsertado\t" . $obj->getCodeISO();
     } else {
         echo "\n\tNO insertado\t" . $obj->getCodeISO();
+    }
+}
+echo "\n--------------------------------------------------------------------";
+
+echo "\nPower UPs\n\n";
+foreach ($filePowerup as $num_línea => $linea) {
+    $obj = new PowerUp(json_decode($linea, TRUE));
+    if ($powerupManager->create($obj)) {
+        echo "\n\tInsertado\t" . $obj->getCode();
+    } else {
+        echo "\n\tNO insertado\t" . $obj->getCode();
     }
 }
 echo "\n--------------------------------------------------------------------";

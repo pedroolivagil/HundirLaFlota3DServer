@@ -77,5 +77,6 @@ require_once(_MODELS_PATH_ . 'PowerUp.php');
 require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
 require_once(_CONTROLLERS_PATH_ . 'LocaleController.php');
 require_once(_CONTROLLERS_PATH_ . 'UserController.php');
+require_once(_CONTROLLERS_PATH_ . 'PowerUpController.php');
 
 error_reporting(E_ALL ^ E_NOTICE);

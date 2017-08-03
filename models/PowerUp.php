@@ -8,6 +8,9 @@
 class PowerUp extends _EntitySerialize {
 
     private $_id;
+    private $id_powerup;
+    private $flag_active;
+    private $add_date;
     private $code;
     private $value;
     private $type;
@@ -18,6 +21,7 @@ class PowerUp extends _EntitySerialize {
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues['_id'];
+        $this->id_powerup = $arrayValues['id_powerup'];
         $this->code = $arrayValues['code'];
         $this->value = $arrayValues['value'];
         $this->type = $arrayValues['type'];
@@ -31,6 +35,10 @@ class PowerUp extends _EntitySerialize {
 
     public function get_id() {
         return $this->_id;
+    }
+
+    public function getIdPowerup() {
+        return $this->id_powerup;
     }
 
     public function getCode() {
@@ -59,6 +67,26 @@ class PowerUp extends _EntitySerialize {
 
     public function getTrans() {
         return $this->trans;
+    }
+
+    public function getFlagActive() {
+        return $this->flag_active;
+    }
+
+    public function getAddDate() {
+        return $this->add_date;
+    }
+
+    public function setFlagActive($flag_active) {
+        $this->flag_active = $flag_active;
+    }
+
+    public function setAddDate($add_date) {
+        $this->add_date = $add_date;
+    }
+
+    public function setIdPowerup($id_powerup) {
+        $this->id_powerup = $id_powerup;
     }
 
     public function setCode($code) {
