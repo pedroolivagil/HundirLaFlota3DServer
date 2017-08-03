@@ -11,7 +11,7 @@
  *
  * @author Oliva
  */
-class LocaleAppTrans extends _EntitySerialize {
+class GenericTrans extends _EntitySerialize {
 
     private $text;
     private $id_locale;
