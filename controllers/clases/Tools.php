@@ -133,6 +133,18 @@ class Tools {
         }
     }
 
+    public static function newImgLog($nameImg, $sizeImg, $mime, $encodeImg)
+    {
+        $resource = new Resource();
+        $resource->setName($nameImg);
+        $resource->setSize($sizeImg);
+        $resource->setMimetype($mime);
+        $resource->setFile($encodeImg);
+        $file = fopen(_LOGS_PATH_ . TABLE_IMG_LOG . EXTENSION_LOG, "a");
+        fwrite($file, $resource->serialize() . PHP_EOL);
+        fclose($file);
+    }
+
     /**
      * Serializa un array 
      * @param type $value
@@ -182,6 +194,14 @@ class Tools {
         return $bytes / 1024 / 1024;
     }
 
+    public static function bytesToMegasCool($bytes, $decimals = 2)
+    {
+        $sz = 'BKMGTP';
+        $factor = floor((strlen($bytes) - 1) / 3);
+        echo $factor;
+        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . $sz[$factor];
+    }
+
     /**
      * Devuelve la lista con los logs convertidos a objeto
      * @return array
@@ -228,6 +248,81 @@ class Tools {
         fclose($file);
         chmod($url, 0755);
         return $txt;
+    }
+
+    public static function encode64($url)
+    {
+        $data = file_get_contents($url);
+        return base64_encode($data);
+    }
+
+    public static function decode64($obj64)
+    {
+        return base64_decode($obj64, TRUE);
+    }
+
+    public static function createDir($url)
+    {
+        if (is_dir($url)) {
+            chmod($url, 0744);
+        } else {
+            mkdir($url, 0744);
+        }
+        return true;
+    }
+
+    public static function createImg($img, $ruta2, $tipo, $tam)
+    {
+        $retorno = FALSE;
+        switch ($tipo) {
+            case 'jpg':
+            case 'jpeg':
+                $original = imagecreatefromjpeg($ruta2 . $img);
+                break;
+            case 'gif':
+                $original = imagecreatefromgif($ruta2 . $img);
+                break;
+            case 'png':
+                $original = imagecreatefrompng($ruta2 . $img);
+                break;
+        }
+        if ($original) {
+            $numero = $tam;
+            $ancho = imagesx($original);
+            $alto = imagesy($original);
+            if ($alto >= $ancho) {
+                $proporcion = $ancho / $alto;
+                $thumbalto = $numero;
+                $thumbancho = ceil($numero * $proporcion);
+            } else {
+                //Mas ancho q largo
+                $proporcion = $alto / $ancho;
+                $thumbancho = $numero;
+                $thumbalto = ceil($numero * $proporcion);
+            }
+            $rutathumb = $ruta2 . '/thumb';
+            self::createDir($rutathumb);
+            $thumb = imagecreatetruecolor($thumbancho, $thumbalto);
+
+            imagealphablending($thumb, false);
+            $tranparente = imagecolorallocatealpha($thumb, 0, 0, 0, 0);
+            imagefilledrectangle($thumb, 0, 0, 0, 0, $tranparente);
+            imagecopyresampled($thumb, $original, 0, 0, 0, 0, $thumbancho, $thumbalto, $ancho, $alto);
+            imagesavealpha($thumb, true);
+            switch ($tipo) {
+                case 'jpg':
+                case 'jpeg':
+                    $retorno = imagejpeg($thumb, $rutathumb . '/' . $img, 60);
+                    break;
+                case 'png':
+                    $retorno = imagepng($thumb, $rutathumb . '/' . $img, 9);
+                    break;
+                case 'gif':
+                    $retorno = imagegif($thumb, $rutathumb . '/' . $img);
+                    break;
+            }
+        }
+        return $retorno;
     }
 
 }

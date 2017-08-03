@@ -8,16 +8,13 @@ define('DB_DB', 'hundirlaflota3d');
 define('DB_PORT', 23662);
 
 define('COL_ID_DOCUMENT', '_id');
-
 define('COL_ID_USER', 'id_user');
-define('COL_USERNAME', 'username');
-
 define('COL_ID_IDIOMA', 'id_locale');
+define('COL_ID_POWERUP', 'id_powerup');
+
+define('COL_USERNAME', 'username');
+define('COL_CODE', 'code');
 define('COL_CODIGO_ISO', 'code_iso');
-
-define('COL_ID_SHIP', 'id_ship');
-define('COL_SHIPCODE', 'code');
-
 define('COL_FLAG_ACTIVO', 'flag_active');
 define('COL_OBJECT', 'object');
 
@@ -26,7 +23,6 @@ define('TABLE_USER', 'user');
 define('TABLE_USER_INFO', 'user_info');
 define('TABLE_USER_LOG', 'user_log');
 define('TABLE_POWERUP', 'powerup');
-define('TABLE_POWERUP_TYPE', 'powerup_type');
 define('TABLE_SCENARIO', 'scenario');
 define('TABLE_BATTLE', 'battle');
 define('TABLE_BATTLE_REWARD', 'battle_reward');
