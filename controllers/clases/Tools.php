@@ -3,7 +3,7 @@
 class Tools {
 
     public static function isNull($obj) {
-        return is_null($ojb) or empty($obj);
+        return is_null($obj) or empty($obj);
     }
 
     public static function isNotNull($obj) {
