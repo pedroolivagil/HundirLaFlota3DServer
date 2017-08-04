@@ -8,13 +8,17 @@
 class Resource extends _EntitySerialize {
 
     private $_id;
+    private $id_resource;
     private $name;
     private $mimetype;
     private $file;
     private $size;
+    private $flag_active;
+    private $add_date;
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
+        $this->id_resource = $arrayValues[ 'id_resource' ];
         $this->name = $arrayValues[ 'name' ];
         $this->mimetype = $arrayValues[ 'mimetype' ];
         $this->file = $arrayValues[ 'file' ];
@@ -39,6 +43,30 @@ class Resource extends _EntitySerialize {
 
     public function getSize() {
         return $this->size;
+    }
+
+    public function getIdResource() {
+        return $this->id_resource;
+    }
+
+    public function getFlagActive() {
+        return $this->flag_active;
+    }
+
+    public function setFlagActive($flag_active) {
+        $this->flag_active = $flag_active;
+    }
+
+    public function getAddDate() {
+        return $this->add_date;
+    }
+
+    public function setAddDate($add_date) {
+        $this->add_date = $add_date;
+    }
+
+    public function setIdResource($id_resource) {
+        $this->id_resource = $id_resource;
     }
 
     public function setName($name) {

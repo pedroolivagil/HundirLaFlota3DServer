@@ -133,8 +133,9 @@ class Tools {
         }
     }
 
-    public static function newImgLog($nameImg, $sizeImg, $mime, $encodeImg) {
+    public static function newImgLog($id, $nameImg, $sizeImg, $mime, $encodeImg) {
         $resource = new Resource();
+        $resource->setIdResource($id);
         $resource->setName($nameImg);
         $resource->setSize($sizeImg);
         $resource->setMimetype($mime);

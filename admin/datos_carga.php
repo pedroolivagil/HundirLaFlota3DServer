@@ -6,7 +6,7 @@ Tools::login(1, TRUE);
 $script = new ScriptDB();
 // Iniciamos los controladores
 $userManager = new UserController();
-$idiomaManager = new LocaleController();
+$idiomaManager = new LocaleAppController();
 $powerupManager = new PowerUpController();
 // Datos
 $fileUsers = file("db/user.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);

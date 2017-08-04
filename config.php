@@ -32,6 +32,7 @@ define('IP_UPKEEP', '83.46.27.12');
 define('EXTENSION_LOG', '.log');
 define('LOG_ACTIVE', FALSE);
 define('TABLE_IMG_LOG', 'img_log');
+define('TABLE_RESOURCE', 'resources');
 
 // '/myprojectsorg' solo para ámbito local
 define('PORT', 8080);
@@ -78,7 +79,7 @@ require_once(_MODELS_PATH_ . 'User.php');
 require_once(_MODELS_PATH_ . 'PowerUp.php');
 // Controllers
 require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
-require_once(_CONTROLLERS_PATH_ . 'LocaleController.php');
+require_once(_CONTROLLERS_PATH_ . 'LocaleAppControllerler.php');
 require_once(_CONTROLLERS_PATH_ . 'UserController.php');
 require_once(_CONTROLLERS_PATH_ . 'PowerUpController.php');
 

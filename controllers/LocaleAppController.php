@@ -5,7 +5,7 @@
  *
  * @author Oliva
  */
-class LocaleController extends _PersistenceManager {
+class LocaleAppController extends _PersistenceManager {
 
     public function __construct() {
         parent::__construct(TABLE_APP_LOCALE);
