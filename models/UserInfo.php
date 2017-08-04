@@ -1,18 +1,12 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of User
  *
  * @author Oliva
  */
 class UserInfo extends _EntitySerialize {
-    
+
     private $flag_active;
     private $firsname;
     private $lastname;
@@ -25,16 +19,16 @@ class UserInfo extends _EntitySerialize {
     private $gender;
 
     public function __construct1($arrayValues) {
-        $this->flag_active = $arrayValues['flag_active'];
-        $this->firsname = $arrayValues['firsname'];
-        $this->lastname = $arrayValues['lastname'];
-        $this->email_security = $arrayValues['email_security'];
-        $this->phone = $arrayValues['phone'];
-        $this->address = $arrayValues['address'];
-        $this->state = $arrayValues['state'];
-        $this->country = $arrayValues['country'];
-        $this->birthday = $arrayValues['birthday'];
-        $this->gender = $arrayValues['gender'];
+        $this->flag_active = $arrayValues[ 'flag_active' ];
+        $this->firsname = $arrayValues[ 'firsname' ];
+        $this->lastname = $arrayValues[ 'lastname' ];
+        $this->email_security = $arrayValues[ 'email_security' ];
+        $this->phone = $arrayValues[ 'phone' ];
+        $this->address = $arrayValues[ 'address' ];
+        $this->state = $arrayValues[ 'state' ];
+        $this->country = $arrayValues[ 'country' ];
+        $this->birthday = $arrayValues[ 'birthday' ];
+        $this->gender = $arrayValues[ 'gender' ];
     }
 
     public function getFlagActive() {
@@ -118,19 +112,18 @@ class UserInfo extends _EntitySerialize {
     }
 
     /**
-     * 
+     *
      * @param type $propsUnserialized Array de nombre de propiedades a excluir
      * @return type
      */
-    public function serialize($propsUnserialized = null) {
+    public function serialize($propsUnserialized = NULL) {
         $properties = get_object_vars($this);
         if (!is_null($propsUnserialized)) {
             foreach ($propsUnserialized as $property) {
-                unset($properties[$property]);
+                unset($properties[ $property ]);
             }
         }
         parent::setObject($properties);
         return parent::serialize();
     }
-
 }

@@ -5,8 +5,7 @@
  *
  * @author Oliva
  */
-class Resource extends _EntitySerialize
-{
+class Resource extends _EntitySerialize {
 
     private $_id;
     private $name;
@@ -14,57 +13,47 @@ class Resource extends _EntitySerialize
     private $file;
     private $size;
 
-    public function __construct1($arrayValues)
-    {
-        $this->_id = $arrayValues['_id'];
-        $this->name = $arrayValues['name'];
-        $this->mimetype = $arrayValues['mimetype'];
-        $this->file = $arrayValues['file'];
-        $this->size = $arrayValues['size'];
+    public function __construct1($arrayValues) {
+        $this->_id = $arrayValues[ '_id' ];
+        $this->name = $arrayValues[ 'name' ];
+        $this->mimetype = $arrayValues[ 'mimetype' ];
+        $this->file = $arrayValues[ 'file' ];
+        $this->size = $arrayValues[ 'size' ];
     }
 
-    public function getId()
-    {
+    public function getId() {
         return $this->_id;
     }
 
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
-    public function getMimetype()
-    {
+    public function getMimetype() {
         return $this->mimetype;
     }
 
-    public function getFile()
-    {
+    public function getFile() {
         return $this->file;
     }
 
-    public function getSize()
-    {
+    public function getSize() {
         return $this->size;
     }
 
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
     }
 
-    public function setMimetype($mimetype)
-    {
+    public function setMimetype($mimetype) {
         $this->mimetype = $mimetype;
     }
 
-    public function setFile($file)
-    {
+    public function setFile($file) {
         $this->file = $file;
     }
 
-    public function setSize($size)
-    {
+    public function setSize($size) {
         $this->size = $size;
     }
 
@@ -73,16 +62,14 @@ class Resource extends _EntitySerialize
      * @param type $propsUnserialized Array de nombre de propiedades a excluir
      * @return type
      */
-    public function serialize($propsUnserialized = null)
-    {
+    public function serialize($propsUnserialized = NULL) {
         $properties = get_object_vars($this);
         if (!is_null($propsUnserialized)) {
             foreach ($propsUnserialized as $property) {
-                unset($properties[$property]);
+                unset($properties[ $property ]);
             }
         }
         parent::setObject($properties);
         return parent::serialize();
     }
-
 }

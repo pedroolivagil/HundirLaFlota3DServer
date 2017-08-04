@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of PersistenseManager
  *
@@ -35,9 +29,9 @@ class _PersistenceManager {
 
     protected function findByKey($key) {
         $keys = array_keys($key);
-        $val = $key[$keys[0]];
+        $val = $key[ $keys[ 0 ] ];
         $clave = array(
-            $keys[0] => $val
+            $keys[ 0 ] => $val
         );
         $result = $this->db->findByKey($this->collectionName, $clave);
         Tools::newLog($key, $this->collectionName, 'FINDBYKEY', $this->isBadResult($result));
@@ -46,9 +40,9 @@ class _PersistenceManager {
 
     protected function findOneByKey($key) {
         $keys = array_keys($key);
-        $val = $key[$keys[0]];
+        $val = $key[ $keys[ 0 ] ];
         $clave = array(
-            $keys[0] => $val
+            $keys[ 0 ] => $val
         );
         $result = $this->db->findOneByKey($this->collectionName, $clave);
         Tools::newLog($key, $this->collectionName, 'FINDONE', $this->isBadResult($result), $result);
@@ -57,9 +51,9 @@ class _PersistenceManager {
 
     protected function exists($key) {
         $keys = array_keys($key);
-        $val = $key[$keys[0]];
+        $val = $key[ $keys[ 0 ] ];
         $clave = array(
-            $keys[0] => $val
+            $keys[ 0 ] => $val
         );
         $result = $this->db->findOneByKey($this->collectionName, $clave);
         Tools::newLog($key, $this->collectionName, 'EXISTS', ($this->isBadResult($result, TRUE)), $result);
@@ -69,7 +63,7 @@ class _PersistenceManager {
     protected function merge($key, $data) {
         $result = FALSE;
         if (!is_null($data)) {
-            $data = json_decode($data, true);
+            $data = json_decode($data, TRUE);
             $result = $this->db->merge($this->collectionName, $key, $data);
         }
         Tools::newLog($key, $this->collectionName, 'UPDATE', $this->isBadResult($result), NULL, $data);
@@ -79,7 +73,7 @@ class _PersistenceManager {
     protected function persist($data) {
         $result = FALSE;
         if (!is_null($data)) {
-            $data = json_decode($data, true);
+            $data = json_decode($data, TRUE);
             $result = $this->db->persist($this->collectionName, $data);
         }
         Tools::newLog('', $this->collectionName, 'CREATE', $this->isBadResult($result), NULL, $data);
@@ -89,8 +83,8 @@ class _PersistenceManager {
     protected function remove($key, $data) {
         $result = FALSE;
         if (!is_null($data)) {
-            $data = json_decode($data, true);
-            $data[COL_FLAG_ACTIVO] = FALSE;
+            $data = json_decode($data, TRUE);
+            $data[ COL_FLAG_ACTIVO ] = FALSE;
             $result = $this->db->remove($this->collectionName, $key, $data);
         }
         Tools::newLog($key, $this->collectionName, 'REMOVE', $this->isBadResult($result), COL_FLAG_ACTIVO . ' = true', COL_FLAG_ACTIVO . ' = false');
@@ -98,13 +92,12 @@ class _PersistenceManager {
     }
 
     public function close() {
-        Tools::newLog('', $this->collectionName, 'CLOSE_CONECTION', $this->isBadResult($result));
-        $db->close();
+        Tools::newLog('', $this->collectionName, 'CLOSE_CONECTION', "OK");
+        $this->db->close();
     }
 
     private function isBadResult($result, $inverted = FALSE) {
         $var = is_null($result) || empty($result);
         return (($inverted) ? ((!$var) ? 'FAIL' : 'OK') : (($var) ? 'FAIL' : 'OK'));
     }
-
 }

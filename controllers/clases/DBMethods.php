@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,14 +12,14 @@
 interface DBMethods {
 
     /**
-     * 
+     *
      * @param type string $collectionName Nombre de la colección
      * @return type array()
      */
     function find($collectionName);
 
     /**
-     * 
+     *
      * @param type string $collectionName $collection Nombre de la colección
      * @param type array $key  Array [key_id => value]
      * @return type

@@ -27,7 +27,7 @@ class DB implements DBMethods {
     }
 
     /**
-     * 
+     *
      * @param type string $collectionName Nombre de la colección
      * @return type array()
      */
@@ -42,7 +42,7 @@ class DB implements DBMethods {
     }
 
     /**
-     * 
+     *
      * @param type string $collectionName $collection Nombre de la colección
      * @param type array $key  Array [key_id => value]
      * @return type
@@ -58,7 +58,7 @@ class DB implements DBMethods {
     }
 
     /**
-     * 
+     *
      * @param type string $collectionName $collection Nombre de la colección
      * @param type array $key  Array [key_id => value]
      * @return type
@@ -96,7 +96,7 @@ class DB implements DBMethods {
      */
     public function remove($collectionName = NULL, $key = NULL, $data = NULL) {
         try {
-            $data[COL_FLAG_ACTIVO] = FALSE;
+            $data[ COL_FLAG_ACTIVO ] = FALSE;
             return $this->merge($collectionName, $key, $data);
         } catch (Exception $e) {
             return FALSE;
@@ -113,8 +113,8 @@ class DB implements DBMethods {
     public function merge($collectionName = NULL, $key = NULL, $data = NULL) {
         try {
             $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            unset($data[COL_ID_DOCUMENT]);
-            $newData = array('$set' => $data);
+            unset($data[ COL_ID_DOCUMENT ]);
+            $newData = array( '$set' => $data );
             return $collection->update($key, $newData);
         } catch (Exception $e) {
             return FALSE;
@@ -122,7 +122,7 @@ class DB implements DBMethods {
     }
 
     /**
-     * 
+     *
      * @param type string $collectionName Nombre de la colección
      * @return type integer Total de documentos en una colección
      */
@@ -141,7 +141,7 @@ class DB implements DBMethods {
 
     /**
      * Crea una colección en la base de datos
-     * 
+     *
      * @param type $collectionName
      * @return type boolean si se realizó con éxito
      */
@@ -156,7 +156,7 @@ class DB implements DBMethods {
 
     /**
      * Borra una colección en la base de datos
-     * 
+     *
      * @param type $collectionName
      * @return type boolean si se realizó con éxito
      */
@@ -168,5 +168,4 @@ class DB implements DBMethods {
             return NULL;
         }
     }
-
 }

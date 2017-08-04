@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of User
  *
@@ -27,18 +21,18 @@ class UserLog extends _EntitySerialize {
     private $state;         // estado del log, pendiente, concluido o fallido
 
     public function __construct1($arrayValues) {
-        $this->_id = $arrayValues['_id'];
-        $this->log_date = $arrayValues['log_date'];
-        $this->author = $arrayValues['author'];
-        $this->author_ip = $arrayValues['author_ip'];
-        $this->author_range = $arrayValues['author_range'];
-        $this->author_cause = $arrayValues['author_cause'];
-        $this->to_user = $arrayValues['to_user'];
-        $this->to_table = $arrayValues['to_table'];
-        $this->action = $arrayValues['action'];
-        $this->new_value = $arrayValues['new_value'];
-        $this->old_value = $arrayValues['old_value'];
-        $this->state = $arrayValues['state'];
+        $this->_id = $arrayValues[ '_id' ];
+        $this->log_date = $arrayValues[ 'log_date' ];
+        $this->author = $arrayValues[ 'author' ];
+        $this->author_ip = $arrayValues[ 'author_ip' ];
+        $this->author_range = $arrayValues[ 'author_range' ];
+        $this->author_cause = $arrayValues[ 'author_cause' ];
+        $this->to_user = $arrayValues[ 'to_user' ];
+        $this->to_table = $arrayValues[ 'to_table' ];
+        $this->action = $arrayValues[ 'action' ];
+        $this->new_value = $arrayValues[ 'new_value' ];
+        $this->old_value = $arrayValues[ 'old_value' ];
+        $this->state = $arrayValues[ 'state' ];
     }
 
     public function getId() {
@@ -134,19 +128,18 @@ class UserLog extends _EntitySerialize {
     }
 
     /**
-     * 
+     *
      * @param type $propsUnserialized Array de nombre de propiedades a excluir
      * @return type
      */
-    public function serialize($propsUnserialized = null) {
+    public function serialize($propsUnserialized = NULL) {
         $properties = get_object_vars($this);
         if (!is_null($propsUnserialized)) {
             foreach ($propsUnserialized as $property) {
-                unset($properties[$property]);
+                unset($properties[ $property ]);
             }
         }
         parent::setObject($properties);
         return parent::serialize();
     }
-
 }

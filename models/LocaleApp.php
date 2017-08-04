@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Idioma
  *
@@ -21,12 +15,12 @@ class LocaleApp extends _EntitySerialize {
     private $trans;
 
     public function __construct1($arrayValues) {
-        $this->_id = $arrayValues['_id'];
-        $this->flag_active = $arrayValues['flag_active'];
-        $this->add_date = $arrayValues['add_date'];
-        $this->code_iso = $arrayValues['code_iso'];
-        $this->id_locale = $arrayValues['id_locale'];
-        foreach ($arrayValues['trans'] as $loc) {
+        $this->_id = $arrayValues[ '_id' ];
+        $this->flag_active = $arrayValues[ 'flag_active' ];
+        $this->add_date = $arrayValues[ 'add_date' ];
+        $this->code_iso = $arrayValues[ 'code_iso' ];
+        $this->id_locale = $arrayValues[ 'id_locale' ];
+        foreach ($arrayValues[ 'trans' ] as $loc) {
             $this->addTrans(new GenericTrans($loc));
         }
     }
@@ -87,23 +81,22 @@ class LocaleApp extends _EntitySerialize {
     }
 
     public function removeTrans($trans) {
-        unset($this->trans[$trans]);
+        unset($this->trans[ $trans ]);
     }
 
     /**
-     * 
+     *
      * @param type $propsUnserialized Array de nombre de propiedades a excluir
      * @return type
      */
-    public function serialize($propsUnserialized = null) {
+    public function serialize($propsUnserialized = NULL) {
         $properties = get_object_vars($this);
         if (!is_null($propsUnserialized)) {
             foreach ($propsUnserialized as $property) {
-                unset($properties[$property]);
+                unset($properties[ $property ]);
             }
         }
         parent::setObject($properties);
         return parent::serialize();
     }
-
 }

@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of EntitySerialize
  *
@@ -23,18 +17,16 @@ class _EntitySerialize implements Serializable {
         //cada constructor de un número dado de parámtros tendrá un nombre de función
         $funcion_constructor = '__construct' . $num_params;
         if (method_exists($this, $funcion_constructor)) {
-            call_user_func_array(array($this, $funcion_constructor), $params);
+            call_user_func_array(array( $this, $funcion_constructor ), $params);
         } else {
             __construct0();
         }
     }
 
     public function __construct0() {
-        
     }
 
     public function __construct1($arrayValues) {
-        
     }
 
     protected function setObject($object) {
@@ -52,5 +44,4 @@ class _EntitySerialize implements Serializable {
     public function unserialize($serialized) {
         return json_decode($serialized, TRUE);
     }
-
 }

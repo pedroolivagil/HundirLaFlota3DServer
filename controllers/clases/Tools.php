@@ -11,18 +11,18 @@ class Tools {
     }
 
     public static function getRealIP() {
-        if (isset($_SERVER["HTTP_CLIENT_IP"])) {
-            return $_SERVER["HTTP_CLIENT_IP"];
-        } elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-            return $_SERVER["HTTP_X_FORWARDED_FOR"];
-        } elseif (isset($_SERVER["HTTP_X_FORWARDED"])) {
-            return $_SERVER["HTTP_X_FORWARDED"];
-        } elseif (isset($_SERVER["HTTP_FORWARDED_FOR"])) {
-            return $_SERVER["HTTP_FORWARDED_FOR"];
-        } elseif (isset($_SERVER["HTTP_FORWARDED"])) {
-            return $_SERVER["HTTP_FORWARDED"];
+        if (isset($_SERVER[ "HTTP_CLIENT_IP" ])) {
+            return $_SERVER[ "HTTP_CLIENT_IP" ];
+        } elseif (isset($_SERVER[ "HTTP_X_FORWARDED_FOR" ])) {
+            return $_SERVER[ "HTTP_X_FORWARDED_FOR" ];
+        } elseif (isset($_SERVER[ "HTTP_X_FORWARDED" ])) {
+            return $_SERVER[ "HTTP_X_FORWARDED" ];
+        } elseif (isset($_SERVER[ "HTTP_FORWARDED_FOR" ])) {
+            return $_SERVER[ "HTTP_FORWARDED_FOR" ];
+        } elseif (isset($_SERVER[ "HTTP_FORWARDED" ])) {
+            return $_SERVER[ "HTTP_FORWARDED" ];
         } else {
-            return $_SERVER["REMOTE_ADDR"];
+            return $_SERVER[ "REMOTE_ADDR" ];
         }
     }
 
@@ -32,7 +32,7 @@ class Tools {
      */
     public static function isUpkeep($bool) {
         // si bool es True, la pagina se queda en mantenimiento y solo visible para las ip disponibles
-        $ips = array(IP_UPKEEP);
+        $ips = array( IP_UPKEEP );
         if ($bool) {
             if (!array_search(Tools::getRealIP(), $ips)) {
                 //header('Location: mantenimiento');
@@ -53,10 +53,10 @@ class Tools {
     }
 
     public static function getCookie($id) {
-        return $_COOKIE[$id];
+        return $_COOKIE[ $id ];
     }
 
-    public static function login($idUser = null, $autologin = FALSE) {
+    public static function login($idUser = NULL, $autologin = FALSE) {
         if (self::getCookie(SESSION_AUTOLOGIN)) {
             self::autoLogin();
         } else {
@@ -64,7 +64,7 @@ class Tools {
                 $mngr = new UserController();
                 $user = $mngr->findById($idUser);
                 if ($user) {
-                    $_SESSION[SESSION_USUARIO] = $user->serialize();
+                    $_SESSION[ SESSION_USUARIO ] = $user->serialize();
                     if ($autologin) {
                         self::setCookie(SESSION_AUTOLOGIN, TRUE);
                         self::setCookie(SESSION_USUARIO_ID, $idUser);
@@ -78,7 +78,7 @@ class Tools {
         if (self::getCookie(SESSION_AUTOLOGIN) === TRUE) {
             $mngr = new UserController();
             $user = $mngr->findById(self::getCookie(SESSION_USUARIO_ID));
-            $_SESSION[SESSION_USUARIO] = $user->serialize();
+            $_SESSION[ SESSION_USUARIO ] = $user->serialize();
         }
     }
 
@@ -86,17 +86,17 @@ class Tools {
      * cierra sesión
      */
     public static function logout() {
-        unset($_SESSION[SESSION_USUARIO]);
+        unset($_SESSION[ SESSION_USUARIO ]);
         self::setCookie(SESSION_AUTOLOGIN, FALSE);
         self::setCookie(SESSION_USUARIO_ID, NULL);
     }
 
     /**
-     * 
+     *
      * @return \Userdevuelve el usuario de la sesión
      */
     public static function getSession() {
-        $user = new User(json_decode($_SESSION[SESSION_USUARIO], TRUE));
+        $user = new User(json_decode($_SESSION[ SESSION_USUARIO ], TRUE));
         return $user;
     }
 
@@ -133,8 +133,7 @@ class Tools {
         }
     }
 
-    public static function newImgLog($nameImg, $sizeImg, $mime, $encodeImg)
-    {
+    public static function newImgLog($nameImg, $sizeImg, $mime, $encodeImg) {
         $resource = new Resource();
         $resource->setName($nameImg);
         $resource->setSize($sizeImg);
@@ -146,7 +145,7 @@ class Tools {
     }
 
     /**
-     * Serializa un array 
+     * Serializa un array
      * @param type $value
      * @return type
      */
@@ -182,7 +181,7 @@ class Tools {
         $bytes = filesize($url);
         $sz = 'BKMGTP';
         $factor = floor((strlen($bytes) - 1) / 3);
-        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor];
+        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[ $factor ];
     }
 
     /**
@@ -194,12 +193,11 @@ class Tools {
         return $bytes / 1024 / 1024;
     }
 
-    public static function bytesToMegasCool($bytes, $decimals = 2)
-    {
+    public static function bytesToMegasCool($bytes, $decimals = 2) {
         $sz = 'BKMGTP';
         $factor = floor((strlen($bytes) - 1) / 3);
         echo $factor;
-        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . $sz[$factor];
+        return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . $sz[ $factor ];
     }
 
     /**
@@ -213,7 +211,7 @@ class Tools {
             chmod($url, 0777);
             $file = fopen($url, "r") or exit("Error de lectura del log: '" . TABLE_USER_LOG . "'");
             //Output a line of the file until the end is reached
-            while (($linea = fgets($file, 4096)) !== false) {
+            while (($linea = fgets($file, 4096)) !== FALSE) {
                 $array = json_decode($linea, TRUE);
                 array_push($listLogs, new UserLog($array));
             }
@@ -233,7 +231,7 @@ class Tools {
      * @param type $values
      * @return string
      */
-    public static function getContentOfFile($url, $params = false, $values = false) {
+    public static function getContentOfFile($url, $params = FALSE, $values = FALSE) {
         $txt = "";
         chmod($url, 0777);
         $file = fopen($url, "r") or exit("Error de lectura de 'Header'");
@@ -250,29 +248,25 @@ class Tools {
         return $txt;
     }
 
-    public static function encode64($url)
-    {
+    public static function encode64($url) {
         $data = file_get_contents($url);
         return base64_encode($data);
     }
 
-    public static function decode64($obj64)
-    {
+    public static function decode64($obj64) {
         return base64_decode($obj64, TRUE);
     }
 
-    public static function createDir($url)
-    {
+    public static function createDir($url) {
         if (is_dir($url)) {
             chmod($url, 0744);
         } else {
             mkdir($url, 0744);
         }
-        return true;
+        return TRUE;
     }
 
-    public static function createImg($img, $ruta2, $tipo, $tam)
-    {
+    public static function createImg($img, $ruta2, $tipo, $tam) {
         $retorno = FALSE;
         switch ($tipo) {
             case 'jpg':
@@ -303,12 +297,11 @@ class Tools {
             $rutathumb = $ruta2 . '/thumb';
             self::createDir($rutathumb);
             $thumb = imagecreatetruecolor($thumbancho, $thumbalto);
-
-            imagealphablending($thumb, false);
+            imagealphablending($thumb, FALSE);
             $tranparente = imagecolorallocatealpha($thumb, 0, 0, 0, 0);
             imagefilledrectangle($thumb, 0, 0, 0, 0, $tranparente);
             imagecopyresampled($thumb, $original, 0, 0, 0, 0, $thumbancho, $thumbalto, $ancho, $alto);
-            imagesavealpha($thumb, true);
+            imagesavealpha($thumb, TRUE);
             switch ($tipo) {
                 case 'jpg':
                 case 'jpeg':
@@ -324,5 +317,4 @@ class Tools {
         }
         return $retorno;
     }
-
 }

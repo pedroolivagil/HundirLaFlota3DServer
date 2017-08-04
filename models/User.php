@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of User
  *
@@ -25,17 +19,17 @@ class User extends _EntitySerialize {
     private $info;      // array with user info
 
     public function __construct1($arrayValues, $withInfo = TRUE) {
-        $this->_id = $arrayValues['_id'];
-        $this->id_user = $arrayValues['id_user'];
-        $this->flag_active = $arrayValues['flag_active'];
-        $this->email_activation = $arrayValues['email_activation'];
-        $this->username = $arrayValues['username'];
-        $this->password = $arrayValues['pass'];
-        $this->email = $arrayValues['email'];
-        $this->type_user = $arrayValues['type_user'];
-        $this->signup_date = $arrayValues['signup_date'];
+        $this->_id = $arrayValues[ '_id' ];
+        $this->id_user = $arrayValues[ 'id_user' ];
+        $this->flag_active = $arrayValues[ 'flag_active' ];
+        $this->email_activation = $arrayValues[ 'email_activation' ];
+        $this->username = $arrayValues[ 'username' ];
+        $this->password = $arrayValues[ 'pass' ];
+        $this->email = $arrayValues[ 'email' ];
+        $this->type_user = $arrayValues[ 'type_user' ];
+        $this->signup_date = $arrayValues[ 'signup_date' ];
         if ($withInfo) {
-            $this->info = new UserInfo($arrayValues['info']);
+            $this->info = new UserInfo($arrayValues[ 'info' ]);
         }
     }
 
@@ -116,19 +110,18 @@ class User extends _EntitySerialize {
     }
 
     /**
-     * 
+     *
      * @param type $propsUnserialized Array de nombre de propiedades a excluir
      * @return type
      */
-    public function serialize($propsUnserialized = null) {
+    public function serialize($propsUnserialized = NULL) {
         $properties = get_object_vars($this);
         if (!is_null($propsUnserialized)) {
             foreach ($propsUnserialized as $property) {
-                unset($properties[$property]);
+                unset($properties[ $property ]);
             }
         }
         parent::setObject($properties);
         return parent::serialize();
     }
-
 }

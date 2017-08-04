@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of UserController
  *
@@ -47,21 +41,20 @@ class UserController extends _PersistenceManager {
             $data->setFlagActive(TRUE);
             $data->setEmailActivation(FALSE);
             if (!is_null($data->getInfo())) {
-                $data->setInfo((array) json_decode($data->getInfo()->serialize(), TRUE));
+                $data->setInfo((array)json_decode($data->getInfo()->serialize(), TRUE));
             }
-            return parent::persist($data->serialize(array(COL_ID_DOCUMENT, COL_OBJECT)));
+            return parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
         }
         return FALSE;
     }
 
     public function update($data) {
-        $key = array(COL_ID_USER => $data->getIdUser());
-        return parent::merge($key, $data->serialize(array(COL_OBJECT)));
+        $key = array( COL_ID_USER => $data->getIdUser() );
+        return parent::merge($key, $data->serialize(array( COL_OBJECT )));
     }
 
     public function delete($data) {
-        $key = array(COL_ID_USER => $data->getIdUser());
-        return parent::remove($key, $data->serialize(array(COL_OBJECT)));
+        $key = array( COL_ID_USER => $data->getIdUser() );
+        return parent::remove($key, $data->serialize(array( COL_OBJECT )));
     }
-
 }

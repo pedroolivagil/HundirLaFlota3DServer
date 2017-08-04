@@ -20,21 +20,20 @@ class PowerUp extends _EntitySerialize {
     private $trans;
 
     public function __construct1($arrayValues) {
-        $this->_id = $arrayValues['_id'];
-        $this->id_powerup = $arrayValues['id_powerup'];
-        $this->code = $arrayValues['code'];
-        $this->value = $arrayValues['value'];
-        $this->type = $arrayValues['type'];
-        $this->usages = $arrayValues['usages'];
-        $this->reload_time = $arrayValues['reload_time'];
-        $this->min_level = $arrayValues['min_level'];
-        foreach ($arrayValues['trans'] as $loc) {
+        $this->_id = $arrayValues[ '_id' ];
+        $this->id_powerup = $arrayValues[ 'id_powerup' ];
+        $this->code = $arrayValues[ 'code' ];
+        $this->value = $arrayValues[ 'value' ];
+        $this->type = $arrayValues[ 'type' ];
+        $this->usages = $arrayValues[ 'usages' ];
+        $this->reload_time = $arrayValues[ 'reload_time' ];
+        $this->min_level = $arrayValues[ 'min_level' ];
+        foreach ($arrayValues[ 'trans' ] as $loc) {
             $this->addTrans(new GenericTrans($loc));
         }
     }
 
-    public function getId()
-    {
+    public function getId() {
         return $this->_id;
     }
 
@@ -126,19 +125,18 @@ class PowerUp extends _EntitySerialize {
     }
 
     /**
-     * 
+     *
      * @param type $propsUnserialized Array de nombre de propiedades a excluir
      * @return type
      */
-    public function serialize($propsUnserialized = null) {
+    public function serialize($propsUnserialized = NULL) {
         $properties = get_object_vars($this);
         if (!is_null($propsUnserialized)) {
             foreach ($propsUnserialized as $property) {
-                unset($properties[$property]);
+                unset($properties[ $property ]);
             }
         }
         parent::setObject($properties);
         return parent::serialize();
     }
-
 }
