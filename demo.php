@@ -14,8 +14,8 @@ echo "<br /><br />--------------------------------------------------------------
 $start_memory = memory_get_usage();
 $fileImg = file("logs/img_log.log", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 foreach ($fileImg as $num_linea => $linea) {
-    $obj = json_decode($linea, TRUE);
-    echo '<img src="data:image/jpeg;base64,' . $obj['ENCODING'] . '" width="100" />';
+    $obj = new Resource(json_decode($linea, TRUE));
+    echo '<img src="data:image/jpeg;base64,' . $obj->getFile() . '" width="100" />';
 }
 print Tools::bytesToMegasCool(memory_get_usage() - $start_memory);
 ?>
