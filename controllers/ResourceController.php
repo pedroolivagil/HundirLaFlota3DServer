@@ -50,14 +50,24 @@ class ResourceController extends _PersistenceManager {
         return $result;
     }
 
-    public function update(Resource $data) {
-        $key = array( COL_NAME => $data->getName() );
-        return parent::merge($key, $data->serialize(array( COL_OBJECT )));
-    }
-
     public function delete(Resource $data) {
         $key = array( COL_NAME => $data->getName() );
         return parent::remove($key, $data->serialize(array( COL_OBJECT )));
+    }
+
+    public function destroy(Resource $data) {
+        $dbRemove = $this->delete($data);
+        $fileRemove = $this->removeResource($data);
+        $result = $dbRemove && $fileRemove;
+        // En caso de que algo falle y no se elimine correctamente, deshacemos los cambios
+        if ($result == FALSE && $dbRemove) {
+            //se ha persistido en db pero no en fichero
+            $this->create($data);
+        }
+        if ($result == FALSE && $fileRemove) {
+            //se ha persistido en fichero pero no en db
+            $this->addResource($data);
+        }
     }
 
     private function addResource(Resource $resource) {

@@ -104,6 +104,21 @@ class DB implements DBMethods {
     }
 
     /**
+     * Borra un documento de manera definitiva.
+     * @param type string $collection Nombre de la colección
+     * @param type array $key Array [key_id => value] para el borrado
+     * @return boolean
+     */
+    public function destroy($collectionName = NULL, $key = NULL) {
+        try {
+            $collection = $this->manager->selectCollection(DB_DB, $collectionName);
+            return $collection->remove($key);
+        } catch (Exception $e) {
+            return FALSE;
+        }
+    }
+
+    /**
      * Hac un update el documento seleccionado
      * @param type $collection Nombre de la colección
      * @param type array $key Array [key_id => value] para el borrado
