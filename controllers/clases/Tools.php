@@ -145,6 +145,12 @@ class Tools {
         fclose($file);
     }
 
+    public static function addResource(Resource $resource) {
+        $file = fopen(_LOGS_PATH_ . TABLE_RESOURCE . EXTENSION_LOG, "a");
+        fwrite($file, $resource->serialize() . PHP_EOL);
+        fclose($file);
+    }
+
     /**
      * Serializa un array
      * @param type $value

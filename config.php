@@ -31,7 +31,6 @@ define('SESSION_AUTOLOGIN', 'autologin');
 define('IP_UPKEEP', '83.46.27.12');
 define('EXTENSION_LOG', '.log');
 define('LOG_ACTIVE', FALSE);
-define('TABLE_IMG_LOG', 'img_log');
 define('TABLE_RESOURCE', 'resources');
 
 // '/myprojectsorg' solo para ámbito local

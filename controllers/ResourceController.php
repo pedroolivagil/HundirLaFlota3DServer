@@ -13,7 +13,7 @@ class ResourceController extends _PersistenceManager {
 
     public function findById($id) {
         $key = array(
-            COL_ID_POWERUP => $id
+            COL_ID_RESOURCE => $id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {
@@ -29,11 +29,13 @@ class ResourceController extends _PersistenceManager {
         );
         $find = parent::exists($key);
         if (is_null($find)) {
-            $idPowerup = parent::count() + 1;
-            $data->setIdResource($idPowerup);
+            $idResource = parent::count() + 1;
+            $data->setIdResource($idResource);
             $data->setAddDate(time());
             $data->setFlagActive(TRUE);
-            return parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
+            $allPersisted = FALSE;
+            $dbPersist = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT, "file" )));
+
         }
         return FALSE;
     }

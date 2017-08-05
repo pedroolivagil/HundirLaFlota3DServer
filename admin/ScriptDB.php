@@ -18,7 +18,7 @@ class ScriptDB {
     public function __construct() {
         $this->db = DB::getInstance();
         $this->listCollections = array(
-            TABLE_USER, TABLE_POWERUP,
+            TABLE_USER, TABLE_POWERUP, TABLE_RESOURCE,
             TABLE_SCENARIO, TABLE_BATTLE, TABLE_BATTLE_REWARD, TABLE_BATTLE_TYPE,
             TABLE_VESSEL, TABLE_WEAPON, TABLE_WEAPON_TYPE, TABLE_USER_GAME_LIST,
             TABLE_USER_POWERUP, TABLE_SCENARIO_BATTLE, TABLE_APP_TEXT, TABLE_APP_LOCALE
