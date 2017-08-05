@@ -21,8 +21,8 @@ class Resource extends _EntitySerialize {
         $this->id_resource = $arrayValues[ 'id_resource' ];
         $this->name = $arrayValues[ 'name' ];
         $this->mimetype = $arrayValues[ 'mimetype' ];
-        $this->file = $arrayValues[ 'file' ];
         $this->size = $arrayValues[ 'size' ];
+        $this->file = $arrayValues[ 'file' ];
     }
 
     public function getId() {
@@ -83,6 +83,14 @@ class Resource extends _EntitySerialize {
 
     public function setSize($size) {
         $this->size = $size;
+    }
+
+    public function selectResourceFile() {
+        $filename = $this->getName() . EXTENSION_RESOURCE;
+        $url = _RESOURCE_PATH_ . TABLE_RESOURCE . $filename;
+        if (file_exists($url)) {
+            $this->setFile(file_get_contents($url));
+        }
     }
 
     /**

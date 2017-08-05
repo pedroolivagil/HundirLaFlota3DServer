@@ -86,7 +86,6 @@ class ResourceController extends _PersistenceManager {
                 $url = _RESOURCE_PATH_ . TABLE_RESOURCE . $resource->getName() . EXTENSION_RESOURCE;
             } else {
                 $res = $this->findById($resource);
-                // $url = _RESOURCE_PATH_ . TABLE_RESOURCE . $res->getName() . EXTENSION_RESOURCE;
                 $this->removeResource($res);
             }
             if (file_exists($url)) {

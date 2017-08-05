@@ -148,7 +148,7 @@ class Tools {
     /**
      * Serializa un array
      * @param type $value
-     * @return type
+     * @return string
      */
     public static function serialize($value) {
         try {
@@ -164,9 +164,9 @@ class Tools {
 
     /**
      * Transforma un time() a una fecha con un patron específico
-     * @param type $time
-     * @param type $pattern
-     * @return type
+     * @param $time
+     * @param string $pattern
+     * @return false|string
      */
     public static function formatDate($time, $pattern = 'd-m-Y H:i:s') {
         return date($pattern, $time);
@@ -174,9 +174,9 @@ class Tools {
 
     /**
      * Muestra  de forma atractiva una cifra de bytes a la catidad adecuada, mb, gb,...
-     * @param type $url
-     * @param type $decimals
-     * @return type
+     * @param $url
+     * @param int $decimals
+     * @return string
      */
     public static function human_filesize($url, $decimals = 2) {
         $bytes = filesize($url);
@@ -187,8 +187,8 @@ class Tools {
 
     /**
      * Convierte Bytes a Megas
-     * @param type $bytes
-     * @return type
+     * @param $bytes
+     * @return float
      */
     public static function bytesToMegas($bytes) {
         return $bytes / 1024 / 1024;
@@ -227,9 +227,9 @@ class Tools {
 
     /**
      * Convierte un fichero a un string reemplazando los parámetros específicos
-     * @param type $url
-     * @param type $params
-     * @param type $values
+     * @param $url
+     * @param bool $params
+     * @param bool $values
      * @return string
      */
     public static function getContentOfFile($url, $params = FALSE, $values = FALSE) {
@@ -269,6 +269,7 @@ class Tools {
 
     public static function createImg($img, $ruta2, $tipo, $tam) {
         $retorno = FALSE;
+        $original = FALSE;
         switch ($tipo) {
             case 'jpg':
             case 'jpeg':
