@@ -22,7 +22,7 @@ class LocaleAppController extends _PersistenceManager {
         return FALSE;
     }
 
-    public function create($data) {
+    public function create(LocaleApp $data) {
         $key = array(
             COL_CODIGO_ISO  => $data->getCodeISO(),
             COL_FLAG_ACTIVO => TRUE
@@ -43,12 +43,12 @@ class LocaleAppController extends _PersistenceManager {
         return FALSE;
     }
 
-    public function update($data) {
+    public function update(LocaleApp $data) {
         $key = array( COL_ID_IDIOMA => $data->getIdLocale() );
         return parent::merge($key, $data->serialize(array( COL_OBJECT )));
     }
 
-    public function delete($data) {
+    public function delete(LocaleApp $data) {
         $key = array( COL_ID_IDIOMA => $data->getIdLocale() );
         return parent::remove($key, $data->serialize(array( COL_OBJECT )));
     }

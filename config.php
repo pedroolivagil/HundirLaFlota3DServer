@@ -31,7 +31,7 @@ define('SESSION_AUTOLOGIN', 'autologin');
 define('IP_UPKEEP', '83.46.27.12');
 define('EXTENSION_LOG', '.log');
 define('LOG_ACTIVE', FALSE);
-define('TABLE_RESOURCE', 'resources');
+define('EXTENSION_RESOURCE', '.resource');
 
 // '/myprojectsorg' solo para ámbito local
 define('PORT', 8080);
@@ -48,6 +48,7 @@ define('_CLASES_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/controllers/clases
 define('_MODELS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/models/');
 define('_LOGS_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/logs/');
 define('_IMAGE_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/img/');
+define('_RESOURCE_PATH_', $_SERVER[ 'DOCUMENT_ROOT' ] . $root . '/resources/');
 //define('_PAGES_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/');
 //define('_PHP_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/www/php/');
 //define('_TEMP_PATH_', $_SERVER['DOCUMENT_ROOT'] . $root . '/temp/');
@@ -78,7 +79,7 @@ require_once(_MODELS_PATH_ . 'User.php');
 require_once(_MODELS_PATH_ . 'PowerUp.php');
 // Controllers
 require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
-require_once(_CONTROLLERS_PATH_ . 'LocaleAppControllerler.php');
+require_once(_CONTROLLERS_PATH_ . 'LocaleAppController.php');
 require_once(_CONTROLLERS_PATH_ . 'UserController.php');
 require_once(_CONTROLLERS_PATH_ . 'PowerUpController.php');
 

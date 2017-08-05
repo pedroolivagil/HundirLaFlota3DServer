@@ -29,7 +29,7 @@ class UserController extends _PersistenceManager {
         return parent::findByKey($key);
     }
 
-    public function create($data) {
+    public function create(User $data) {
         $key = array(
             COL_USERNAME => $data->getUsername()
         );
@@ -48,12 +48,12 @@ class UserController extends _PersistenceManager {
         return FALSE;
     }
 
-    public function update($data) {
+    public function update(User $data) {
         $key = array( COL_ID_USER => $data->getIdUser() );
         return parent::merge($key, $data->serialize(array( COL_OBJECT )));
     }
 
-    public function delete($data) {
+    public function delete(User $data) {
         $key = array( COL_ID_USER => $data->getIdUser() );
         return parent::remove($key, $data->serialize(array( COL_OBJECT )));
     }

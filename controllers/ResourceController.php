@@ -23,6 +23,7 @@ class ResourceController extends _PersistenceManager {
     }
 
     public function create($data) {
+        $result = FALSE;
         $key = array(
             COL_NAME        => $data->getName(),
             COL_FLAG_ACTIVO => TRUE
@@ -33,20 +34,56 @@ class ResourceController extends _PersistenceManager {
             $data->setIdResource($idResource);
             $data->setAddDate(time());
             $data->setFlagActive(TRUE);
-            $allPersisted = FALSE;
             $dbPersist = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT, "file" )));
-
+            $filePersist = $this->addResource($data);
+            $result = $dbPersist && $filePersist;
+            // En caso de que algo falle y no se persista correctamente, deshacemos los cambios
+            if ($result == FALSE && $dbPersist) {
+                //se ha persistido en db pero no en fichero
+                $this->delete($data);
+            }
+            if ($result == FALSE && $filePersist) {
+                //se ha persistido en fichero pero no en db
+                $this->removeResource($data);
+            }
         }
-        return FALSE;
+        return $result;
     }
 
-    public function update($data) {
+    public function update(Resource $data) {
         $key = array( COL_NAME => $data->getName() );
         return parent::merge($key, $data->serialize(array( COL_OBJECT )));
     }
 
-    public function delete($data) {
+    public function delete(Resource $data) {
         $key = array( COL_NAME => $data->getName() );
         return parent::remove($key, $data->serialize(array( COL_OBJECT )));
+    }
+
+    private function addResource(Resource $resource) {
+        $filename = $resource->getName() . EXTENSION_RESOURCE;
+        $file = fopen(_RESOURCE_PATH_ . TABLE_RESOURCE . $filename, "w");
+        $retorno = fwrite($file, Tools::serialize($resource->getFile()) . PHP_EOL);
+        fclose($file);
+        return $retorno;
+    }
+
+    private function removeResource($resource) {
+        $retorno = FALSE;
+        if ($resource != NULL) {
+            $url = NULL;
+            if ($resource instanceof Resource) {
+                $url = _RESOURCE_PATH_ . TABLE_RESOURCE . $resource->getName() . EXTENSION_RESOURCE;
+            } else {
+                $res = $this->findById($resource);
+                // $url = _RESOURCE_PATH_ . TABLE_RESOURCE . $res->getName() . EXTENSION_RESOURCE;
+                $this->removeResource($res);
+            }
+            if (file_exists($url)) {
+                chmod($url, 0777);
+                $retorno = unlink($url);
+            }
+        }
+        return $retorno;
     }
 }

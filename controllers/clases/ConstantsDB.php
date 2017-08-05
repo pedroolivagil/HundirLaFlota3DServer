@@ -28,6 +28,7 @@ define('TABLE_BATTLE_TYPE', 'battle_type');
 define('TABLE_VESSEL', 'vessel');
 define('TABLE_WEAPON', 'weapon');
 define('TABLE_WEAPON_TYPE', 'weapon_type');
+define('TABLE_RESOURCE', 'resource');
 // TABLAS PARA RELACIONES
 define('TABLE_USER_GAME_LIST', 'user_game_list');
 define('TABLE_USER_POWERUP', 'user_powerup');

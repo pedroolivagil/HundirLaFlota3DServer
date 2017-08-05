@@ -22,7 +22,7 @@ class PowerUpController extends _PersistenceManager {
         return FALSE;
     }
 
-    public function create($data) {
+    public function create(PowerUp $data) {
         $key = array(
             COL_CODE        => $data->getCode(),
             COL_FLAG_ACTIVO => TRUE
@@ -43,12 +43,12 @@ class PowerUpController extends _PersistenceManager {
         return FALSE;
     }
 
-    public function update($data) {
+    public function update(PowerUp $data) {
         $key = array( COL_ID_POWERUP => $data->getIdLocale() );
         return parent::merge($key, $data->serialize(array( COL_OBJECT )));
     }
 
-    public function delete($data) {
+    public function delete(PowerUp $data) {
         $key = array( COL_ID_POWERUP => $data->getIdLocale() );
         return parent::remove($key, $data->serialize(array( COL_OBJECT )));
     }
