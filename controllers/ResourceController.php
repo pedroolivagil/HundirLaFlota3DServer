@@ -72,7 +72,7 @@ class ResourceController extends _PersistenceManager {
 
     private function addResource(Resource $resource) {
         $filename = $resource->getName() . EXTENSION_RESOURCE;
-        $file = fopen(_RESOURCE_PATH_ . TABLE_RESOURCE . $filename, "w");
+        $file = fopen(_RESOURCE_PATH_ . TABLE_RESOURCE . '/' . $filename, "w");
         $retorno = fwrite($file, Tools::serialize($resource->getFile()) . PHP_EOL);
         fclose($file);
         return $retorno;
@@ -83,7 +83,7 @@ class ResourceController extends _PersistenceManager {
         if ($resource != NULL) {
             $url = NULL;
             if ($resource instanceof Resource) {
-                $url = _RESOURCE_PATH_ . TABLE_RESOURCE . $resource->getName() . EXTENSION_RESOURCE;
+                $url = _RESOURCE_PATH_ . TABLE_RESOURCE . '/' . $resource->getName() . EXTENSION_RESOURCE;
             } else {
                 $res = $this->findById($resource);
                 $this->removeResource($res);

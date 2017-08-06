@@ -2,7 +2,7 @@
 <project version="4">
   <component name="PhpUnit">
     <phpunit_settings>
-      <PhpUnitSettings load_method="CUSTOM_LOADER" />
+      <PhpUnitSettings load_method="PHPUNIT_PHAR" custom_loader_path="$PROJECT_DIR$/controllers/clases/vendor/autoload.php" phpunit_phar_path="$APPLICATION_HOME_DIR$/phpunit/phpunit-5.7.21.phar" />
     </phpunit_settings>
   </component>
 </project>

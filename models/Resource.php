@@ -87,7 +87,8 @@ class Resource extends _EntitySerialize {
 
     public function selectResourceFile() {
         $filename = $this->getName() . EXTENSION_RESOURCE;
-        $url = _RESOURCE_PATH_ . TABLE_RESOURCE . $filename;
+        $url = _RESOURCE_PATH_ . TABLE_RESOURCE . '/' . $filename;
+        var_dump($url);
         if (file_exists($url)) {
             $this->setFile(file_get_contents($url));
         }
