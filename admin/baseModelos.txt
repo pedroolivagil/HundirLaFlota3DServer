@@ -1,6 +1,7 @@
 extends _EntitySerialize {
 
     private $_id;
+    private $trans;
 
     public function __construct1($arrayValues, $withInfo = TRUE) {
         $this->_id = $arrayValues[ '_id' ];

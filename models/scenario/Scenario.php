@@ -18,6 +18,7 @@ class Scenario extends _EntitySerialize {
     private $id_resource;       // ID del resource
     private $rewards;           // IDs de las rewards
     private $allowed_powerups;  // IDs de los powerups permitidos
+    private $battles;           // IDs de las batallas de cada mapa
 
     public function __construct1($arrayValues, $withInfo = TRUE) {
         $this->_id = $arrayValues[ '_id' ];
@@ -29,6 +30,7 @@ class Scenario extends _EntitySerialize {
         $this->id_resource = $arrayValues[ 'id_resource' ];
         $this->rewards = $arrayValues[ 'rewards' ];
         $this->allowed_powerups = $arrayValues[ 'allowed_powerups' ];
+        $this->battles = $arrayValues[ 'battles' ];
         foreach ($arrayValues[ 'trans' ] as $loc) {
             $this->addTrans(new GenericTrans($loc));
         }
@@ -162,6 +164,20 @@ class Scenario extends _EntitySerialize {
      */
     public function setAllowedPowerups($allowed_powerups) {
         $this->allowed_powerups = $allowed_powerups;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBattles() {
+        return $this->battles;
+    }
+
+    /**
+     * @param mixed $battles
+     */
+    public function setBattles($battles) {
+        $this->battles = $battles;
     }
 
     public function addTrans($trans) {

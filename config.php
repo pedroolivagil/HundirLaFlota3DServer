@@ -77,6 +77,10 @@ require_once(_MODELS_PATH_ . 'LocaleApp.php');
 require_once(_MODELS_PATH_ . 'UserInfo.php');
 require_once(_MODELS_PATH_ . 'User.php');
 require_once(_MODELS_PATH_ . 'PowerUp.php');
+require_once(_MODELS_PATH_ . 'scenrio/Battle.php');
+require_once(_MODELS_PATH_ . 'scenrio/Scenario.php');
+// require_once(_MODELS_PATH_ . 'scenrio/.php');
+// require_once(_MODELS_PATH_ . 'scenrio/.php');
 // Controllers
 require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
 require_once(_CONTROLLERS_PATH_ . 'LocaleAppController.php');
