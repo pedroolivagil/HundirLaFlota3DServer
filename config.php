@@ -2,6 +2,7 @@
 /* * ************************* */
 /*   MyProjectsOrg.com Config  */
 /* * ************************* */
+error_reporting(E_ALL ^ E_NOTICE);
 define('EXPIRE', time() + (2 * 24 * 60 * 60));     // 2 dias; 24 horas; 60 min; 60 s
 define('MAXFILESIZE', ini_get('upload_max_filesize') * 1024);  // En KB -> 3MB
 define('MAXDIRSIZE', 524288);    // en KB -> 512MB
@@ -31,17 +32,16 @@ define('EXTENSION_RESOURCE', '.resource');
 define('PORT', 8080);
 $port = ':' . PORT;
 $root = ($_SERVER[ 'SERVER_NAME' ] == 'localhost') ? '/HundirLaFlota3DServer' : '';
-if (defined(UNIT_TEST) and UNIT_TEST) {
-    $root = '/HundirLaFlota3DServer';
+if (defined(UNIT_TEST)) {
+    if (UNIT_TEST) {
+        $root = '/HundirLaFlota3DServer';
+    }
 }
-//define('MAILBODY_NEWUSER', $rootPath . $root . '/forms/newuser.txt');
-//define('MAILBODY_NEWORDER', $rootPath . $root . '/forms/neworder.txt');
-//define('MAILBODY_CONTACT', $rootPath . $root . '/forms/contact.txt');
-//define('MAILBODY_RECOVERY', $rootPath . $root . '/forms/recovery.txt');
-//define('_LEGAL_FILE_', 'legal.txt');
 $rootPath = $_SERVER[ 'DOCUMENT_ROOT' ];
-if (defined(UNIT_TEST) and UNIT_TEST) {
-    $rootPath = 'C:\xampp\htdocs';
+if (defined(UNIT_TEST)) {
+    if (UNIT_TEST) {
+        $rootPath = 'C:\xampp\htdocs';
+    }
 }
 define('_CONTROLLERS_PATH_', $rootPath . $root . '/controllers/');
 define('_CLASES_PATH_', $rootPath . $root . '/controllers/clases/');
@@ -82,4 +82,4 @@ require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
 require_once(_CONTROLLERS_PATH_ . 'LocaleAppController.php');
 require_once(_CONTROLLERS_PATH_ . 'UserController.php');
 require_once(_CONTROLLERS_PATH_ . 'PowerUpController.php');
-error_reporting(E_ALL ^ E_NOTICE);
+require_once(_CONTROLLERS_PATH_ . 'ResourceController.php');

@@ -17,6 +17,7 @@ class ResourceTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testFindOk() {
+        var_dump(_RESOURCE_PATH_);
         $resource = new Resource(array(
             '_id'         => NULL,
             'id_resource' => 1,
