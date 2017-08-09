@@ -1,9 +1,11 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: Oliva
- * Date: 06/08/2017
- * Time: 23:34
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: ResourceTest.php
+ * Date: 09/08/2017 02:48
  */
 define("UNIT_TEST", TRUE);
 require_once('../config.php');

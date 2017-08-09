@@ -1,9 +1,11 @@
 <?php
 
 /**
- * Description of PowerUp
- *
- * @author Oliva
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: Resource.php
+ * Date: 09/08/2017 02:48
  */
 class Resource extends _EntitySerialize {
 

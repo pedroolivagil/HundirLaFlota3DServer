@@ -1,4 +1,11 @@
 <?php
+/**
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: datos_carga.php
+ * Date: 09/08/2017 02:48
+ */
 include_once('../config.php');
 include_once('ScriptDB.php');
 Tools::login(1, TRUE);

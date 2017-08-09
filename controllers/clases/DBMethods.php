@@ -1,13 +1,11 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author Oliva
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: DBMethods.php
+ * Date: 09/08/2017 02:48
  */
 interface DBMethods {
 

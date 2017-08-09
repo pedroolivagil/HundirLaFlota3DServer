@@ -1,9 +1,11 @@
 <?php
 
 /**
- * Description of User
- *
- * @author Oliva
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: UserInfo.php
+ * Date: 09/08/2017 02:48
  */
 class UserInfo extends _EntitySerialize {
 

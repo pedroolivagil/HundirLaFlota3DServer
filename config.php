@@ -1,7 +1,14 @@
 <?php
 /* * ************************* */
-/*   MyProjectsOrg.com Config  */
+/*           Config            */
 /* * ************************* */
+/**
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: config.php
+ * Date: 09/08/2017 02:48
+ */
 error_reporting(E_ALL ^ E_NOTICE);
 define('EXPIRE', time() + (2 * 24 * 60 * 60));     // 2 dias; 24 horas; 60 min; 60 s
 define('MAXFILESIZE', ini_get('upload_max_filesize') * 1024);  // En KB -> 3MB

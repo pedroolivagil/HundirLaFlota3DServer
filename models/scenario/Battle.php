@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Oliva
- * Date: 08/08/2017
- * Time: 22:53
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: Battle.php
+ * Date: 09/08/2017 02:48
  */
 class Battle extends _EntitySerialize {
 

@@ -1,6 +1,11 @@
 <?php
-echo 'Hola';
-
+/**
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: index.php
+ * Date: 09/08/2017 02:48
+ */
 $usuario = 'userhundirlaflota3d';
 $password = '1ATN1pgkujiA8lW';
 $database = 'hundirlaflota3d';

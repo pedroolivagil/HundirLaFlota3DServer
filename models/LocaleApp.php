@@ -1,9 +1,12 @@
 <?php
 
+
 /**
- * Description of Idioma
- *
- * @author Oliva
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: LocaleApp.php
+ * Date: 09/08/2017 02:48
  */
 class LocaleApp extends _EntitySerialize {
 

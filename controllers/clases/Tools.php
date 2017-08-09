@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: Tools.php
+ * Date: 09/08/2017 02:48
+ */
 class Tools {
 
     public static function isNull($obj) {

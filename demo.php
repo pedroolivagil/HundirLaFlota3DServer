@@ -1,4 +1,11 @@
 <?php
+/**
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: demo.php
+ * Date: 09/08/2017 02:48
+ */
 require_once('config.php');
 //header('Content-type: application/json; charset=utf-8');
 $start_memory = memory_get_usage();

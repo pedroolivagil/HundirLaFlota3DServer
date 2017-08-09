@@ -1,9 +1,11 @@
 <?php
 
 /**
- * Maneja las conexiones y ejecuta las operaciones en la BBDD
- *
- * @author Oliva
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: DB.php
+ * Date: 09/08/2017 02:48
  */
 class DB implements DBMethods {
 

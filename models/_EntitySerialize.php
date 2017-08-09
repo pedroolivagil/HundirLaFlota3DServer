@@ -1,9 +1,12 @@
 <?php
 
+
 /**
- * Description of EntitySerialize
- *
- * @author Oliva
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: _EntitySerialize.php
+ * Date: 09/08/2017 02:48
  */
 class _EntitySerialize implements Serializable {
 

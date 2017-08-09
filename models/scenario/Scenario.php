@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Oliva
- * Date: 04/08/2017
- * Time: 19:48
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: Scenario.php
+ * Date: 09/08/2017 02:48
  */
 class Scenario extends _EntitySerialize {
 

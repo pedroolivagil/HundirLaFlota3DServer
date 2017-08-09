@@ -1,4 +1,12 @@
 <?php
+/**
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: ConstantsDB.php
+ * Date: 09/08/2017 02:48
+ */
+
 // DB Constants
 define('DB_HOST', 'ds123662.mlab.com');
 define('DB_USER', 'userhundirlaflota3d');
@@ -24,7 +32,6 @@ define('TABLE_POWERUP', 'powerup');
 define('TABLE_SCENARIO', 'scenario');
 define('TABLE_BATTLE', 'battle');
 define('TABLE_BATTLE_REWARD', 'battle_reward');
-define('TABLE_BATTLE_TYPE', 'battle_type');
 define('TABLE_VESSEL', 'vessel');
 define('TABLE_WEAPON', 'weapon');
 define('TABLE_WEAPON_TYPE', 'weapon_type');

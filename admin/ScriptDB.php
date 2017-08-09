@@ -1,14 +1,11 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- * Description of ScriptDB
- *
- * @author Oliva
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: ScriptDB.php
+ * Date: 09/08/2017 02:48
  */
 class ScriptDB {
 
@@ -18,10 +15,9 @@ class ScriptDB {
     public function __construct() {
         $this->db = DB::getInstance();
         $this->listCollections = array(
-            TABLE_USER, TABLE_POWERUP, TABLE_RESOURCE,
-            TABLE_SCENARIO, TABLE_BATTLE, TABLE_BATTLE_REWARD, TABLE_BATTLE_TYPE,
-            TABLE_VESSEL, TABLE_WEAPON, TABLE_WEAPON_TYPE, TABLE_USER_GAME_LIST,
-            TABLE_USER_POWERUP, TABLE_SCENARIO_BATTLE, TABLE_APP_TEXT, TABLE_APP_LOCALE
+            TABLE_USER, TABLE_POWERUP, TABLE_RESOURCE, TABLE_SCENARIO, TABLE_BATTLE, TABLE_BATTLE_REWARD,
+            TABLE_VESSEL, TABLE_WEAPON, TABLE_WEAPON_TYPE, TABLE_USER_GAME_LIST, TABLE_USER_POWERUP,
+            TABLE_SCENARIO_BATTLE, TABLE_APP_TEXT, TABLE_APP_LOCALE
         );
     }
 
