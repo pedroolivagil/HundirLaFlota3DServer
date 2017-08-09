@@ -39,7 +39,7 @@ class UserController extends _PersistenceManager {
         if (is_null($find)) {
             $total = parent::count();
             $data->setIdUser($total + 1);
-            $data->setSignupDate(time());
+            $data->setAddDate(time());
             $data->setFlagActive(TRUE);
             $data->setEmailActivation(FALSE);
             if (!is_null($data->getInfo())) {

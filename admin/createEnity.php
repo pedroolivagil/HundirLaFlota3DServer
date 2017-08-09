@@ -41,11 +41,13 @@ function getEntities() {
     <title>Crear entidad</title>
     <meta charset="UTF-8"/>
     <?php Tools::importBootstrap(); ?>
-    <!--<style>-->
-    <!--    .container, .container * {-->
-    <!--        outline: 1px solid #F00;-->
-    <!--    }-->
-    <!--</style>-->
+    <style>
+        .field {
+            min-width: 300px;
+            margin: 0 30px;
+            float: left;
+        }
+    </style>
     <script src="js/functions.js"></script>
 </head>
 <body>
@@ -53,14 +55,14 @@ function getEntities() {
     <br/>
     <form>
         <select id="entities" name="entities" class="form-control" onchange="loadClassOptions()">
-            <option value="null">-- Selecciona una entidad --</option>
+            <option value="">-- Selecciona una entidad --</option>
             <?php foreach (getEntities() as $entity) { ?>
                 <option value="<?php echo $entity; ?>"><?php echo $entity; ?></option>
             <?php } ?>
         </select>
     </form>
     <br/>
-    <div class="well" id="response"></div>
+    <div id="response"></div>
 </div>
 </body>
 </html>

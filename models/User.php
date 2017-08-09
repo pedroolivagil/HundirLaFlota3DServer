@@ -13,7 +13,7 @@ class User extends _EntitySerialize {
     private $id_user;
     private $flag_active;
     private $email_activation;
-    private $signup_date;
+    private $add_date;
     private $username;
     private $password;
     private $email;
@@ -29,7 +29,7 @@ class User extends _EntitySerialize {
         $this->password = $arrayValues[ 'pass' ];
         $this->email = $arrayValues[ 'email' ];
         $this->type_user = $arrayValues[ 'type_user' ];
-        $this->signup_date = $arrayValues[ 'signup_date' ];
+        $this->add_date = $arrayValues[ 'signup_date' ];
         if ($withInfo) {
             $this->info = new UserInfo($arrayValues[ 'info' ]);
         }
@@ -59,8 +59,8 @@ class User extends _EntitySerialize {
         return $this->email;
     }
 
-    public function getSignupDate() {
-        return $this->signup_date;
+    public function getAddDate() {
+        return $this->add_date;
     }
 
     public function getInfo() {
@@ -107,8 +107,8 @@ class User extends _EntitySerialize {
         $this->email = $email;
     }
 
-    public function setSignupDate($signup_date) {
-        $this->signup_date = $signup_date;
+    public function setAddDate($add_date) {
+        $this->add_date = $add_date;
     }
 
     /**
