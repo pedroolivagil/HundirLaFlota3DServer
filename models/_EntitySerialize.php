@@ -43,6 +43,10 @@ class _EntitySerialize implements Serializable {
         }
     }
 
+    public function getVars() {
+        return $this->object;
+    }
+
     public function unserialize($serialized) {
         return json_decode($serialized, TRUE);
     }
