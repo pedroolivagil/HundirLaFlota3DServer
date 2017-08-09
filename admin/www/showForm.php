@@ -16,7 +16,7 @@ if ($clase != NULL) {
     $obj->serialize();
     $vars = $obj->getVars();
     ?>
-    <form>
+    <form id="formularioEntidad" name="formularioEntidad" onsubmit="return false;" method="post">
         <?php
         foreach ($vars as $key => $value) {
             if ($key == '_id' or $key == 'flag_active' or $key == 'add_date'
@@ -26,9 +26,9 @@ if ($clase != NULL) {
             }
             ?>
             <div class="field">
-                <div class="form-group row well">
-                    <label for="example-text-input" class="col-2 col-form-label"><?php echo $key; ?></label>
-                    <div class="col-10">
+                <div class="card">
+                    <div class="card-block">
+                        <h6 class="card-title"><?php echo ucfirst(str_replace('_', ' ', $key)); ?></h6>
                         <input class="form-control" type="text" name="<?php echo $key; ?>" id="<?php echo $key; ?>">
                     </div>
                 </div>
@@ -36,7 +36,11 @@ if ($clase != NULL) {
             <?php
         }
         ?>
+        <div class="row" style="clear: both; padding-top: 20px;">
+            <button type="submit" class="btn btn-outline-primary">Save</button>
+            &nbsp;
+            <button type="reset" class="btn btn-outline-danger">Cancel</button>
+        </div>
     </form>
-
     <?php
 }

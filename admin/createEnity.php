@@ -39,16 +39,14 @@ function getEntities() {
 <html>
 <head>
     <title>Crear entidad</title>
-    <meta charset="UTF-8"/>
     <?php Tools::importBootstrap(); ?>
     <style>
         .field {
             min-width: 300px;
-            margin: 0 30px;
+            margin: 3px 10px;
             float: left;
         }
     </style>
-    <script src="js/functions.js"></script>
 </head>
 <body>
 <div class="container">
@@ -64,5 +62,6 @@ function getEntities() {
     <br/>
     <div id="response"></div>
 </div>
+<?php Tools::importScripts(''); ?>
 </body>
 </html>
