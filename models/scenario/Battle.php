@@ -12,6 +12,7 @@ class Battle extends _EntitySerialize {
     private $_id;
     private $trans;
     private $code;
+    private $add_date;
     private $flag_active;
     private $min_level;             // UserLevel mínimo para jugar esta batalla
     private $rewards;               // IDs de las rewards.
