@@ -40,3 +40,6 @@ function newEntity() {
 function cleanDiv(idDiv) {
     $('#' + idDiv).html('');
 }
+function addTransForm() {
+
+}
