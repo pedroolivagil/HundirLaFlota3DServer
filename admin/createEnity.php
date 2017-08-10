@@ -42,9 +42,17 @@ function getEntities() {
     <?php Tools::importBootstrap(); ?>
     <style>
         .field {
-            min-width: 32.5%;
+            min-width: 49%;
             margin: 4px 4px;
             float: left;
+        }
+
+        .input-group-addon {
+            min-width: 150px;
+        }
+
+        .form-check {
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -60,7 +68,8 @@ function getEntities() {
                     <?php } ?>
                 </select>
             </form>
-            <div id="response"></div>
+            <div id="response" class="mt-3"></div>
+            <div id="responseNewEntity" class="mt-3"></div>
         </div>
     </div>
 </div>

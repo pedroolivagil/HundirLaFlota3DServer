@@ -32,8 +32,10 @@ class Scenario extends _EntitySerialize {
         $this->rewards = $arrayValues[ 'rewards' ];
         $this->allowed_powerups = $arrayValues[ 'allowed_powerups' ];
         $this->battles = $arrayValues[ 'battles' ];
-        foreach ($arrayValues[ 'trans' ] as $loc) {
-            $this->addTrans(new GenericTrans($loc));
+        if ($arrayValues[ 'trans' ] != NULL) {
+            foreach ($arrayValues[ 'trans' ] as $loc) {
+                $this->addTrans(new GenericTrans($loc));
+            }
         }
     }
 

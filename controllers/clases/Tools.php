@@ -327,4 +327,21 @@ class Tools {
         echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>';
         echo '<script src="' . $url . 'js/functions.js"></script>';
     }
+
+    public static function getController($obj) {
+        $controller = NULL;
+        if ($obj instanceof User) {
+            $controller = new UserController();
+        } else if ($obj instanceof Resource) {
+            $controller = new ResourceController();
+        } else if ($obj instanceof LocaleApp) {
+            $controller = new LocaleAppController();
+        } else if ($obj instanceof PowerUp) {
+            $controller = new PowerUpController();
+            // } else if ($obj instanceof ) {
+        } else {
+            throw new Exception("No hay controlador definido para ese modelo", 0);
+        }
+        return $controller;
+    }
 }

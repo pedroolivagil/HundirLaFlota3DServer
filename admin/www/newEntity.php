@@ -6,3 +6,39 @@
  * File: newEntity.php
  * Date: 10/08/2017 03:22
  */
+include_once('../../config.php');
+$obj = NULL;
+$form = $_REQUEST;
+$clase = $form[ 'clase' ];
+$form[ COL_FLAG_ACTIVO ] = ($form[ COL_FLAG_ACTIVO ] == 'TRUE') ? TRUE : FALSE;
+unset($form[ 'clase' ]);
+if ($clase == 'User') {
+    $obj = new $clase($form, FALSE);
+} else {
+    $obj = new $clase($form);
+}
+try {
+    $controller = Tools::getController($obj);
+} catch (Exception $e) { ?>
+    <div class="alert alert-danger" role="alert">
+        <strong>Oh porras!</strong> <?php echo $e->getMessage(); ?>...
+    </div>
+    <?php exit;
+}
+// si es un resource
+if ($obj instanceof Resource) {
+    $file = $_FILES[ 'file' ];
+    $obj->setName($file[ 'name' ]);
+    $obj->setMimetype($file[ 'type' ]);
+    $obj->setSize($file[ 'size' ]);
+    $obj->setFile(Tools::encode64($file[ 'tmp_name' ]));
+}
+if ($controller->create($obj)) { ?>
+    <div class="alert alert-success" role="alert">
+        <strong>Perfecto!</strong> Se ha persistido el documento.
+    </div>
+<?php } else { ?>
+    <div class="alert alert-danger" role="alert">
+        <strong>Oh porras,</strong> ocurrió un error con el documento...
+    </div>
+<?php }

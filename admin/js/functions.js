@@ -22,9 +22,21 @@ function ajax(url, data, div, func) {
         }
     });
 }
-
+function clickElement(id) {
+    // clicar un elemento
+    $('#' + id).click();
+}
 function loadClassOptions() {
     var data = new FormData();
     data.append("clase", $('#entities').val());
     ajax('www/showForm.php', data, 'response', null);
+    cleanDiv('responseNewEntity');
+}
+function newEntity() {
+    var formElement = document.getElementById("formularioEntidad");
+    var data = new FormData(formElement);
+    ajax('www/newEntity.php', data, 'responseNewEntity', null);
+}
+function cleanDiv(idDiv) {
+    $('#' + idDiv).html('');
 }

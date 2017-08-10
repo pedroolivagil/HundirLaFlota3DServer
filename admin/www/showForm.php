@@ -17,27 +17,50 @@ if ($clase != NULL) {
     $vars = $obj->getVars();
     ?>
     <form id="formularioEntidad" name="formularioEntidad" onsubmit="return false;" method="post">
+        <input type="hidden" value="<?php echo $clase; ?>" id="clase" name="clase"/>
         <?php
         foreach ($vars as $key => $value) {
-            if ($key == '_id' or $key == 'flag_active' or $key == 'add_date'
-                or ($key != 'id_locale' and (stripos($key, "id_") === 0))
-            ) {
+            if ($key == '_id') {
                 continue;
             }
             ?>
             <div class="field">
-                <div class="card">
-                    <div class="card-block">
-                        <h6 class="card-title"><?php echo ucfirst(str_replace(-'_', ' ', $key)); ?></h6>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <?php if ($key == 'flag_active') { ?>
+                        <div class="input-group-addon"><?php echo ucfirst(str_replace('_', ' ', $key)); ?></div>
+                        <div class="form-control text-left">
+                            <div class="form-check" style="width: 100px;">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="<?php echo $key; ?>"
+                                           id="<?php echo $key; ?>_on" value="TRUE"> True</label>
+                            </div>
+                            <div class="form-check" style="position:absolute; left: 120px; width: 100px;">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="<?php echo $key; ?>"
+                                           id="<?php echo $key; ?>_off" value="FALSE" checked> False</label>
+                            </div>
+                        </div>
+                    <?php } else if ($key == 'file') { ?>
+                        <div class="input-group-addon"><?php echo ucfirst(str_replace('_', ' ', $key)); ?></div>
+
+                        <div class="form-control text-left">
+                            <button type="button" onsubmit="return false;" class="btn btn-primary btn-sm"
+                                    onclick="clickElement('<?php echo $key; ?>')">Seleccionar archivo
+                            </button>
+                        </div>
+                        <input class="form-control" style="display: none;" type="file" name="<?php echo $key; ?>"
+                               id="<?php echo $key; ?>">
+                    <?php } else { ?>
+                        <div class="input-group-addon"><?php echo ucfirst(str_replace('_', ' ', $key)); ?></div>
                         <input class="form-control" type="text" name="<?php echo $key; ?>" id="<?php echo $key; ?>">
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
             <?php
         }
         ?>
         <div class="text-center" style="clear: both; float: none; padding-top: 20px;">
-            <button type="submit" class="btn btn-outline-primary">Save</button>
+            <button type="submit" class="btn btn-outline-primary" onclick="newEntity()">Save</button>
             &nbsp;
             <button type="reset" class="btn btn-outline-danger">Cancel</button>
         </div>

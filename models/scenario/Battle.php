@@ -27,7 +27,7 @@ class Battle extends _EntitySerialize {
     private $cpu_fog;               // boolean para des/habilitar la niebla del enemigo
     private $panel_size;            // Tamaño del tablero. 8x8, 10x10,...
 
-    public function __construct1($arrayValues, $withInfo = TRUE) {
+    public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
         $this->id_battle = $arrayValues[ 'id_battle' ];
         $this->code = $arrayValues[ 'code' ];
@@ -44,8 +44,10 @@ class Battle extends _EntitySerialize {
         $this->profile_cpu = $arrayValues[ 'profile_cpu' ];
         $this->cpu_fog = $arrayValues[ 'cpu_fog' ];
         $this->panel_size = $arrayValues[ 'panel_size' ];
-        foreach ($arrayValues[ 'trans' ] as $loc) {
-            $this->addTrans(new GenericTrans($loc));
+        if ($arrayValues[ 'trans' ] != NULL) {
+            foreach ($arrayValues[ 'trans' ] as $loc) {
+                $this->addTrans(new GenericTrans($loc));
+            }
         }
     }
 

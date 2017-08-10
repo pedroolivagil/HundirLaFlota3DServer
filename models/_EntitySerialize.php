@@ -21,7 +21,7 @@ class _EntitySerialize implements Serializable {
         if (method_exists($this, $funcion_constructor)) {
             call_user_func_array(array( $this, $funcion_constructor ), $params);
         } else {
-            __construct0();
+            $this->__construct0();
         }
     }
 
@@ -29,6 +29,9 @@ class _EntitySerialize implements Serializable {
     }
 
     public function __construct1($arrayValues) {
+    }
+
+    public function __construct2($arrayValues, $full = TRUE) {
     }
 
     protected function setObject($object) {

@@ -22,8 +22,10 @@ class LocaleApp extends _EntitySerialize {
         $this->add_date = $arrayValues[ 'add_date' ];
         $this->code_iso = $arrayValues[ 'code_iso' ];
         $this->id_locale = $arrayValues[ 'id_locale' ];
-        foreach ($arrayValues[ 'trans' ] as $loc) {
-            $this->addTrans(new GenericTrans($loc));
+        if ($arrayValues[ 'trans' ] != NULL) {
+            foreach ($arrayValues[ 'trans' ] as $loc) {
+                $this->addTrans(new GenericTrans($loc));
+            }
         }
     }
 

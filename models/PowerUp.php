@@ -30,8 +30,10 @@ class PowerUp extends _EntitySerialize {
         $this->usages = $arrayValues[ 'usages' ];
         $this->reload_time = $arrayValues[ 'reload_time' ];
         $this->min_level = $arrayValues[ 'min_level' ];
-        foreach ($arrayValues[ 'trans' ] as $loc) {
-            $this->addTrans(new GenericTrans($loc));
+        if ($arrayValues[ 'trans' ] != NULL) {
+            foreach ($arrayValues[ 'trans' ] as $loc) {
+                $this->addTrans(new GenericTrans($loc));
+            }
         }
     }
 

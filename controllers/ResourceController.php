@@ -75,7 +75,7 @@ class ResourceController extends _PersistenceManager {
     private function addResource(Resource $resource) {
         $filename = $resource->getName() . EXTENSION_RESOURCE;
         $file = fopen(_RESOURCE_PATH_ . TABLE_RESOURCE . '/' . $filename, "w");
-        $retorno = fwrite($file, Tools::serialize($resource->getFile()) . PHP_EOL);
+        $retorno = fwrite($file, $resource->getFile() . PHP_EOL);
         fclose($file);
         return $retorno;
     }

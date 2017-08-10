@@ -20,7 +20,7 @@ class User extends _EntitySerialize {
     private $type_user;
     private $info;      // array with user info
 
-    public function __construct1($arrayValues, $withInfo = TRUE) {
+    public function __construct2($arrayValues, $full = TRUE) {
         $this->_id = $arrayValues[ '_id' ];
         $this->id_user = $arrayValues[ 'id_user' ];
         $this->flag_active = $arrayValues[ 'flag_active' ];
@@ -30,7 +30,7 @@ class User extends _EntitySerialize {
         $this->email = $arrayValues[ 'email' ];
         $this->type_user = $arrayValues[ 'type_user' ];
         $this->add_date = $arrayValues[ 'signup_date' ];
-        if ($withInfo) {
+        if ($full) {
             $this->info = new UserInfo($arrayValues[ 'info' ]);
         }
     }
