@@ -42,25 +42,27 @@ function getEntities() {
     <?php Tools::importBootstrap(); ?>
     <style>
         .field {
-            min-width: 300px;
-            margin: 3px 10px;
+            min-width: 32.5%;
+            margin: 4px 4px;
             float: left;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <br/>
-    <form>
-        <select id="entities" name="entities" class="form-control" onchange="loadClassOptions()">
-            <option value="">-- Selecciona una entidad --</option>
-            <?php foreach (getEntities() as $entity) { ?>
-                <option value="<?php echo $entity; ?>"><?php echo $entity; ?></option>
-            <?php } ?>
-        </select>
-    </form>
-    <br/>
-    <div id="response"></div>
+    <div class="card text-center" style="width: 100%;">
+        <div class="card-block">
+            <form>
+                <select id="entities" name="entities" class="form-control" onchange="loadClassOptions()">
+                    <option value="">-- Selecciona una entidad --</option>
+                    <?php foreach (getEntities() as $entity) { ?>
+                        <option value="<?php echo $entity; ?>"><?php echo $entity; ?></option>
+                    <?php } ?>
+                </select>
+            </form>
+            <div id="response"></div>
+        </div>
+    </div>
 </div>
 <?php Tools::importScripts(''); ?>
 </body>

@@ -28,7 +28,7 @@ if ($clase != NULL) {
             <div class="field">
                 <div class="card">
                     <div class="card-block">
-                        <h6 class="card-title"><?php echo ucfirst(str_replace('_', ' ', $key)); ?></h6>
+                        <h6 class="card-title"><?php echo ucfirst(str_replace(-'_', ' ', $key)); ?></h6>
                         <input class="form-control" type="text" name="<?php echo $key; ?>" id="<?php echo $key; ?>">
                     </div>
                 </div>
@@ -36,7 +36,7 @@ if ($clase != NULL) {
             <?php
         }
         ?>
-        <div class="row" style="clear: both; padding-top: 20px;">
+        <div class="text-center" style="clear: both; float: none; padding-top: 20px;">
             <button type="submit" class="btn btn-outline-primary">Save</button>
             &nbsp;
             <button type="reset" class="btn btn-outline-danger">Cancel</button>
