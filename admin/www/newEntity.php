@@ -11,6 +11,19 @@ $obj = NULL;
 $form = $_REQUEST;
 $clase = $form[ 'clase' ];
 $form[ COL_FLAG_ACTIVO ] = ($form[ COL_FLAG_ACTIVO ] == 'TRUE') ? TRUE : FALSE;
+$arrayTrans = array();
+if (isset($form[ 'trans' ]) and $form[ 'trans' ] != NULL) {
+    $allTrans = explode(';', $form[ 'trans' ]);
+    foreach ($allTrans as $eachTrans) {
+        $trans = explode(':', $eachTrans);
+        $gt = array(
+            'id_locale' => (int)trim($trans[ 0 ]),
+            'text'      => trim($trans[ 1 ])
+        );
+        array_push($arrayTrans, $gt);
+    }
+}
+$form[ 'trans' ] = $arrayTrans;
 unset($form[ 'clase' ]);
 if ($clase == 'User') {
     $obj = new $clase($form, FALSE);

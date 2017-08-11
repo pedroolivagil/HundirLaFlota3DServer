@@ -49,10 +49,14 @@ if ($clase != NULL) {
                             </button>
                         </div>
                         <input class="form-control" style="display: none;" type="file" name="<?php echo $key; ?>"
-                               id="<?php echo $key; ?>">
+                               id="<?php echo $key; ?>"/>
+                    <?php } elseif ($key == 'trans') { ?>
+                        <div class="input-group-addon"><?php echo ucfirst(str_replace('_', ' ', $key)); ?></div>
+                        <textarea class="form-control" type="text" name="<?php echo $key; ?>" style="height: 120px;"
+                                  id="<?php echo $key; ?>"></textarea>
                     <?php } else { ?>
                         <div class="input-group-addon"><?php echo ucfirst(str_replace('_', ' ', $key)); ?></div>
-                        <input class="form-control" type="text" name="<?php echo $key; ?>" id="<?php echo $key; ?>">
+                        <input class="form-control" type="text" name="<?php echo $key; ?>" id="<?php echo $key; ?>"/>
                     <?php } ?>
                 </div>
             </div>

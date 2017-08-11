@@ -38,7 +38,7 @@ class PowerUpController extends _PersistenceManager {
             $trans = $data->getTrans();
             $data->setTrans(NULL);
             foreach ($trans as $loc) {
-                $data->addTrans($loc->serialize());
+                $data->addTrans($loc->asArray());
             }
             return parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
         }

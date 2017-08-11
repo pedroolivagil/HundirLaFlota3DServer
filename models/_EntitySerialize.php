@@ -50,6 +50,10 @@ class _EntitySerialize implements Serializable {
         return $this->object;
     }
 
+    public function asArray() {
+        return json_decode($this->serialize(), TRUE);
+    }
+
     public function unserialize($serialized) {
         return json_decode($serialized, TRUE);
     }

@@ -43,7 +43,7 @@ class UserController extends _PersistenceManager {
             $data->setFlagActive(TRUE);
             $data->setEmailActivation(FALSE);
             if (!is_null($data->getInfo())) {
-                $data->setInfo((array)json_decode($data->getInfo()->serialize(), TRUE));
+                $data->setInfo($data->getInfo()->asArray());
             }
             return parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
         }

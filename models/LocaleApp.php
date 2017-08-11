@@ -66,7 +66,7 @@ class LocaleApp extends _EntitySerialize {
     }
 
     public function setCodeISO($code_iso) {
-        $this->code_iso = $code_iso;
+        $this->code_iso = strtoupper($code_iso);
     }
 
     public function setFlagActive($flag_active) {

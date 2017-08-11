@@ -35,6 +35,10 @@ class GenericTrans extends _EntitySerialize {
     public function setText($text) {
         $this->text = $text;
     }
+    //
+    // public function asArray() {
+    //     return json_decode($this->serialize(), TRUE);
+    // }
 
     /**
      *

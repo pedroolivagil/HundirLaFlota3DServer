@@ -26,19 +26,20 @@ class LocaleAppController extends _PersistenceManager {
 
     public function create(LocaleApp $data) {
         $key = array(
-            COL_CODIGO_ISO  => $data->getCodeISO(),
+            COL_CODIGO_ISO  => strtoupper($data->getCodeISO()),
             COL_FLAG_ACTIVO => TRUE
         );
         $find = parent::exists($key);
         if (is_null($find)) {
             $idIdioma = parent::count() + 1;
+            $data->setCodeISO($data->getCodeISO());
             $data->setIdLocale($idIdioma);
             $data->setAddDate(time());
             $data->setFlagActive(TRUE);
             $trans = $data->getTrans();
             $data->setTrans(NULL);
             foreach ($trans as $loc) {
-                $data->addTrans($loc->serialize());
+                $data->addTrans($loc->asArray());
             }
             return parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
         }
