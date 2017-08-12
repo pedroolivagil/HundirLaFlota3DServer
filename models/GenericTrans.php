@@ -39,7 +39,6 @@ class GenericTrans extends _EntitySerialize {
     // public function asArray() {
     //     return json_decode($this->serialize(), TRUE);
     // }
-
     /**
      *
      * @param type $propsUnserialized Array de nombre de propiedades a excluir

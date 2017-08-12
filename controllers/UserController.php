@@ -32,22 +32,23 @@ class UserController extends _PersistenceManager {
     }
 
     public function create(User $data) {
-        $key = array(
-            COL_USERNAME => $data->getUsername()
-        );
-        $find = parent::exists($key);
-        if (is_null($find)) {
-            $total = parent::count();
-            $data->setIdUser($total + 1);
-            $data->setAddDate(time());
-            $data->setFlagActive(TRUE);
-            $data->setEmailActivation(FALSE);
-            if (!is_null($data->getInfo())) {
-                $data->setInfo($data->getInfo()->asArray());
+        $result = FALSE;
+        if (Tools::isNotNull($data->getUsername())) {
+            $key = array(
+                COL_USERNAME => $data->getUsername()
+            );
+            $find = parent::exists($key);
+            if (Tools::isNull($find)) {
+                $total = parent::count();
+                $data->setIdUser($total + 1);
+                $data->setEmailActivation(FALSE);
+                if (!is_null($data->getInfo())) {
+                    $data->setInfo($data->getInfo()->asArray());
+                }
+                $result = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
             }
-            return parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
         }
-        return FALSE;
+        return $result;
     }
 
     public function update(User $data) {

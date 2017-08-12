@@ -23,6 +23,7 @@ define('COL_NAME', 'name');
 define('COL_CODE', 'code');
 define('COL_CODIGO_ISO', 'code_iso');
 define('COL_FLAG_ACTIVO', 'flag_active');
+define('COL_ADD_DATE', 'add_date');
 define('COL_OBJECT', 'object');
 //TABLASPARA EL JUEGO
 define('TABLE_USER', 'user');

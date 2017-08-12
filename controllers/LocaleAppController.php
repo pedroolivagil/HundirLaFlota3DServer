@@ -25,25 +25,26 @@ class LocaleAppController extends _PersistenceManager {
     }
 
     public function create(LocaleApp $data) {
-        $key = array(
-            COL_CODIGO_ISO  => strtoupper($data->getCodeISO()),
-            COL_FLAG_ACTIVO => TRUE
-        );
-        $find = parent::exists($key);
-        if (is_null($find)) {
-            $idIdioma = parent::count() + 1;
-            $data->setCodeISO($data->getCodeISO());
-            $data->setIdLocale($idIdioma);
-            $data->setAddDate(time());
-            $data->setFlagActive(TRUE);
-            $trans = $data->getTrans();
-            $data->setTrans(NULL);
-            foreach ($trans as $loc) {
-                $data->addTrans($loc->asArray());
+        $result = FALSE;
+        if (Tools::isNotNull($data->getCodeISO())) {
+            $key = array(
+                COL_CODIGO_ISO  => strtoupper($data->getCodeISO()),
+                COL_FLAG_ACTIVO => TRUE
+            );
+            $find = parent::exists($key);
+            if (Tools::isNull($find)) {
+                $idIdioma = parent::count() + 1;
+                $data->setCodeISO($data->getCodeISO());
+                $data->setIdLocale($idIdioma);
+                $trans = $data->getTrans();
+                $data->setTrans(NULL);
+                foreach ($trans as $loc) {
+                    $data->addTrans($loc->asArray());
+                }
+                $result = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
             }
-            return parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
         }
-        return FALSE;
+        return $result;
     }
 
     public function update(LocaleApp $data) {

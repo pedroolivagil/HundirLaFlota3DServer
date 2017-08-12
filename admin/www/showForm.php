@@ -32,12 +32,12 @@ if ($clase != NULL) {
                             <div class="form-check" style="width: 100px;">
                                 <label class="form-check-label">
                                     <input type="radio" class="form-check-input" name="<?php echo $key; ?>"
-                                           id="<?php echo $key; ?>_on" value="TRUE"> True</label>
+                                           id="<?php echo $key; ?>_on" value="TRUE" checked> True</label>
                             </div>
                             <div class="form-check" style="position:absolute; left: 120px; width: 100px;">
                                 <label class="form-check-label">
                                     <input type="radio" class="form-check-input" name="<?php echo $key; ?>"
-                                           id="<?php echo $key; ?>_off" value="FALSE" checked> False</label>
+                                           id="<?php echo $key; ?>_off" value="FALSE"> False</label>
                             </div>
                         </div>
                     <?php } else if ($key == 'file') { ?>
@@ -66,7 +66,7 @@ if ($clase != NULL) {
         <div class="text-center" style="clear: both; float: none; padding-top: 20px;">
             <button type="submit" class="btn btn-outline-primary" onclick="newEntity()">Save</button>
             &nbsp;
-            <button type="reset" class="btn btn-outline-danger">Cancel</button>
+            <button type="reset" class="btn btn-outline-danger" onclick="loadClassOptions()">Cancel</button>
         </div>
     </form>
     <?php

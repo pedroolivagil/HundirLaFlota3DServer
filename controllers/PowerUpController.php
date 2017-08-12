@@ -25,24 +25,25 @@ class PowerUpController extends _PersistenceManager {
     }
 
     public function create(PowerUp $data) {
-        $key = array(
-            COL_CODE        => $data->getCode(),
-            COL_FLAG_ACTIVO => TRUE
-        );
-        $find = parent::exists($key);
-        if (is_null($find)) {
-            $idIdioma = parent::count() + 1;
-            $data->setIdPowerup($idIdioma);
-            $data->setAddDate(time());
-            $data->setFlagActive(TRUE);
-            $trans = $data->getTrans();
-            $data->setTrans(NULL);
-            foreach ($trans as $loc) {
-                $data->addTrans($loc->asArray());
+        $result = FALSE;
+        if (Tools::isNotNull($data->getCode())) {
+            $key = array(
+                COL_CODE        => $data->getCode(),
+                COL_FLAG_ACTIVO => TRUE
+            );
+            $find = parent::exists($key);
+            if (Tools::isNull($find)) {
+                $idIdioma = parent::count() + 1;
+                $data->setIdPowerup($idIdioma);
+                $trans = $data->getTrans();
+                $data->setTrans(NULL);
+                foreach ($trans as $loc) {
+                    $data->addTrans($loc->asArray());
+                }
+                $result = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
             }
-            return parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
         }
-        return FALSE;
+        return $result;
     }
 
     public function update(PowerUp $data) {

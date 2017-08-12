@@ -26,27 +26,27 @@ class ResourceController extends _PersistenceManager {
 
     public function create($data) {
         $result = FALSE;
-        $key = array(
-            COL_NAME        => $data->getName(),
-            COL_FLAG_ACTIVO => TRUE
-        );
-        $find = parent::exists($key);
-        if (is_null($find)) {
-            $idResource = parent::count() + 1;
-            $data->setIdResource($idResource);
-            $data->setAddDate(time());
-            $data->setFlagActive(TRUE);
-            $dbPersist = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT, "file" )));
-            $filePersist = $this->addResource($data);
-            $result = $dbPersist && $filePersist;
-            // En caso de que algo falle y no se persista correctamente, deshacemos los cambios
-            if ($result == FALSE && $dbPersist) {
-                //se ha persistido en db pero no en fichero
-                $this->delete($data);
-            }
-            if ($result == FALSE && $filePersist) {
-                //se ha persistido en fichero pero no en db
-                $this->removeResource($data);
+        if (Tools::isNotNull($data->getName())) {
+            $key = array(
+                COL_NAME        => $data->getName(),
+                COL_FLAG_ACTIVO => TRUE
+            );
+            $find = parent::exists($key);
+            if (Tools::isNull($find)) {
+                $idResource = parent::count() + 1;
+                $data->setIdResource($idResource);
+                $dbPersist = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT, "file" )));
+                $filePersist = $this->addResource($data);
+                $result = $dbPersist && $filePersist;
+                // En caso de que algo falle y no se persista correctamente, deshacemos los cambios
+                if ($result == FALSE && $dbPersist) {
+                    //se ha persistido en db pero no en fichero
+                    $this->delete($data);
+                }
+                if ($result == FALSE && $filePersist) {
+                    //se ha persistido en fichero pero no en db
+                    $this->removeResource($data);
+                }
             }
         }
         return $result;

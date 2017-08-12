@@ -9,9 +9,22 @@
  */
 class Tools {
 
-    public static function isNull($obj) { return is_null($obj) or empty($obj); }
+    public static function isNull($obj) {
+        $retorno = FALSE;
+        if (is_null($obj)) {
+            $retorno = TRUE;
+        } else if (!is_null($obj) and is_array($obj) and empty($obj)) {
+            $retorno = TRUE;
+        } else if (!is_null($obj) and !is_array($obj) and trim($obj) == '') {
+            $retorno = TRUE;
+        } else if (!is_null($obj) and !is_array($obj) and trim($obj) == '') {
+            $retorno = TRUE;
+        }
+        return $retorno;
+        // return is_null($obj) or empty($obj) or trim($obj) == '';
+    }
 
-    public static function isNotNull($obj) { return self::isNull($obj); }
+    public static function isNotNull($obj) { return !(self::isNull($obj)); }
 
     public static function getRealIP() {
         if (isset($_SERVER[ "HTTP_CLIENT_IP" ])) {
