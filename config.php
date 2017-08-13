@@ -86,11 +86,12 @@ require_once(_MODELS_PATH_ . 'User.php');
 require_once(_MODELS_PATH_ . 'PowerUp.php');
 require_once(_MODELS_PATH_ . 'scenario/Battle.php');
 require_once(_MODELS_PATH_ . 'scenario/Scenario.php');
-// require_once(_MODELS_PATH_ . 'scenrio/.php');
-// require_once(_MODELS_PATH_ . 'scenrio/.php');
+require_once(_MODELS_PATH_ . 'scenario/Buque.php');
+require_once(_MODELS_PATH_ . 'scenario/Weapon.php');
 // Controllers
 require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
 require_once(_CONTROLLERS_PATH_ . 'LocaleAppController.php');
 require_once(_CONTROLLERS_PATH_ . 'UserController.php');
 require_once(_CONTROLLERS_PATH_ . 'PowerUpController.php');
 require_once(_CONTROLLERS_PATH_ . 'ResourceController.php');
+require_once(_CONTROLLERS_PATH_ . 'ScenarioController.php');

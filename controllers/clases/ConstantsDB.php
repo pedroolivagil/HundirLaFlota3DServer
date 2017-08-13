@@ -18,6 +18,7 @@ define('COL_ID_USER', 'id_user');
 define('COL_ID_IDIOMA', 'id_locale');
 define('COL_ID_POWERUP', 'id_powerup');
 define('COL_ID_RESOURCE', 'id_resource');
+define('COL_ID_SCENARIO', 'id_scenario');
 define('COL_USERNAME', 'username');
 define('COL_NAME', 'name');
 define('COL_CODE', 'code');
