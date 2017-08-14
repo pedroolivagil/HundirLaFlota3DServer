@@ -7,6 +7,7 @@
  * Date: 10/08/2017 03:22
  */
 include_once('../../config.php');
+sleep(2);
 $obj = NULL;
 $form = $_REQUEST;
 $clase = $form[ 'clase' ];

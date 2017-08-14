@@ -33,6 +33,8 @@ function loadClassOptions() {
     cleanDiv('responseNewEntity');
 }
 function newEntity() {
+    cleanDiv('responseNewEntity');
+    $('#responseNewEntity').html('<div class="alert alert-warning" role="alert">Cargando...</div>');
     var formElement = document.getElementById("formularioEntidad");
     var data = new FormData(formElement);
     ajax('www/newEntity.php', data, 'responseNewEntity', null);
