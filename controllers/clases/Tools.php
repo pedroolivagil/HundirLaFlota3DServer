@@ -351,6 +351,8 @@ class Tools {
             $controller = new LocaleAppController();
         } else if ($obj instanceof PowerUp) {
             $controller = new PowerUpController();
+        } else if ($obj instanceof Scenario) {
+            $controller = new ScenarioController();
             // } else if ($obj instanceof ) {
         } else {
             throw new Exception("No hay controlador definido para ese modelo", 0);
