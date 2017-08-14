@@ -86,7 +86,7 @@ require_once(_MODELS_PATH_ . 'User.php');
 require_once(_MODELS_PATH_ . 'PowerUp.php');
 require_once(_MODELS_PATH_ . 'scenario/Battle.php');
 require_once(_MODELS_PATH_ . 'scenario/Scenario.php');
-require_once(_MODELS_PATH_ . 'scenario/Vessell.php');
+require_once(_MODELS_PATH_ . 'scenario/Vessel.php');
 require_once(_MODELS_PATH_ . 'scenario/Weapon.php');
 // Controllers
 require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
@@ -95,3 +95,6 @@ require_once(_CONTROLLERS_PATH_ . 'UserController.php');
 require_once(_CONTROLLERS_PATH_ . 'PowerUpController.php');
 require_once(_CONTROLLERS_PATH_ . 'ResourceController.php');
 require_once(_CONTROLLERS_PATH_ . 'ScenarioController.php');
+require_once(_CONTROLLERS_PATH_ . 'BattleController.php');
+require_once(_CONTROLLERS_PATH_ . 'VesselController.php');
+require_once(_CONTROLLERS_PATH_ . 'WeaponController.php');
