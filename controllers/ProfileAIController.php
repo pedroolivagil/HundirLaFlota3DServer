@@ -28,6 +28,7 @@ class ProfileAIController extends _PersistenceManager {
     }
 
     public function create(ProfileAI $data) {
+        var_dump($data);
         $result = FALSE;
         if (Tools::isNotNull($data->getCode())) {
             $key = array(

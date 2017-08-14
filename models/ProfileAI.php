@@ -23,7 +23,15 @@ class ProfileAI extends _EntitySerialize {
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
-        // $this-> = $arrayValues[ '' ];
+        $this->id_profile_ai = $arrayValues[ 'id_profile_ai' ];
+        $this->flag_active = $arrayValues[ 'flag_active' ];
+        $this->add_date = $arrayValues[ 'add_date' ];
+        $this->code = $arrayValues[ 'code' ];
+        $this->accuracy = $arrayValues[ 'accuracy' ];
+        $this->lucky = $arrayValues[ 'lucky' ];
+        $this->courage = $arrayValues[ 'courage' ];
+        $this->level = $arrayValues[ 'level' ];
+        $this->wit = $arrayValues[ 'wit' ];
     }
 
     public function getId() {
