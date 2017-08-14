@@ -359,8 +359,8 @@ class Tools {
             $controller = new WeaponController();
         } else if ($obj instanceof Vessel) {
             $controller = new VesselController();
-            // } else if ($obj instanceof ) {
-            // $controller = new ;
+        } else if ($obj instanceof ProfileAI) {
+            $controller = new ProfileAIController();
         } else {
             throw new Exception("No hay controlador definido para ese modelo", 0);
         }

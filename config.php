@@ -88,6 +88,7 @@ require_once(_MODELS_PATH_ . 'scenario/Battle.php');
 require_once(_MODELS_PATH_ . 'scenario/Scenario.php');
 require_once(_MODELS_PATH_ . 'scenario/Vessel.php');
 require_once(_MODELS_PATH_ . 'scenario/Weapon.php');
+require_once(_MODELS_PATH_ . 'ProfileAI.php');
 // Controllers
 require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
 require_once(_CONTROLLERS_PATH_ . 'LocaleAppController.php');
@@ -98,3 +99,4 @@ require_once(_CONTROLLERS_PATH_ . 'ScenarioController.php');
 require_once(_CONTROLLERS_PATH_ . 'BattleController.php');
 require_once(_CONTROLLERS_PATH_ . 'VesselController.php');
 require_once(_CONTROLLERS_PATH_ . 'WeaponController.php');
+require_once(_CONTROLLERS_PATH_ . 'ProfileAIController.php');
