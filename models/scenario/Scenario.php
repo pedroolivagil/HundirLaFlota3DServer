@@ -21,7 +21,7 @@ class Scenario extends _EntitySerialize {
     private $allowed_powerups;  // IDs de los powerups permitidos
     private $battles;           // IDs de las batallas de cada mapa
 
-    public function __construct1($arrayValues, $withInfo = TRUE) {
+    public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
         $this->id_scenario = $arrayValues[ 'id_scenario' ];
         $this->code = $arrayValues[ 'code' ];

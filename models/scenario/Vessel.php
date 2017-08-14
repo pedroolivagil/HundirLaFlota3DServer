@@ -18,9 +18,14 @@ class Vessel extends _EntitySerialize {
     private $health;
     private $weapon;
 
-    public function __construct1($arrayValues, $withInfo = TRUE) {
+    public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
-        // $this-> = $arrayValues[ '' ];
+        $this->id_vessel = $arrayValues[ 'id_vessel' ];
+        $this->flag_active = $arrayValues[ 'flag_active' ];
+        $this->add_date = $arrayValues[ 'add_date' ];
+        $this->code = $arrayValues[ 'code' ];
+        $this->health = $arrayValues[ 'health' ];
+        $this->weapon = $arrayValues[ 'weapon' ];
         foreach ($arrayValues[ 'trans' ] as $loc) {
             $this->addTrans(new GenericTrans($loc));
         }

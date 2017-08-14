@@ -22,6 +22,7 @@ define('COL_ID_SCENARIO', 'id_scenario');
 define('COL_ID_BATTLE', 'id_battle');
 define('COL_ID_VESSEL', 'id_vessel');
 define('COL_ID_WEAPON', 'id_weapon');
+define('COL_ID_PROFILE_AI', 'id_profile_ai');
 // COLUMNAS GENERICAS
 define('COL_USERNAME', 'username');
 define('COL_NAME', 'name');
@@ -42,6 +43,7 @@ define('TABLE_VESSEL', 'Battle');
 define('TABLE_WEAPON', 'weapon');
 define('TABLE_WEAPON_TYPE', 'weapon_type');
 define('TABLE_RESOURCE', 'resource');
+define('TABLE_PROFILE_AI', 'profile_ai');
 // TABLAS PARA RELACIONES
 define('TABLE_USER_GAME_LIST', 'user_game_list');
 define('TABLE_USER_POWERUP', 'user_powerup');
