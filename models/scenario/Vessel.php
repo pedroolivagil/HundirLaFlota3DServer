@@ -4,18 +4,19 @@
  * Created by OliLogicStudios.
  * User: OlivaDevelop
  * Project: HundirLaFlota3DServer
- * File: Weapon.php
- * Date: 13/08/2017 21:43
+ * File: Vessel.phpp
+ * Date: 13/08/2017 21:32
  */
-class Weapon extends _EntitySerialize {
+class Vessel extends _EntitySerialize {
 
     private $_id;
-    private $id_weapon;
+    private $id_vessel;
     private $flag_active;
     private $add_date;
     private $code;
     private $trans;
-    private $damage;
+    private $health;
+    private $weapon;
 
     public function __construct1($arrayValues, $withInfo = TRUE) {
         $this->_id = $arrayValues[ '_id' ];
@@ -32,29 +33,15 @@ class Weapon extends _EntitySerialize {
     /**
      * @return mixed
      */
-    public function getTrans() {
-        return $this->trans;
+    public function getIdVessel() {
+        return $this->id_vessel;
     }
 
     /**
-     * @param mixed $trans
+     * @param mixed $id_vessel
      */
-    public function setTrans($trans) {
-        $this->trans = $trans;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdWeapon() {
-        return $this->id_weapon;
-    }
-
-    /**
-     * @param mixed $id_weapon
-     */
-    public function setIdWeapon($id_weapon) {
-        $this->id_weapon = $id_weapon;
+    public function setIdVessel($id_vessel) {
+        $this->id_vessel = $id_vessel;
     }
 
     /**
@@ -74,15 +61,43 @@ class Weapon extends _EntitySerialize {
     /**
      * @return mixed
      */
-    public function getDamage() {
-        return $this->damage;
+    public function getTrans() {
+        return $this->trans;
     }
 
     /**
-     * @param mixed $damage
+     * @param mixed $trans
      */
-    public function setDamage($damage) {
-        $this->damage = $damage;
+    public function setTrans($trans) {
+        $this->trans = $trans;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHealth() {
+        return $this->health;
+    }
+
+    /**
+     * @param mixed $health
+     */
+    public function setHealth($health) {
+        $this->health = $health;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWeapon() {
+        return $this->weapon;
+    }
+
+    /**
+     * @param mixed $weapon
+     */
+    public function setWeapon($weapon) {
+        $this->weapon = $weapon;
     }
 
     /**
