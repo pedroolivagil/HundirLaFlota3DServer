@@ -353,7 +353,14 @@ class Tools {
             $controller = new PowerUpController();
         } else if ($obj instanceof Scenario) {
             $controller = new ScenarioController();
+        } else if ($obj instanceof Battle) {
+            $controller = new BattleController();
+        } else if ($obj instanceof Weapon) {
+            $controller = new WeaponController();
+        } else if ($obj instanceof Vessel) {
+            $controller = new VesselController();
             // } else if ($obj instanceof ) {
+            // $controller = new ;
         } else {
             throw new Exception("No hay controlador definido para ese modelo", 0);
         }
