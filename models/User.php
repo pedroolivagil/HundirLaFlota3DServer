@@ -20,7 +20,15 @@ class User extends _EntitySerialize {
     private $type_user;
     private $info;      // array with user info
 
+    public function __construct1($arrayValues) {
+        $this->init($arrayValues, FALSE);
+    }
+
     public function __construct2($arrayValues, $full = TRUE) {
+        $this->init($arrayValues, $full);
+    }
+
+    private function init($arrayValues, $full = TRUE) {
         $this->_id = $arrayValues[ '_id' ];
         $this->id_user = $arrayValues[ 'id_user' ];
         $this->flag_active = $arrayValues[ 'flag_active' ];

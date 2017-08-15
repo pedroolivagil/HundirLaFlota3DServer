@@ -19,15 +19,17 @@ $powerupManager = new PowerUpController();
 $fileUsers = file("db/user.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $fileIdioma = file("db/locale.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $filePowerup = file("db/powerup.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-$fileShips = file("db/vessel.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+// $fileShips = file("db/vessel.db", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 // Insertamos los datos a la BBDD
-echo "\nUsuarios\n\n";
+echo "\nUsuarios\n\n\n";
 foreach ($fileUsers as $num_linea => $linea) {
-    $obj = new User(json_decode($linea, TRUE));
+    $user = json_decode($linea, TRUE);
+    $info = (Tools::isNotNull($user[ 'info' ])) ? TRUE : FALSE;
+    $obj = new User($user, $info);
     if ($userManager->create($obj)) {
-        echo "\n\tInsertado\t" . $obj->getUsername();
+        echo "\tInsertado\t" . $obj->getUsername(), "\n";
     } else {
-        echo "\n\tNO insertado\t" . $obj->getUsername();
+        echo "\tNO insertado\t" . $obj->getUsername(), "\n";
     }
 }
 echo "\n--------------------------------------------------------------------";

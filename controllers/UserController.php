@@ -14,14 +14,15 @@ class UserController extends _PersistenceManager {
     }
 
     public function findById($id) {
+        $obj = NULL;
         $key = array(
-            COL_ID_USER => $id
+            COL_ID_USER => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {
-            return new User($result);
+            $obj = new User($result);
         }
-        return FALSE;
+        return $obj;
     }
 
     public function findAllByUsername($username) {
@@ -42,8 +43,10 @@ class UserController extends _PersistenceManager {
                 $total = parent::count();
                 $data->setIdUser($total + 1);
                 $data->setEmailActivation(FALSE);
-                if (!is_null($data->getInfo())) {
-                    $data->setInfo($data->getInfo()->asArray());
+                if (Tools::isNotNull($data->getInfo())) {
+                    $info = $data->getInfo()->asArray();
+                    unset($info[ '_id' ]);
+                    $data->setInfo($info);
                 }
                 $result = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
             }

@@ -10,7 +10,6 @@
 class Tools {
 
     public static function isNull($obj) {
-        var_dump($obj);
         $retorno = FALSE;
         if (is_null($obj)) {
             $retorno = TRUE;
@@ -22,7 +21,6 @@ class Tools {
             $retorno = TRUE;
         }
         return $retorno;
-        // return is_null($obj) or empty($obj) or trim($obj) == '';
     }
 
     public static function isNotNull($obj) { return !(self::isNull($obj)); }
@@ -72,17 +70,19 @@ class Tools {
     public static function getCookie($id) { return $_COOKIE[ $id ]; }
 
     public static function login($idUser = NULL, $autologin = FALSE) {
-        if (self::getCookie(SESSION_AUTOLOGIN)) {
-            self::autoLogin();
-        } else {
-            if ($idUser != NULL) {
-                $mngr = new UserController();
-                $user = $mngr->findById($idUser);
-                if ($user) {
-                    $_SESSION[ SESSION_USUARIO ] = $user->serialize();
-                    if ($autologin) {
-                        self::setCookie(SESSION_AUTOLOGIN, TRUE);
-                        self::setCookie(SESSION_USUARIO_ID, $idUser);
+        if (isset($_SESSION[ SESSION_USUARIO ])) {
+            if (self::getCookie(SESSION_AUTOLOGIN)) {
+                self::autoLogin();
+            } else {
+                if ($idUser != NULL) {
+                    $mngr = new UserController();
+                    $user = $mngr->findById($idUser);
+                    if ($user) {
+                        $_SESSION[ SESSION_USUARIO ] = $user->serialize();
+                        if ($autologin) {
+                            self::setCookie(SESSION_AUTOLOGIN, TRUE);
+                            self::setCookie(SESSION_USUARIO_ID, $idUser);
+                        }
                     }
                 }
             }
@@ -90,10 +90,12 @@ class Tools {
     }
 
     public static function autoLogin() {
-        if (self::getCookie(SESSION_AUTOLOGIN) === TRUE) {
+        if (self::getCookie(SESSION_AUTOLOGIN) == TRUE) {
             $mngr = new UserController();
             $user = $mngr->findById(self::getCookie(SESSION_USUARIO_ID));
-            $_SESSION[ SESSION_USUARIO ] = $user->serialize();
+            if (self::isNotNull($user)) {
+                $_SESSION[ SESSION_USUARIO ] = $user->serialize();
+            }
         }
     }
 
@@ -182,7 +184,9 @@ class Tools {
      * @param string $pattern
      * @return false|string
      */
-    public static function formatDate($time, $pattern = 'd-m-Y H:i:s') { return date($pattern, $time); }
+    public static function formatDate($time, $pattern = 'd-m-Y H:i:s') {
+        return date($pattern, $time);
+    }
 
     /**
      * Muestra  de forma atractiva una cifra de bytes a la catidad adecuada, mb, gb,...
@@ -202,7 +206,9 @@ class Tools {
      * @param $bytes
      * @return float
      */
-    public static function bytesToMegas($bytes) { return $bytes / 1024 / 1024; }
+    public static function bytesToMegas($bytes) {
+        return $bytes / 1024 / 1024;
+    }
 
     public static function bytesToMegasCool($bytes, $decimals = 2) {
         $sz = 'BKMGTP';
@@ -264,7 +270,9 @@ class Tools {
         return base64_encode($data);
     }
 
-    public static function decode64($obj64) { return base64_decode($obj64, TRUE); }
+    public static function decode64($obj64) {
+        return base64_decode($obj64, TRUE);
+    }
 
     public static function createDir($url) {
         if (is_dir($url)) {

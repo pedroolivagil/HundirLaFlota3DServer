@@ -33,7 +33,7 @@ define('SESSION_USUARIO_ID', 'id_usuario');
 define('SESSION_AUTOLOGIN', 'autologin');
 define('IP_UPKEEP', '83.46.27.12');
 define('EXTENSION_LOG', '.log');
-define('LOG_ACTIVE', FALSE);
+define('LOG_ACTIVE', TRUE);
 define('EXTENSION_RESOURCE', '.resource');
 // '/myprojectsorg' solo para ámbito local
 define('PORT', 8080);
@@ -100,3 +100,5 @@ require_once(_CONTROLLERS_PATH_ . 'BattleController.php');
 require_once(_CONTROLLERS_PATH_ . 'VesselController.php');
 require_once(_CONTROLLERS_PATH_ . 'WeaponController.php');
 require_once(_CONTROLLERS_PATH_ . 'ProfileAIController.php');
+// creamos el login, por si hay acceso automático
+Tools::login();

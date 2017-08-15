@@ -11,12 +11,18 @@ class DB implements DBMethods {
 
     private static $instance;
     private $manager;
+    private $_id;
 
     public static function getInstance() {
         if (Tools::isNull(self::$instance)) {
             self::$instance = new DB();
+            self::$instance->_id = time();
         }
         return self::$instance;
+    }
+
+    public function getId() {
+        return $this->_id;
     }
 
     public function getManager() {

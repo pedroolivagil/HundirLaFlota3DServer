@@ -59,11 +59,27 @@ $user = Tools::getSession();
 </head>
 <body>
 <div class="container">
-    <nav class="navbar navbar-inverse bg-inverse">
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse bg-faded">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarText" aria-controls="navbarText" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <a class="navbar-brand" href="#">Admin APP</a>
-        <span class="navbar-text">
-            <?php echo $user->getUsername(); ?>
-        </span>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+            </ul>
+            <span class="navbar-text ">Welcome, <?php echo ucfirst($user->getUsername()); ?></span>
+        </div>
     </nav>
     <div class="card text-center" style="width: 100%;">
         <div class="card-block">

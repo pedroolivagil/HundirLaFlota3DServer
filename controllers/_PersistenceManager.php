@@ -30,34 +30,34 @@ class _PersistenceManager {
     }
 
     protected function findByKey($key) {
-        $keys = array_keys($key);
-        $val = $key[ $keys[ 0 ] ];
-        $clave = array(
-            $keys[ 0 ] => $val
-        );
-        $result = $this->db->findByKey($this->collectionName, $clave);
+        // $keys = array_keys($key);
+        // $val = $key[ $keys[ 0 ] ];
+        // $clave = array(
+        //     $keys[ 0 ] => $val
+        // );
+        $result = $this->db->findByKey($this->collectionName, $key);
         Tools::newLog($key, $this->collectionName, 'FINDBYKEY', $this->isBadResult($result));
         return $result;
     }
 
     protected function findOneByKey($key) {
-        $keys = array_keys($key);
-        $val = $key[ $keys[ 0 ] ];
-        $clave = array(
-            $keys[ 0 ] => $val
-        );
-        $result = $this->db->findOneByKey($this->collectionName, $clave);
+        // $keys = array_keys($key);
+        // $val = $key[ $keys[ 0 ] ];
+        // $clave = array(
+        //     $keys[ 0 ] => $val
+        // );
+        $result = $this->db->findOneByKey($this->collectionName, $key);
         Tools::newLog($key, $this->collectionName, 'FINDONE', $this->isBadResult($result), $result);
         return $result;
     }
 
     protected function exists($key) {
-        $keys = array_keys($key);
-        $val = $key[ $keys[ 0 ] ];
-        $clave = array(
-            $keys[ 0 ] => $val
-        );
-        $result = $this->db->findOneByKey($this->collectionName, $clave);
+        // $keys = array_keys($key);
+        // $val = $key[ $keys[ 0 ] ];
+        // $clave = array(
+        //     $keys[ 0 ] => $val
+        // );
+        $result = $this->db->findOneByKey($this->collectionName, $key);
         Tools::newLog($key, $this->collectionName, 'EXISTS', ($this->isBadResult($result, TRUE)), $result);
         return $result;
     }
