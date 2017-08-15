@@ -28,11 +28,10 @@ class ProfileAIController extends _PersistenceManager {
     }
 
     public function create(ProfileAI $data) {
-        var_dump($data);
         $result = FALSE;
         if (Tools::isNotNull($data->getCode())) {
             $key = array(
-                COL_CODE        => $data->getCode(),
+                COL_CODE        => Tools::codeText($data->getCode()),
                 COL_FLAG_ACTIVO => TRUE
             );
             $find = parent::exists($key);

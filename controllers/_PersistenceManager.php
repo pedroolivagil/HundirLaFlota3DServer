@@ -78,6 +78,9 @@ class _PersistenceManager {
             $data = json_decode($data, TRUE);
             $data[ COL_ADD_DATE ] = time();
             $data[ COL_FLAG_ACTIVO ] = TRUE;
+            if (isset($data[ COL_CODE ])) {
+                $data[ COL_CODE ] = Tools::codeText($data[ COL_CODE ]);
+            }
             $result = $this->db->persist($this->collectionName, $data);
         }
         Tools::newLog('', $this->collectionName, 'CREATE', $this->isBadResult($result), NULL, $data);
