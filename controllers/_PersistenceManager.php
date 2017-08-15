@@ -74,7 +74,7 @@ class _PersistenceManager {
 
     protected function persist($data) {
         $result = FALSE;
-        if (!is_null($data)) {
+        if (Tools::isNotNull($data)) {
             $data = json_decode($data, TRUE);
             $data[ COL_ADD_DATE ] = time();
             $data[ COL_FLAG_ACTIVO ] = TRUE;
@@ -89,7 +89,7 @@ class _PersistenceManager {
 
     protected function remove($key, $data) {
         $result = FALSE;
-        if (!is_null($data)) {
+        if (Tools::isNotNull($data)) {
             $data = json_decode($data, TRUE);
             $data[ COL_FLAG_ACTIVO ] = FALSE;
             $result = $this->db->remove($this->collectionName, $key, $data);
@@ -104,7 +104,7 @@ class _PersistenceManager {
     }
 
     private function isBadResult($result, $inverted = FALSE) {
-        $var = is_null($result) || empty($result);
+        $var = Tools::isNotNull($result);
         return (($inverted) ? ((!$var) ? 'FAIL' : 'OK') : (($var) ? 'FAIL' : 'OK'));
     }
 }

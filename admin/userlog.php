@@ -56,6 +56,10 @@ include_once('../config.php');
                 width: 80px !important;
             }
 
+            td.width100 {
+                width: 100px !important;
+            }
+
             td.width125 {
                 width: 125px !important;
             }
@@ -66,11 +70,11 @@ include_once('../config.php');
         <thead>
         <tr>
             <td>ID</td>
-            <td class="width80">Action</td>
-            <td class="width60">State</td>
-            <td class="width60">Author</td>
-            <td class="width60">Range</td>
-            <td class="width125">IP</td>
+            <td class="width100">Action</td>
+            <td class="width80">State</td>
+            <td class="width80">Author</td>
+            <td class="width80">Range</td>
+            <td class="width100">IP</td>
             <td>Table</td>
             <td>User</td>
             <td>Date</td>
@@ -87,11 +91,11 @@ include_once('../config.php');
             ?>
             <tr <?php echo ($log->getState() == 'OK') ? '' : 'class="danger"'; ?>>
                 <td><?php echo $total--; ?></td>
-                <td class="width80"><?php echo $log->getAction(); ?></td>
-                <td class="width60"><?php echo $log->getState(); ?></td>
-                <td class="width60"><?php echo $log->getAuthor(); ?></td>
-                <td class="width60"><?php echo $log->getAuthorRange(); ?></td>
-                <td class="width125"><?php echo $log->getAuthorIp(); ?></td>
+                <td class="width100"><?php echo $log->getAction(); ?></td>
+                <td class="width80"><?php echo $log->getState(); ?></td>
+                <td class="width80"><?php echo $log->getAuthor(); ?></td>
+                <td class="width80"><?php echo $log->getAuthorRange(); ?></td>
+                <td class="width100"><?php echo $log->getAuthorIp(); ?></td>
                 <td><?php echo $log->getToTable(); ?></td>
                 <td><?php echo Tools::serialize($log->getToUser()); ?></td>
                 <td><?php echo Tools::formatDate($log->getLogDate()); ?></td>
