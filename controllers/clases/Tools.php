@@ -107,11 +107,10 @@ class Tools {
 
     /**
      *
-     * @return \Userdevuelve el usuario de la sesión
+     * @return User devuelve el usuario de la sesión
      */
     public static function getSession() {
-        $user = new User(json_decode($_SESSION[ SESSION_USUARIO ], TRUE));
-        return $user;
+        return new User(json_decode($_SESSION[ SESSION_USUARIO ], TRUE));
     }
 
     /**
