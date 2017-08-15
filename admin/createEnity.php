@@ -34,6 +34,7 @@ function getEntities() {
     return $listEntity;
 }
 
+$user = Tools::getSession();
 ?>
 <!doctype html>
 <html>
@@ -59,9 +60,9 @@ function getEntities() {
 <body>
 <div class="container">
     <nav class="navbar navbar-inverse bg-inverse">
-        <a class="navbar-brand" href="#">Admin</a>
+        <a class="navbar-brand" href="#">Admin APP</a>
         <span class="navbar-text">
-            <?php echo Tools::getSession()->getUsername(); ?>
+            <?php echo $user->getUsername(); ?>
         </span>
     </nav>
     <div class="card text-center" style="width: 100%;">

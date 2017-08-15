@@ -28,6 +28,7 @@ $form[ 'trans' ] = $arrayTrans;
 unset($form[ 'clase' ]);
 if ($clase == 'User') {
     $obj = new $clase($form, FALSE);
+    $obj->criptPass();
 } else {
     $obj = new $clase($form);
 }

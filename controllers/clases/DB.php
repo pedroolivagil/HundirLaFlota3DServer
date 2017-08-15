@@ -29,127 +29,132 @@ class DB implements DBMethods {
     }
 
     /**
-     *
-     * @param type string $collectionName Nombre de la colección
-     * @return type array()
+     * Busca todos los registros
+     * @param $collectionName
+     * @return MongoCursor|null
      */
     public function find($collectionName) {
+        $retorno = NULL;
         try {
             $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            $cursor = $collection->find();
-            return $cursor;
+            $retorno = $collection->find();
         } catch (Exception $e) {
-            return NULL;
         }
+        return $retorno;
     }
 
     /**
-     *
-     * @param type string $collectionName $collection Nombre de la colección
-     * @param type array $key  Array [key_id => value]
-     * @return type
+     * Busca registros basados en la clave
+     * @param $collectionName
+     * @param $key
+     * @return MongoCursor|null
      */
     public function findByKey($collectionName, $key) {
+        $retorno = NULL;
         try {
             $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            $cursor = $collection->find($key);
-            return $cursor;
+            $retorno = $collection->find($key);
         } catch (Exception $e) {
-            return NULL;
         }
+        return $retorno;
     }
 
     /**
-     *
-     * @param type string $collectionName $collection Nombre de la colección
-     * @param type array $key  Array [key_id => value]
-     * @return type
+     * Busca un solo registro basado en la clave
+     * @param $collectionName
+     * @param $key
+     * @return array|null
      */
     public function findOneByKey($collectionName, $key) {
+        $retorno = NULL;
         try {
             $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            $object = $collection->findOne($key);
-            return $object;
+            $retorno = $collection->findOne($key);
         } catch (Exception $e) {
-            return NULL;
         }
+        return $retorno;
     }
 
     /**
      * Crea un documento en la colección
-     * @param type string $collection Nombre de la colección
-     * @param type array $data Array de datos para insertar
-     * @return boolean
+     * @param null $collectionName
+     * @param null $data
+     * @return array|bool
      */
     public function persist($collectionName = NULL, $data = NULL) {
+        $retorno = FALSE;
         try {
             $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            return $collection->insert($data);
+            $retorno = $collection->insert($data);
         } catch (Exception $e) {
-            return FALSE;
         }
+        return $retorno;
     }
 
     /**
      * Borra un documento de manera superficial. Solo desactiva el documento con un bool
-     * @param type string $collection Nombre de la colección
-     * @param type array $key Array [key_id => value] para el borrado
-     * @return boolean
+     * @param null $collectionName
+     * @param null $key
+     * @param null $data
+     * @return bool
      */
     public function remove($collectionName = NULL, $key = NULL, $data = NULL) {
+        $retorno = FALSE;
         try {
             $data[ COL_FLAG_ACTIVO ] = FALSE;
-            return $this->merge($collectionName, $key, $data);
+            $retorno = $this->merge($collectionName, $key, $data);
         } catch (Exception $e) {
-            return FALSE;
         }
+        return $retorno;
     }
 
     /**
      * Borra un documento de manera definitiva.
-     * @param type string $collection Nombre de la colección
-     * @param type array $key Array [key_id => value] para el borrado
-     * @return boolean
+     * @param null $collectionName
+     * @param null $key
+     * @return array|bool
      */
     public function destroy($collectionName = NULL, $key = NULL) {
+        $retorno = FALSE;
         try {
             $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            return $collection->remove($key);
+            $retorno = $collection->remove($key);
         } catch (Exception $e) {
-            return FALSE;
         }
+        return $retorno;
     }
 
     /**
      * Hac un update el documento seleccionado
-     * @param type $collection Nombre de la colección
-     * @param type array $key Array [key_id => value] para el borrado
-     * @param type array $newData Array con los nuevos datos
-     * @return boolean
+     * @param null $collectionName
+     * @param null $key
+     * @param null $data
+     * @return bool
      */
     public function merge($collectionName = NULL, $key = NULL, $data = NULL) {
+        $retorno = FALSE;
         try {
             $collection = $this->manager->selectCollection(DB_DB, $collectionName);
             unset($data[ COL_ID_DOCUMENT ]);
             $newData = array( '$set' => $data );
-            return $collection->update($key, $newData);
+            $retorno = $collection->update($key, $newData);
         } catch (Exception $e) {
-            return FALSE;
         }
+        return $retorno;
     }
 
     /**
-     *
-     * @param type string $collectionName Nombre de la colección
-     * @return type integer Total de documentos en una colección
+     * @param $collectionName
+     * @return int|null
      */
     public function count($collectionName) {
+        $retorno = NULL;
         try {
             $collection = $this->manager->selectCollection(DB_DB, $collectionName);
-            return $collection->count();
+            $retorno = $collection->count();
         } catch (Exception $e) {
-            return NULL;
         }
+        return $retorno;
     }
 
     public function close() {
@@ -158,31 +163,31 @@ class DB implements DBMethods {
 
     /**
      * Crea una colección en la base de datos
-     *
-     * @param type $collectionName
-     * @return type boolean si se realizó con éxito
+     * @param $collectionName
+     * @return bool|MongoCollection
      */
     public function persistCollection($collectionName) {
+        $retorno = FALSE;
         try {
             $db = $this->manager->selectDB(DB_DB);
-            return $db->createCollection($collectionName);
+            $retorno = $db->createCollection($collectionName);
         } catch (Exception $e) {
-            return NULL;
         }
+        return $retorno;
     }
 
     /**
      * Borra una colección en la base de datos
-     *
-     * @param type $collectionName
-     * @return type boolean si se realizó con éxito
+     * @param $collectionName
+     * @return array|bool
      */
     public function removeCollection($collectionName) {
+        $retorno = FALSE;
         try {
             $db = $this->manager->selectDB(DB_DB);
-            return $db->dropCollection($collectionName);
+            $retorno = $db->dropCollection($collectionName);
         } catch (Exception $e) {
-            return NULL;
         }
+        return $retorno;
     }
 }

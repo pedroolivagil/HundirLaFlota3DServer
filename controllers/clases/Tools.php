@@ -10,14 +10,15 @@
 class Tools {
 
     public static function isNull($obj) {
+        var_dump($obj);
         $retorno = FALSE;
         if (is_null($obj)) {
             $retorno = TRUE;
-        } else if (!is_null($obj) and is_array($obj) and empty($obj)) {
+        } else if (!is_null($obj) and is_array($obj) and !is_object($obj) and empty($obj)) {
             $retorno = TRUE;
-        } else if (!is_null($obj) and !is_array($obj) and trim($obj) == '') {
+        } else if (!is_null($obj) and !is_array($obj) and !is_object($obj) and trim($obj) == '') {
             $retorno = TRUE;
-        } else if (!is_null($obj) and !is_array($obj) and trim($obj) == '') {
+        } else if (!is_null($obj) and !is_array($obj) and is_object($obj) and is_null($obj->getId())) {
             $retorno = TRUE;
         }
         return $retorno;

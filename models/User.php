@@ -111,6 +111,10 @@ class User extends _EntitySerialize {
         $this->add_date = $add_date;
     }
 
+    public function criptPass() {
+        $this->password = Tools::cryptString($this->password);
+    }
+
     /**
      *
      * @param type $propsUnserialized Array de nombre de propiedades a excluir
