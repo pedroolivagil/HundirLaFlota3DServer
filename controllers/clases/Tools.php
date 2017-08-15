@@ -268,9 +268,9 @@ class Tools {
 
     public static function createDir($url) {
         if (is_dir($url)) {
-            chmod($url, 0744);
+            chmod($url, 0755);
         } else {
-            mkdir($url, 0744);
+            mkdir($url, 0755);
         }
         return TRUE;
     }
