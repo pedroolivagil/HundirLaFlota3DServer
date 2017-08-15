@@ -42,6 +42,14 @@ $user = Tools::getSession();
     <title>Crear entidad</title>
     <?php Tools::importBootstrap(); ?>
     <style>
+        .color-white {
+            color: #999;
+        }
+
+        .color-white:hover {
+            color: #FFF;
+        }
+        
         .field {
             min-width: 49%;
             margin: 4px 4px;
@@ -78,7 +86,9 @@ $user = Tools::getSession();
                     <a class="nav-link" href="#">Pricing</a>
                 </li>
             </ul>
-            <span class="navbar-text ">Welcome, <?php echo ucfirst($user->getUsername()); ?></span>
+            <span class="navbar-text">Welcome, <?php echo ucfirst($user->getUsername()); ?></span>
+            <span class="navbar-text">&nbsp;&nbsp;&nbsp;&nbsp;|</span>
+            <a class="nav-link navbar-text color-white" href="#">Cerrar sesión</a>
         </div>
     </nav>
     <div class="card text-center" style="width: 100%;">

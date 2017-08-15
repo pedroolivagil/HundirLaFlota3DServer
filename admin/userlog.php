@@ -31,10 +31,10 @@ include_once('../config.php');
 
             tbody {
                 overflow-y: scroll;
-                height: 710px; /* Select the height of the body*/
+                height: 700px; /* Select the height of the body */
                 width: 99.5%;
                 position: absolute;
-                top: 38px;
+                top: 50px;
             }
 
             td {

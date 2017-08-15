@@ -70,7 +70,7 @@ class Tools {
     public static function getCookie($id) { return $_COOKIE[ $id ]; }
 
     public static function login($idUser = NULL, $autologin = FALSE) {
-        if (isset($_SESSION[ SESSION_USUARIO ])) {
+        if (!isset($_SESSION[ SESSION_USUARIO ])) {
             if (self::getCookie(SESSION_AUTOLOGIN)) {
                 self::autoLogin();
             } else {
