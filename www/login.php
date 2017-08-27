@@ -22,9 +22,7 @@ if (Tools::verifyEmail($usermail)) {
 }
 // $user = new User();
 if (Tools::isNotNull($user) && $user[ 0 ]->getPassword() === $password) {
-    echo 'iguales';
+    echo Tools::UnitySuccessResponse($user[ 0 ]);
 } else {
-    echo '{"response" : "404"}';
+    echo Tools::UnityErrorResponse();
 }
-// Login
-// Tools::login(1, TRUE);
