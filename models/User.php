@@ -34,7 +34,7 @@ class User extends _EntitySerialize {
         $this->flag_active = $arrayValues[ 'flag_active' ];
         $this->email_activation = $arrayValues[ 'email_activation' ];
         $this->username = $arrayValues[ 'username' ];
-        $this->password = $arrayValues[ 'pass' ];
+        $this->password = $arrayValues[ 'password' ];
         $this->email = $arrayValues[ 'email' ];
         $this->type_user = $arrayValues[ 'type_user' ];
         $this->add_date = $arrayValues[ 'signup_date' ];

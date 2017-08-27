@@ -25,6 +25,7 @@ define('COL_ID_WEAPON', 'id_weapon');
 define('COL_ID_PROFILE_AI', 'id_profile_ai');
 // COLUMNAS GENERICAS
 define('COL_USERNAME', 'username');
+define('COL_EMAIL', 'email');
 define('COL_NAME', 'name');
 define('COL_CODE', 'code');
 define('COL_CODIGO_ISO', 'code_iso');

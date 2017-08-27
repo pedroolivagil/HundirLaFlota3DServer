@@ -104,7 +104,7 @@ class _PersistenceManager {
     }
 
     private function isBadResult($result, $inverted = FALSE) {
-        $var = Tools::isNotNull($result);
+        $var = !is_null($result);
         return (($inverted) ? ((!$var) ? 'FAIL' : 'OK') : (($var) ? 'FAIL' : 'OK'));
     }
 }

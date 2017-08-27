@@ -29,7 +29,24 @@ class UserController extends _PersistenceManager {
         $key = array(
             COL_USERNAME => $username
         );
-        return parent::findByKey($key);
+        $all = array();
+        $result = parent::findByKey($key);
+        foreach ($result as $item) {
+            array_push($all, new User($item, TRUE));
+        }
+        return $all;
+    }
+
+    public function findAllByEmail($email) {
+        $key = array(
+            COL_EMAIL => $email
+        );
+        $all = array();
+        $result = parent::findByKey($key);
+        foreach ($result as $item) {
+            array_push($all, new User($item, TRUE));
+        }
+        return $all;
     }
 
     public function create(User $data) {

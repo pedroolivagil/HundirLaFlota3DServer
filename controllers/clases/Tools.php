@@ -127,29 +127,34 @@ class Tools {
      * @param type $author_cause
      */
     public static function newLog($to_user, $to_table, $action, $state = NULL, $old_value = NULL, $new_value = NULL, $author_cause = NULL) {
+
         if (LOG_ACTIVE) {
-            $user = self::getSession();
-            if ($user != NULL) {
-                $userLog = new UserLog();
-                $userLog->setAuthor($user->getIdUser());
-                $userLog->setAction($action);
-                $userLog->setAuthorCause($author_cause);
-                $userLog->setAuthorIp(self::getRealIP());
-                $userLog->setAuthorRange($user->getTypeUser());
-                $userLog->setLogDate(time());
-                $userLog->setNewValue($new_value);
-                $userLog->setOldValue($old_value);
-                $userLog->setToTable($to_table);
-                $userLog->setToUser($to_user);
-                $userLog->setState($state);
-                $file = fopen(_LOGS_PATH_ . TABLE_USER_LOG . EXTENSION_LOG, "a");
-                fwrite($file, $userLog->serialize() . PHP_EOL);
-                fclose($file);
+            try {
+                $user = self::getSession();
+                if ($user != NULL) {
+                    $userLog = new UserLog();
+                    $userLog->setAuthor($user->getIdUser());
+                    $userLog->setAction($action);
+                    $userLog->setAuthorCause($author_cause);
+                    $userLog->setAuthorIp(self::getRealIP());
+                    $userLog->setAuthorRange($user->getTypeUser());
+                    $userLog->setLogDate(time());
+                    $userLog->setNewValue($new_value);
+                    $userLog->setOldValue($old_value);
+                    $userLog->setToTable($to_table);
+                    $userLog->setToUser($to_user);
+                    $userLog->setState($state);
+                    $file = fopen(_LOGS_PATH_ . TABLE_USER_LOG . EXTENSION_LOG, "a");
+                    fwrite($file, $userLog->serialize() . PHP_EOL);
+                    fclose($file);
+                }
+            } catch (Exception $e) {
             }
         }
     }
 
-    public static function newImgLog($id, $nameImg, $sizeImg, $mime, $encodeImg) {
+    public
+    static function newImgLog($id, $nameImg, $sizeImg, $mime, $encodeImg) {
         $resource = new Resource();
         $resource->setIdResource($id);
         $resource->setName($nameImg);
@@ -166,7 +171,8 @@ class Tools {
      * @param type $value
      * @return string
      */
-    public static function serialize($value) {
+    public
+    static function serialize($value) {
         try {
             if (!is_null($value)) {
                 return json_encode($value, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
@@ -184,7 +190,8 @@ class Tools {
      * @param string $pattern
      * @return false|string
      */
-    public static function formatDate($time, $pattern = 'd-m-Y H:i:s') {
+    public
+    static function formatDate($time, $pattern = 'd-m-Y H:i:s') {
         return date($pattern, $time);
     }
 
@@ -194,7 +201,8 @@ class Tools {
      * @param int $decimals
      * @return string
      */
-    public static function human_filesize($url, $decimals = 2) {
+    public
+    static function human_filesize($url, $decimals = 2) {
         $bytes = filesize($url);
         $sz = 'BKMGTP';
         $factor = floor((strlen($bytes) - 1) / 3);
@@ -206,11 +214,13 @@ class Tools {
      * @param $bytes
      * @return float
      */
-    public static function bytesToMegas($bytes) {
+    public
+    static function bytesToMegas($bytes) {
         return $bytes / 1024 / 1024;
     }
 
-    public static function bytesToMegasCool($bytes, $decimals = 2) {
+    public
+    static function bytesToMegasCool($bytes, $decimals = 2) {
         $sz = 'BKMGTP';
         $factor = floor((strlen($bytes) - 1) / 3);
         echo $factor;
@@ -221,7 +231,8 @@ class Tools {
      * Devuelve la lista con los logs convertidos a objeto
      * @return array
      */
-    public static function readPrintLog() {
+    public
+    static function readPrintLog() {
         $listLogs = array();
         $url = _LOGS_PATH_ . TABLE_USER_LOG . EXTENSION_LOG;
         if (file_exists($url)) {
@@ -248,7 +259,8 @@ class Tools {
      * @param bool $values
      * @return string
      */
-    public static function getContentOfFile($url, $params = FALSE, $values = FALSE) {
+    public
+    static function getContentOfFile($url, $params = FALSE, $values = FALSE) {
         $txt = "";
         chmod($url, 0777);
         $file = fopen($url, "r") or exit("Error de lectura de 'Header'");
@@ -265,16 +277,19 @@ class Tools {
         return $txt;
     }
 
-    public static function encode64($url) {
+    public
+    static function encode64($url) {
         $data = file_get_contents($url);
         return base64_encode($data);
     }
 
-    public static function decode64($obj64) {
+    public
+    static function decode64($obj64) {
         return base64_decode($obj64, TRUE);
     }
 
-    public static function createDir($url) {
+    public
+    static function createDir($url) {
         if (is_dir($url)) {
             chmod($url, 0755);
         } else {
@@ -283,7 +298,8 @@ class Tools {
         return TRUE;
     }
 
-    public static function createImg($img, $ruta2, $tipo, $tam) {
+    public
+    static function createImg($img, $ruta2, $tipo, $tam) {
         $retorno = FALSE;
         $original = FALSE;
         switch ($tipo) {
@@ -336,20 +352,23 @@ class Tools {
         return $retorno;
     }
 
-    public static function importBootstrap() {
+    public
+    static function importBootstrap() {
         echo '<meta charset="UTF-8"/>';
         echo '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">';
         echo '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">';
     }
 
-    public static function importScripts($url) {
+    public
+    static function importScripts($url) {
         echo '<script  src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>';
         echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>';
         echo '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>';
         echo '<script src="' . $url . 'js/functions.js"></script>';
     }
 
-    public static function getController($obj) {
+    public
+    static function getController($obj) {
         $controller = NULL;
         if ($obj instanceof User) {
             $controller = new UserController();
@@ -375,12 +394,22 @@ class Tools {
         return $controller;
     }
 
-    public static function codeText($text) {
+    public
+    static function codeText($text) {
         $text = strtolower($text);
         $vt = array( 'à', 'á', 'ä', 'â', 'è', 'é', 'ë', 'ê', 'í', 'ì', 'ï', 'î', 'ò', 'ó', 'ö', 'ô', 'ú', 'ù', 'ü', 'û', 'ñ', 'À', 'Á', 'Ä', 'Â', 'È', 'É', 'Ë', 'Ê', 'Í', 'Ì', 'Ï', 'Î', 'Ò', 'Ó', 'Ö', 'Ô', 'Ú', 'Ù', 'Ü', 'Û', 'Ñ' );
         $vs = array( 'a', 'a', 'a', 'a', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'n', 'A', 'A', 'A', 'A', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'U', 'N' );
         $text = str_replace($vt, $vs, $text);
         $char = array( ',', '.', ';', ':', '·', '/', '<', '>', 'º', 'ª', '\\', '&', '!', '"', '$', '%', '(', ')', '\'', '?', '¡', '¿', '|', '#', '~', '€', '¬', '{', '}', '[', ']', '`', '´' );
         return strtoupper(trim(str_replace(' ', '_', str_replace($char, '', $text))));
+    }
+
+    public
+    static function verifyEmail($string = NULL) {
+        $retorno = FALSE;
+        if (filter_var($string, FILTER_VALIDATE_EMAIL)) {
+            $retorno = TRUE;
+        }
+        return $retorno;
     }
 }

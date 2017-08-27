@@ -7,4 +7,24 @@
  * Date: 15/08/2017 02:37
  */
 include_once('../config.php');
-Tools::login(1, TRUE);
+// $usermail = $_REQUEST[ 'usermail' ];
+// $password = Tools::cryptString($_REQUEST[ 'password' ]);
+$usermail = 'admin@hundirflota.es';
+$password = Tools::cryptString('1234');
+$autologin = $_REQUEST[ 'autologin' ];
+$user = NULL;
+// Buscar usuario
+$uCont = new UserController();
+if (Tools::verifyEmail($usermail)) {
+    $user = $uCont->findAllByEmail($usermail);
+} else {
+    $user = $uCont->findAllByUsername($usermail);
+}
+// $user = new User();
+if (Tools::isNotNull($user) && $user[ 0 ]->getPassword() === $password) {
+    echo 'iguales';
+} else {
+    echo '{"response" : "404"}';
+}
+// Login
+// Tools::login(1, TRUE);
