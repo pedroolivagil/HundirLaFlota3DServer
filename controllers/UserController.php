@@ -64,6 +64,7 @@ class UserController extends _PersistenceManager {
                 $total = parent::count();
                 $data->setIdUser($total + 1);
                 $data->setEmailActivation(FALSE);
+                $data->setTypeUser(2);
                 if (Tools::isNotNull($data->getInfo())) {
                     $info = $data->getInfo()->asArray();
                     unset($info[ '_id' ]);
