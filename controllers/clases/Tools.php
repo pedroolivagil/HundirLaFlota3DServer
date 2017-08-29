@@ -403,7 +403,8 @@ class Tools {
         return json_encode($retorno, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
     }
 
-    public static function UnityErrorResponse() {
-        return '{"response" : 404}';
+    public static function UnityErrorResponse($message = NULL) {
+        $msg = (Tools::isNotNull($message)) ? ', "message" : "' . $message . '"' : '';
+        return '{"response" : 404 ' . $msg . '}';
     }
 }

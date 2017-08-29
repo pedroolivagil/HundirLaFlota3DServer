@@ -55,8 +55,12 @@ class UserController extends _PersistenceManager {
             $key = array(
                 COL_USERNAME => $data->getUsername()
             );
+            $key2 = array(
+                COL_EMAIL => $data->getEmail()
+            );
             $find = parent::exists($key);
-            if (Tools::isNull($find)) {
+            $find2 = parent::exists($key2);
+            if (Tools::isNull($find) && Tools::isNull($find2)) {
                 $total = parent::count();
                 $data->setIdUser($total + 1);
                 $data->setEmailActivation(FALSE);
