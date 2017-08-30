@@ -396,6 +396,11 @@ class Tools {
         return $retorno;
     }
 
+    public static function UnitySuccessResponseText($message = NULL) {
+        $msg = (Tools::isNotNull($message)) ? ', "message" : "' . $message . '"' : '';
+        return '{"response" : 200 ' . $msg . '}';
+    }
+
     public static function UnitySuccessResponse(_EntitySerialize $obj = NULL) {
         $response = array( 'response' => 200 );
         $array = json_decode($obj->serialize(), TRUE);
