@@ -28,7 +28,7 @@ class City extends _EntitySerialize {
         $this->flag_active = (bool)$arrayValues[ 'flag_active' ];
         $this->add_date = $arrayValues[ 'add_date' ];
         $this->battles = $arrayValues[ 'battles' ];
-        $this->crew_side = $arrayValues[ 'crew_side' ];
+        $this->crew_side = (int)$arrayValues[ 'crew_side' ];
         $this->quests = $arrayValues[ 'quests' ];
         $this->id_market = (int)$arrayValues[ 'id_market' ];
         $this->id_resource = (int)$arrayValues[ 'id_resource' ];

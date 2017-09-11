@@ -24,7 +24,7 @@ class ResourceController extends _PersistenceManager {
         return FALSE;
     }
 
-    public function create($data) {
+    public function create(Resource $data) {
         $result = FALSE;
         if (Tools::isNotNull($data->getName())) {
             $key = array(
@@ -35,18 +35,19 @@ class ResourceController extends _PersistenceManager {
             if (Tools::isNull($find)) {
                 $idResource = parent::count() + 1;
                 $data->setIdResource($idResource);
-                $dbPersist = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT, "file" )));
-                $filePersist = $this->addResource($data);
-                $result = $dbPersist && $filePersist;
-                // En caso de que algo falle y no se persista correctamente, deshacemos los cambios
-                if ($result == FALSE && $dbPersist) {
-                    //se ha persistido en db pero no en fichero
-                    $this->delete($data);
-                }
-                if ($result == FALSE && $filePersist) {
-                    //se ha persistido en fichero pero no en db
-                    $this->removeResource($data);
-                }
+                $result = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
+                // $dbPersist = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT, "file" )));
+                // $filePersist = $this->addResource($data);
+                // $result = $dbPersist && $filePersist;
+                // // En caso de que algo falle y no se persista correctamente, deshacemos los cambios
+                // if ($result == FALSE && $dbPersist) {
+                //     //se ha persistido en db pero no en fichero
+                //     $this->delete($data);
+                // }
+                // if ($result == FALSE && $filePersist) {
+                //     //se ha persistido en fichero pero no en db
+                //     $this->removeResource($data);
+                // }
             }
         }
         return $result;

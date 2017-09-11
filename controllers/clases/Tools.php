@@ -373,6 +373,18 @@ class Tools {
             $controller = new VesselController();
         } else if ($obj instanceof ProfileAI) {
             $controller = new ProfileAIController();
+        } else if ($obj instanceof Market) {
+            $controller = new MarketController();
+        } else if ($obj instanceof Item) {
+            $controller = new ItemController();
+        } else if ($obj instanceof Bank) {
+            $controller = new BankController();
+        } else if ($obj instanceof Inventory) {
+            $controller = new InventoryController();
+        } else if ($obj instanceof City) {
+            $controller = new CityController();
+            // } else if ($obj instanceof ) {
+            //     $controller = new ;
         } else {
             throw new Exception("No hay controlador definido para ese modelo", 0);
         }

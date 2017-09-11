@@ -35,6 +35,7 @@ function getEntities() {
 }
 
 $user = Tools::getSession();
+echo Tools::cryptString("1234");
 ?>
 <!doctype html>
 <html>
