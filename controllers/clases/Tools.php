@@ -383,7 +383,9 @@ class Tools {
             $controller = new InventoryController();
         } else if ($obj instanceof City) {
             $controller = new CityController();
-            // } else if ($obj instanceof ) {
+        } else if ($obj instanceof UserGame) {
+            $controller = new UserGameController();
+            //} else if ($obj instanceof ) {
             //     $controller = new ;
         } else {
             throw new Exception("No hay controlador definido para ese modelo", 0);

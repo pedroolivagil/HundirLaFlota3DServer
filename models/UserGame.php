@@ -15,6 +15,8 @@ class UserGame extends _EntitySerialize {
     private $id_user_game;
     private $id_user;
     private $id_scenario;
+    private $id_bank;
+    private $play_time;
 
     public function __construct1($arrayValues, $withInfo = TRUE) {
         $this->_id = $arrayValues[ '_id' ];
@@ -23,6 +25,8 @@ class UserGame extends _EntitySerialize {
         $this->id_user_game = (int)$arrayValues[ 'id_user_game' ];
         $this->id_user = (int)$arrayValues[ 'id_user' ];
         $this->id_scenario = (int)$arrayValues[ 'id_scenario' ];
+        $this->id_bank = (int)$arrayValues[ 'id_bank' ];
+        $this->play_time = (int)$arrayValues[ 'play_time' ];
     }
 
     public function getId() {
@@ -97,6 +101,34 @@ class UserGame extends _EntitySerialize {
      */
     public function setIdScenario($id_scenario) {
         $this->id_scenario = $id_scenario;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdBank() {
+        return $this->id_bank;
+    }
+
+    /**
+     * @param mixed $id_bank
+     */
+    public function setIdBank($id_bank) {
+        $this->id_bank = $id_bank;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlayTime() {
+        return $this->play_time;
+    }
+
+    /**
+     * @param mixed $play_time
+     */
+    public function setPlayTime($play_time) {
+        $this->play_time = $play_time;
     }
 
     /**
