@@ -92,6 +92,7 @@ require_once(_MODELS_PATH_ . 'ProfileAI.php');
 require_once(_MODELS_PATH_ . 'Resource.php');
 require_once(_MODELS_PATH_ . 'User.php');
 require_once(_MODELS_PATH_ . 'UserInfo.php');
+require_once(_MODELS_PATH_ . 'UserGame.php');
 require_once(_MODELS_PATH_ . 'UserLog.php');
 // Controllers
 require_once(_CONTROLLERS_PATH_ . '_PersistenceManager.php');
@@ -107,6 +108,7 @@ require_once(_CONTROLLERS_PATH_ . 'ProfileAIController.php');
 require_once(_CONTROLLERS_PATH_ . 'ResourceController.php');
 require_once(_CONTROLLERS_PATH_ . 'ScenarioController.php');
 require_once(_CONTROLLERS_PATH_ . 'UserController.php');
+require_once(_CONTROLLERS_PATH_ . 'UserGameController.php');
 require_once(_CONTROLLERS_PATH_ . 'VesselController.php');
 require_once(_CONTROLLERS_PATH_ . 'WeaponController.php');
 // creamos el login, por si hay acceso automático
