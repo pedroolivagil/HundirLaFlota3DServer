@@ -18,10 +18,10 @@ class LocaleApp extends _EntitySerialize {
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
-        $this->flag_active = $arrayValues[ 'flag_active' ];
+        $this->flag_active = (bool)$arrayValues[ 'flag_active' ];
         $this->add_date = $arrayValues[ 'add_date' ];
         $this->code_iso = $arrayValues[ 'code_iso' ];
-        $this->id_locale = $arrayValues[ 'id_locale' ];
+        $this->id_locale = (int)$arrayValues[ 'id_locale' ];
         if ($arrayValues[ 'trans' ] != NULL) {
             foreach ($arrayValues[ 'trans' ] as $loc) {
                 $this->addTrans(new GenericTrans($loc));

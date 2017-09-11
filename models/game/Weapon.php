@@ -19,11 +19,11 @@ class Weapon extends _EntitySerialize {
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
-        $this->id_weapon = $arrayValues[ 'id_weapon' ];
-        $this->flag_active = $arrayValues[ 'flag_active' ];
+        $this->id_weapon = (int)$arrayValues[ 'id_weapon' ];
+        $this->flag_active = (bool)$arrayValues[ 'flag_active' ];
         $this->add_date = $arrayValues[ 'add_date' ];
         $this->code = $arrayValues[ 'code' ];
-        $this->damage = $arrayValues[ 'damage' ];
+        $this->damage = (int)$arrayValues[ 'damage' ];
         foreach ($arrayValues[ 'trans' ] as $loc) {
             $this->addTrans(new GenericTrans($loc));
         }

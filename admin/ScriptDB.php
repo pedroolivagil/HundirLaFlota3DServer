@@ -17,7 +17,7 @@ class ScriptDB {
         $this->listCollections = array(
             TABLE_USER, TABLE_POWERUP, TABLE_RESOURCE, TABLE_SCENARIO, TABLE_BATTLE, TABLE_BATTLE_REWARD,
             TABLE_VESSEL, TABLE_WEAPON, TABLE_WEAPON_TYPE, TABLE_USER_GAME_LIST, TABLE_USER_POWERUP,
-            TABLE_SCENARIO_BATTLE, TABLE_APP_TEXT, TABLE_APP_LOCALE, TABLE_PROFILE_AI
+            TABLE_APP_TEXT, TABLE_APP_LOCALE, TABLE_PROFILE_AI, TABLE_CITY
         );
     }
 
@@ -31,5 +31,13 @@ class ScriptDB {
         foreach ($this->listCollections as $collection) {
             $this->db->removeCollection($collection);
         }
+    }
+
+    public function createCollection($collection) {
+        $this->db->persistCollection($collection);
+    }
+
+    public function removeCollection($collection) {
+        $this->db->persistCollection($collection);
     }
 }

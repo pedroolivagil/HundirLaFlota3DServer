@@ -1,41 +1,39 @@
 <?php
-
 /**
  * Created by OliLogicStudios.
  * User: OlivaDevelop
  * Project: HundirLaFlota3DServer
- * File: Scenario.php
- * Date: 09/08/2017 02:48
+ * File: City.php
+ * Date: 10/09/2017 13:53
  */
-class Scenario extends _EntitySerialize {
+
+class City extends _EntitySerialize {
 
     private $_id;
-    private $id_scenario;
+    private $id_city;
+    private $trans;
     private $code;
     private $flag_active;
     private $add_date;
-    private $min_level;
-    private $trans;
-    private $id_resource;       // ID del resource
-    private $rewards;           // IDs de las rewards
-    private $allowed_powerups;  // IDs de los powerups permitidos
     private $battles;           // IDs de las batallas de cada mapa
+    private $crew_side;         // Booleano para el bando de la ciudad (enemigo o aliado)
+    private $quests;            // Objetivos para las ciudades, batallas, etc, ...
+    private $id_market;         // Mercado asociado a la ciudad
+    private $id_resource;       // ID resource asociado
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
-        $this->id_scenario = $arrayValues[ 'id_scenario' ];
+        $this->id_city = (int)$arrayValues[ 'id_city' ];
         $this->code = $arrayValues[ 'code' ];
-        $this->flag_active = $arrayValues[ 'flag_active' ];
+        $this->flag_active = (bool)$arrayValues[ 'flag_active' ];
         $this->add_date = $arrayValues[ 'add_date' ];
-        $this->min_level = $arrayValues[ 'min_level' ];
-        $this->id_resource = $arrayValues[ 'id_resource' ];
-        $this->rewards = $arrayValues[ 'rewards' ];
-        $this->allowed_powerups = $arrayValues[ 'allowed_powerups' ];
         $this->battles = $arrayValues[ 'battles' ];
-        if ($arrayValues[ 'trans' ] != NULL) {
-            foreach ($arrayValues[ 'trans' ] as $loc) {
-                $this->addTrans(new GenericTrans($loc));
-            }
+        $this->crew_side = $arrayValues[ 'crew_side' ];
+        $this->quests = $arrayValues[ 'quests' ];
+        $this->id_market = (int)$arrayValues[ 'id_market' ];
+        $this->id_resource = (int)$arrayValues[ 'id_resource' ];
+        foreach ($arrayValues[ 'trans' ] as $loc) {
+            $this->addTrans(new GenericTrans($loc));
         }
     }
 
@@ -46,15 +44,15 @@ class Scenario extends _EntitySerialize {
     /**
      * @return mixed
      */
-    public function getIdScenario() {
-        return $this->id_scenario;
+    public function getIdCity() {
+        return $this->id_city;
     }
 
     /**
-     * @param mixed $id_scenario
+     * @param mixed $id_city
      */
-    public function setIdScenario($id_scenario) {
-        $this->id_scenario = $id_scenario;
+    public function setIdCity($id_city) {
+        $this->id_city = $id_city;
     }
 
     /**
@@ -102,20 +100,6 @@ class Scenario extends _EntitySerialize {
     /**
      * @return mixed
      */
-    public function getMinLevel() {
-        return $this->min_level;
-    }
-
-    /**
-     * @param mixed $min_level
-     */
-    public function setMinLevel($min_level) {
-        $this->min_level = $min_level;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getTrans() {
         return $this->trans;
     }
@@ -125,48 +109,6 @@ class Scenario extends _EntitySerialize {
      */
     public function setTrans($trans) {
         $this->trans = $trans;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdResource() {
-        return $this->id_resource;
-    }
-
-    /**
-     * @param mixed $id_resource
-     */
-    public function setIdResource($id_resource) {
-        $this->id_resource = $id_resource;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRewards() {
-        return $this->rewards;
-    }
-
-    /**
-     * @param mixed $rewards
-     */
-    public function setRewards($rewards) {
-        $this->rewards = $rewards;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAllowedPowerups() {
-        return $this->allowed_powerups;
-    }
-
-    /**
-     * @param mixed $allowed_powerups
-     */
-    public function setAllowedPowerups($allowed_powerups) {
-        $this->allowed_powerups = $allowed_powerups;
     }
 
     /**
@@ -183,6 +125,62 @@ class Scenario extends _EntitySerialize {
         $this->battles = $battles;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCrewSide() {
+        return $this->crew_side;
+    }
+
+    /**
+     * @param mixed $crew_side
+     */
+    public function setCrewSide($crew_side) {
+        $this->crew_side = $crew_side;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQuests() {
+        return $this->quests;
+    }
+
+    /**
+     * @param mixed $quests
+     */
+    public function setQuests($quests) {
+        $this->quests = $quests;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdMarket() {
+        return $this->id_market;
+    }
+
+    /**
+     * @param mixed $id_market
+     */
+    public function setIdMarket($id_market) {
+        $this->id_market = $id_market;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdResource() {
+        return $this->id_resource;
+    }
+
+    /**
+     * @param mixed $id_resource
+     */
+    public function setIdResource($id_resource) {
+        $this->id_resource = $id_resource;
+    }
+
     public function addTrans($trans) {
         if (is_null($this->trans)) {
             $this->trans = array();
@@ -191,9 +189,8 @@ class Scenario extends _EntitySerialize {
     }
 
     /**
-     *
-     * @param type $propsUnserialized Array de nombre de propiedades a excluir
-     * @return type
+     * @param null $propsUnserialized
+     * @return string
      */
     public function serialize($propsUnserialized = NULL) {
         $properties = get_object_vars($this);

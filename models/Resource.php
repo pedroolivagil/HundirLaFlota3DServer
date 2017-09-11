@@ -20,10 +20,10 @@ class Resource extends _EntitySerialize {
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
-        $this->id_resource = $arrayValues[ 'id_resource' ];
+        $this->id_resource = (int)$arrayValues[ 'id_resource' ];
         $this->name = $arrayValues[ 'name' ];
         $this->mimetype = $arrayValues[ 'mimetype' ];
-        $this->size = $arrayValues[ 'size' ];
+        $this->size = (int)$arrayValues[ 'size' ];
         $this->file = $arrayValues[ 'file' ];
     }
 

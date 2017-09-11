@@ -12,7 +12,7 @@ class User extends _EntitySerialize {
     private $_id;
     private $id_user;
     private $flag_active;
-    private $email_activation;
+    private $email_activation;      // True si el usuario tiene el email verificado
     private $add_date;
     private $username;
     private $password;
@@ -30,13 +30,13 @@ class User extends _EntitySerialize {
 
     private function init($arrayValues, $full = TRUE) {
         $this->_id = $arrayValues[ '_id' ];
-        $this->id_user = $arrayValues[ 'id_user' ];
-        $this->flag_active = $arrayValues[ 'flag_active' ];
-        $this->email_activation = $arrayValues[ 'email_activation' ];
+        $this->id_user = (int)$arrayValues[ 'id_user' ];
+        $this->flag_active = (bool)$arrayValues[ 'flag_active' ];
+        $this->email_activation = (bool)$arrayValues[ 'email_activation' ];
         $this->username = $arrayValues[ 'username' ];
         $this->password = $arrayValues[ 'password' ];
         $this->email = $arrayValues[ 'email' ];
-        $this->type_user = $arrayValues[ 'type_user' ];
+        $this->type_user = (int)$arrayValues[ 'type_user' ];
         $this->add_date = $arrayValues[ 'signup_date' ];
         if ($full) {
             $this->info = new UserInfo($arrayValues[ 'info' ]);

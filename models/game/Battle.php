@@ -15,6 +15,7 @@ class Battle extends _EntitySerialize {
     private $code;
     private $add_date;
     private $flag_active;
+    private $coordinates;           // coordenadas de la batalla
     private $min_level;             // UserLevel mínimo para jugar esta batalla
     private $rewards;               // IDs de las rewards.
     private $allowed_powerups;      // IDs de los powerups permitidos.
@@ -29,20 +30,20 @@ class Battle extends _EntitySerialize {
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
-        $this->id_battle = $arrayValues[ 'id_battle' ];
+        $this->id_battle = (int)$arrayValues[ 'id_battle' ];
         $this->code = $arrayValues[ 'code' ];
         $this->add_date = $arrayValues[ 'add_date' ];
-        $this->flag_active = $arrayValues[ 'flag_active' ];
-        $this->min_level = $arrayValues[ 'min_level' ];
+        $this->flag_active = (bool)$arrayValues[ 'flag_active' ];
+        $this->min_level = (int)$arrayValues[ 'min_level' ];
         $this->rewards = $arrayValues[ 'rewards' ];
         $this->allowed_powerups = $arrayValues[ 'allowed_powerups' ];
         $this->allowed_user_ships = $arrayValues[ 'allowed_user_ships' ];
         $this->allowed_cpu_ships = $arrayValues[ 'allowed_cpu_ships' ];
-        $this->min_time = $arrayValues[ 'min_time' ];
-        $this->win_before_min_time = $arrayValues[ 'win_before_min_time' ];
+        $this->min_time = (int)$arrayValues[ 'min_time' ];
+        $this->win_before_min_time = (bool)$arrayValues[ 'win_before_min_time' ];
         $this->max_time = $arrayValues[ 'max_time' ];
-        $this->profile_cpu = $arrayValues[ 'profile_cpu' ];
-        $this->cpu_fog = $arrayValues[ 'cpu_fog' ];
+        $this->profile_cpu = (int)$arrayValues[ 'profile_cpu' ];
+        $this->cpu_fog = (bool)$arrayValues[ 'cpu_fog' ];
         $this->panel_size = $arrayValues[ 'panel_size' ];
         if ($arrayValues[ 'trans' ] != NULL) {
             foreach ($arrayValues[ 'trans' ] as $loc) {
@@ -287,9 +288,22 @@ class Battle extends _EntitySerialize {
     }
 
     /**
-     *
-     * @param type $propsUnserialized Array de nombre de propiedades a excluir
-     * @return type
+     * @return mixed
+     */
+    public function getCoordinates() {
+        return $this->coordinates;
+    }
+
+    /**
+     * @param mixed $coordinates
+     */
+    public function setCoordinates($coordinates) {
+        $this->coordinates = $coordinates;
+    }
+
+    /**
+     * @param null $propsUnserialized
+     * @return string
      */
     public function serialize($propsUnserialized = NULL) {
         $properties = get_object_vars($this);

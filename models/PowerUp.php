@@ -23,13 +23,13 @@ class PowerUp extends _EntitySerialize {
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
-        $this->id_powerup = $arrayValues[ 'id_powerup' ];
+        $this->id_powerup = (int)$arrayValues[ 'id_powerup' ];
         $this->code = $arrayValues[ 'code' ];
         $this->value = $arrayValues[ 'value' ];
         $this->type = $arrayValues[ 'type' ];
-        $this->usages = $arrayValues[ 'usages' ];
-        $this->reload_time = $arrayValues[ 'reload_time' ];
-        $this->min_level = $arrayValues[ 'min_level' ];
+        $this->usages = (int)$arrayValues[ 'usages' ];
+        $this->reload_time = (int)$arrayValues[ 'reload_time' ];
+        $this->min_level = (int)$arrayValues[ 'min_level' ];
         if ($arrayValues[ 'trans' ] != NULL) {
             foreach ($arrayValues[ 'trans' ] as $loc) {
                 $this->addTrans(new GenericTrans($loc));

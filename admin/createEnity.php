@@ -20,10 +20,10 @@ function getEntities() {
         }
         closedir($gestor);
     }
-    if ($gestor = opendir('../models/scenario')) {
+    if ($gestor = opendir('../models/game')) {
         while (FALSE !== ($entrada = readdir($gestor))) {
             if ($entrada != "." and $entrada != "..") {
-                if (is_file('../models/scenario/' . $entrada)) {
+                if (is_file('../models/game/' . $entrada)) {
                     $class = (str_replace('.php', '', $entrada));
                     array_push($listEntity, $class);
                 }

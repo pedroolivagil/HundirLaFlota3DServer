@@ -9,6 +9,7 @@
  */
 class UserInfo extends _EntitySerialize {
 
+    private $_id;
     private $flag_active;
     private $firsname;
     private $lastname;
@@ -19,7 +20,6 @@ class UserInfo extends _EntitySerialize {
     private $country;
     private $birthday;
     private $gender;
-    private $_id;
 
     public function __construct1($arrayValues) {
         $this->flag_active = $arrayValues[ 'flag_active' ];

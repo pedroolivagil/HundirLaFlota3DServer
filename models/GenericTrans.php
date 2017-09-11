@@ -17,7 +17,7 @@ class GenericTrans extends _EntitySerialize {
             $arrayValues = json_decode($arrayValues, TRUE);
         }
         $this->text = $arrayValues[ 'text' ];
-        $this->id_locale = $arrayValues[ 'id_locale' ];
+        $this->id_locale = (int)$arrayValues[ 'id_locale' ];
     }
 
     public function getIdLocale() {

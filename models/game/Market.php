@@ -1,24 +1,48 @@
-extends _EntitySerialize {
+<?php
+/**
+ * Created by OliLogicStudios.
+ * User: OlivaDevelop
+ * Project: HundirLaFlota3DServer
+ * File: Market.php
+ * Date: 10/09/2017 23:13
+ */
+
+class Market extends _EntitySerialize {
 
     private $_id;
-    private $trans;
+    private $id_market;
     private $code;
     private $flag_active;
     private $add_date;
+    private $items;             // IDs de Items asociados al market
+    private $items_purchase;    // IDs de los items de compra (compra real)
 
-    public function __construct1($arrayValues, $withInfo = TRUE) {
+    public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
+        $this->id_market = (int)$arrayValues[ 'id_market' ];
         $this->code = $arrayValues[ 'code' ];
-        $this->flag_active = $arrayValues[ 'flag_active' ];
+        $this->flag_active = (bool)$arrayValues[ 'flag_active' ];
         $this->add_date = $arrayValues[ 'add_date' ];
-        // $this-> = $arrayValues[ '' ];
-        foreach ($arrayValues[ 'trans' ] as $loc) {
-            $this->addTrans(new GenericTrans($loc));
-        }
+        $this->items = $arrayValues[ 'items' ];
+        $this->items_purchase = $arrayValues[ 'items_purchase' ];
     }
 
     public function getId() {
         return $this->_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdMarket() {
+        return $this->id_market;
+    }
+
+    /**
+     * @param mixed $id_market
+     */
+    public function setIdMarket($id_market) {
+        $this->id_market = $id_market;
     }
 
     /**
@@ -66,28 +90,35 @@ extends _EntitySerialize {
     /**
      * @return mixed
      */
-    public function getTrans() {
-        return $this->trans;
+    public function getItems() {
+        return $this->items;
     }
 
     /**
-     * @param mixed $trans
+     * @param mixed $items
      */
-    public function setTrans($trans) {
-        $this->trans = $trans;
-    }
-
-    public function addTrans($trans) {
-        if (is_null($this->trans)) {
-            $this->trans = array();
-        }
-        array_push($this->trans, $trans);
+    public function setItems($items) {
+        $this->items = $items;
     }
 
     /**
-     * Array de nombre de propiedades a excluir
-     * @param null $propsUnserialized
-     * @return string
+     * @return mixed
+     */
+    public function getItemsPurchase() {
+        return $this->items_purchase;
+    }
+
+    /**
+     * @param mixed $items_purchase
+     */
+    public function setItemsPurchase($items_purchase) {
+        $this->items_purchase = $items_purchase;
+    }
+
+    /**
+     *
+     * @param type $propsUnserialized Array de nombre de propiedades a excluir
+     * @return type
      */
     public function serialize($propsUnserialized = NULL) {
         $properties = get_object_vars($this);

@@ -16,16 +16,16 @@ class Vessel extends _EntitySerialize {
     private $code;
     private $trans;
     private $health;
-    private $weapon;
+    private $weapon;            //ID arma extra que usa
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
-        $this->id_vessel = $arrayValues[ 'id_vessel' ];
-        $this->flag_active = $arrayValues[ 'flag_active' ];
+        $this->id_vessel = (int)$arrayValues[ 'id_vessel' ];
+        $this->flag_active = (bool)$arrayValues[ 'flag_active' ];
         $this->add_date = $arrayValues[ 'add_date' ];
         $this->code = $arrayValues[ 'code' ];
-        $this->health = $arrayValues[ 'health' ];
-        $this->weapon = $arrayValues[ 'weapon' ];
+        $this->health = (int)$arrayValues[ 'health' ];
+        $this->weapon = (int)$arrayValues[ 'weapon' ];
         foreach ($arrayValues[ 'trans' ] as $loc) {
             $this->addTrans(new GenericTrans($loc));
         }
