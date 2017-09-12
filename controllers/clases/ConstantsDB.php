@@ -33,6 +33,7 @@ define('COL_ID_PROFILE_AI', 'id_profile_ai');
 define('COL_ID_RESOURCE', 'id_resource');
 define('COL_ID_SCENARIO', 'id_scenario');
 define('COL_ID_USER', 'id_user');
+define('COL_USER_GAME_USER', 'user');
 define('COL_ID_USER_GAME', 'id_user_game');
 define('COL_ID_VESSEL', 'id_vessel');
 define('COL_ID_WEAPON', 'id_weapon');

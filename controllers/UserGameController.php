@@ -16,20 +16,29 @@ class UserGameController extends _PersistenceManager {
         parent::__construct(TABLE_USER_GAME);
     }
 
-    public function findById($id) {
+    public function findById($id, $fullObject = FALSE) {
         $key = array(
             COL_ID_USER_GAME => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {
-            return new UserGame($result);
+            $obj = new UserGame($result);
+            if ($fullObject) {
+                $scenarioCon = new ScenarioController();
+                $obj->setScenario($scenarioCon->findById($obj->getScenario(), TRUE));
+                $userCon = new UserController();
+                $obj->setUser($userCon->findById($obj->getUser()));
+                $bankCon = new BankController();
+                $obj->setBank($bankCon->findById($obj->getBank()));
+            }
+            return $obj;
         }
         return FALSE;
     }
 
     public function findByUserId($id, $fullObject = FALSE) {
         $key = array(
-            COL_ID_USER => (int)$id
+            COL_USER_GAME_USER => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {
