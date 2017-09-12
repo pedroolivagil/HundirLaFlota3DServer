@@ -13,19 +13,19 @@ class UserGame extends _EntitySerialize {
     private $flag_active;
     private $add_date;
     private $id_user_game;
-    private $id_user;
-    private $id_scenario;
-    private $id_bank;
+    private $user;
+    private $scenario;
+    private $bank;
     private $play_time;
 
-    public function __construct1($arrayValues, $withInfo = TRUE) {
+    public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
         $this->flag_active = (bool)$arrayValues[ 'flag_active' ];
         $this->add_date = $arrayValues[ 'add_date' ];
         $this->id_user_game = (int)$arrayValues[ 'id_user_game' ];
-        $this->id_user = (int)$arrayValues[ 'id_user' ];
-        $this->id_scenario = (int)$arrayValues[ 'id_scenario' ];
-        $this->id_bank = (int)$arrayValues[ 'id_bank' ];
+        $this->user = (int)$arrayValues[ 'id_user' ];
+        $this->scenario = (int)$arrayValues[ 'id_scenario' ];
+        $this->bank = (int)$arrayValues[ 'id_bank' ];
         $this->play_time = (int)$arrayValues[ 'play_time' ];
     }
 
@@ -78,43 +78,43 @@ class UserGame extends _EntitySerialize {
     /**
      * @return mixed
      */
-    public function getIdUser() {
-        return $this->id_user;
+    public function getUser() {
+        return $this->user;
     }
 
     /**
-     * @param mixed $id_user
+     * @param mixed $user
      */
-    public function setIdUser($id_user) {
-        $this->id_user = $id_user;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdScenario() {
-        return $this->id_scenario;
-    }
-
-    /**
-     * @param mixed $id_scenario
-     */
-    public function setIdScenario($id_scenario) {
-        $this->id_scenario = $id_scenario;
+    public function setUser($user) {
+        $this->user = $user;
     }
 
     /**
      * @return mixed
      */
-    public function getIdBank() {
-        return $this->id_bank;
+    public function getScenario() {
+        return $this->scenario;
     }
 
     /**
-     * @param mixed $id_bank
+     * @param mixed $scenario
      */
-    public function setIdBank($id_bank) {
-        $this->id_bank = $id_bank;
+    public function setScenario($scenario) {
+        $this->scenario = $scenario;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBank() {
+        return $this->bank;
+    }
+
+    /**
+     * @param mixed $bank
+     */
+    public function setBank($bank) {
+        $this->bank = $bank;
     }
 
     /**
@@ -145,5 +145,16 @@ class UserGame extends _EntitySerialize {
         }
         parent::setObject($properties);
         return parent::serialize();
+    }
+
+    public function serializeSequential() {
+        $userSerialized = $this->getUser()->serialize();
+        $bankSerialized = $this->getBank()->serialize();
+        $scenarioSerialized = $this->getScenario()->serialize();
+        $newObj = $this;
+        $newObj->setBank($bankSerialized);
+        $newObj->setUser($userSerialized);
+        $newObj->setScenario($scenarioSerialized);
+        return $newObj->serialize();
     }
 }

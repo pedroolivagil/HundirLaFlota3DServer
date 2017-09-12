@@ -18,7 +18,7 @@ class ItemController extends _PersistenceManager {
 
     public function findById($id) {
         $key = array(
-            COL_ID_ITEM => $id
+            COL_ID_ITEM => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {

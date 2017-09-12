@@ -40,7 +40,7 @@ class _EntitySerialize implements Serializable {
 
     public function serialize() {
         try {
-            return json_encode($this->object, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
+            return json_encode($this->object, JSON_FORCE_OBJECT | JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE);
         } catch (Exception $e) {
             throw new Exception($e . ': ' . json_last_error_msg());
         }

@@ -18,7 +18,7 @@ class MarketController extends _PersistenceManager {
 
     public function findById($id) {
         $key = array(
-            COL_ID_MARKET => $id
+            COL_ID_MARKET => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {

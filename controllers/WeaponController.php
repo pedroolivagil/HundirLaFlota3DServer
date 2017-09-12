@@ -18,7 +18,7 @@ class WeaponController extends _PersistenceManager {
 
     public function findById($id) {
         $key = array(
-            COL_ID_WEAPON => $id
+            COL_ID_WEAPON => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {

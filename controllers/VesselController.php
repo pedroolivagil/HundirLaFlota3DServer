@@ -18,7 +18,7 @@ class VesselController extends _PersistenceManager {
 
     public function findById($id) {
         $key = array(
-            COL_ID_VESSEL => $id
+            COL_ID_VESSEL => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {

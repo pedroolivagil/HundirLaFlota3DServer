@@ -18,7 +18,7 @@ class CityController extends _PersistenceManager {
 
     public function findById($id) {
         $key = array(
-            COL_ID_CITY => $id
+            COL_ID_CITY => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {

@@ -16,13 +16,24 @@ class ScenarioController extends _PersistenceManager {
         parent::__construct(TABLE_SCENARIO);
     }
 
-    public function findById($id) {
+    public function findById($id, $fullObject = FALSE) {
         $key = array(
-            COL_ID_SCENARIO => $id
+            COL_ID_SCENARIO => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {
-            return new Scenario($result);
+            $obj = new Scenario($result);
+            if ($fullObject) {
+                $resCon = new ResourceController();
+                $obj->setResource($resCon->findById($obj->getResource()));
+                $citCon = new CityController();
+                $cities = array();
+                foreach ($obj->getCities() as $idCity) {
+                    array_push($cities, $citCon->findById($idCity));
+                }
+                $obj->setCities($cities);
+            }
+            return $obj;
         }
         return FALSE;
     }

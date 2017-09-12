@@ -18,7 +18,7 @@ class ProfileAIController extends _PersistenceManager {
 
     public function findById($id) {
         $key = array(
-            COL_ID_PROFILE_AI => $id
+            COL_ID_PROFILE_AI => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {

@@ -18,7 +18,7 @@ class InventoryController extends _PersistenceManager {
 
     public function findById($id) {
         $key = array(
-            COL_ID_INVENTORY => $id
+            COL_ID_INVENTORY => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {

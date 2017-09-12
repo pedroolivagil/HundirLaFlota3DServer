@@ -18,7 +18,7 @@ class BankController extends _PersistenceManager {
 
     public function findById($id) {
         $key = array(
-            COL_ID_BANK => $id
+            COL_ID_BANK => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {

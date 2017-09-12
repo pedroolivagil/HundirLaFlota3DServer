@@ -15,7 +15,7 @@ class PowerUpController extends _PersistenceManager {
 
     public function findById($id) {
         $key = array(
-            COL_ID_POWERUP => $id
+            COL_ID_POWERUP => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {

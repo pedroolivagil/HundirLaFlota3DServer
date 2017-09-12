@@ -16,7 +16,7 @@ class Scenario extends _EntitySerialize {
     private $add_date;
     private $min_level;
     private $trans;
-    private $id_resource;       // ID del resource
+    private $resource;       // ID del resource
     private $rewards;           // IDs de las rewards
     private $cities;            // IDs de las batallas de cada mapa
     private $randomBattles;     // Array de coordenadas para las batallas random
@@ -28,7 +28,7 @@ class Scenario extends _EntitySerialize {
         $this->flag_active = (bool)$arrayValues[ 'flag_active' ];
         $this->add_date = $arrayValues[ 'add_date' ];
         $this->min_level = (int)$arrayValues[ 'min_level' ];
-        $this->id_resource = (int)$arrayValues[ 'id_resource' ];
+        $this->resource = (int)$arrayValues[ 'resource' ];
         $this->rewards = $arrayValues[ 'rewards' ];
         $this->cities = $arrayValues[ 'cities' ];
         $this->randomBattles = $arrayValues[ 'randomBattles' ];
@@ -130,15 +130,15 @@ class Scenario extends _EntitySerialize {
     /**
      * @return mixed
      */
-    public function getIdResource() {
-        return $this->id_resource;
+    public function getResource() {
+        return $this->resource;
     }
 
     /**
-     * @param mixed $id_resource
+     * @param mixed $resource
      */
-    public function setIdResource($id_resource) {
-        $this->id_resource = $id_resource;
+    public function setResource($resource) {
+        $this->resource = $resource;
     }
 
     /**

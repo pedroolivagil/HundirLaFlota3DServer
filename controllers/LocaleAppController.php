@@ -15,7 +15,7 @@ class LocaleAppController extends _PersistenceManager {
 
     public function findById($id) {
         $key = array(
-            COL_ID_IDIOMA => $id
+            COL_ID_IDIOMA => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {

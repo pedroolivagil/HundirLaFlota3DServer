@@ -18,7 +18,7 @@ class UserGameController extends _PersistenceManager {
 
     public function findById($id) {
         $key = array(
-            COL_ID_USER_GAME => $id
+            COL_ID_USER_GAME => (int)$id
         );
         $result = parent::findOneByKey($key);
         if ($result != NULL) {
@@ -27,12 +27,32 @@ class UserGameController extends _PersistenceManager {
         return FALSE;
     }
 
+    public function findByUserId($id, $fullObject = FALSE) {
+        $key = array(
+            COL_ID_USER => (int)$id
+        );
+        $result = parent::findOneByKey($key);
+        if ($result != NULL) {
+            $obj = new UserGame($result);
+            if ($fullObject) {
+                $scenarioCon = new ScenarioController();
+                $obj->setScenario($scenarioCon->findById($obj->getScenario(), TRUE));
+                $userCon = new UserController();
+                $obj->setUser($userCon->findById($obj->getUser()));
+                $bankCon = new BankController();
+                $obj->setBank($bankCon->findById($obj->getBank()));
+            }
+            return $obj;
+        }
+        return FALSE;
+    }
+
     public function create(UserGame $data) {
         $result = FALSE;
-        if (Tools::isNotNull($data->getIdUser()) && Tools::isNotNull($data->getIdScenario())) {
+        if (Tools::isNotNull($data->getUser()) && Tools::isNotNull($data->getScenario())) {
             $key = array(
-                COL_ID_USER     => $data->getIdUser(),
-                COL_ID_SCENARIO => $data->getIdScenario(),
+                COL_ID_USER     => $data->getUser(),
+                COL_ID_SCENARIO => $data->getScenario(),
                 COL_FLAG_ACTIVO => TRUE
             );
             $find = parent::exists($key);
