@@ -153,6 +153,13 @@ class Tools {
         }
     }
 
+    /**
+     * @param $id
+     * @param $nameImg
+     * @param $sizeImg
+     * @param $mime
+     * @param $encodeImg
+     */
     public static function newImgLog($id, $nameImg, $sizeImg, $mime, $encodeImg) {
         $resource = new Resource();
         $resource->setIdResource($id);
@@ -167,7 +174,7 @@ class Tools {
 
     /**
      * Serializa un array
-     * @param type $value
+     * @param $value
      * @return string
      */
     public static function serialize($value) {

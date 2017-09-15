@@ -23,9 +23,9 @@ class UserGame extends _EntitySerialize {
         $this->flag_active = (bool)$arrayValues[ 'flag_active' ];
         $this->add_date = $arrayValues[ 'add_date' ];
         $this->id_user_game = (int)$arrayValues[ 'id_user_game' ];
-        $this->user = (int)$arrayValues[ 'id_user' ];
-        $this->scenario = (int)$arrayValues[ 'id_scenario' ];
-        $this->bank = (int)$arrayValues[ 'id_bank' ];
+        $this->user = (int)$arrayValues[ 'user' ];
+        $this->scenario = (int)$arrayValues[ 'scenario' ];
+        $this->bank = (int)$arrayValues[ 'bank' ];
         $this->play_time = (int)$arrayValues[ 'play_time' ];
     }
 

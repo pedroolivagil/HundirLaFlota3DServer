@@ -34,6 +34,10 @@ class _EntitySerialize implements Serializable {
     public function __construct2($arrayValues, $full = TRUE) {
     }
 
+    public function __toString() {
+        return $this->serialize();
+    }
+
     protected function setObject($object) {
         $this->object = $object;
     }

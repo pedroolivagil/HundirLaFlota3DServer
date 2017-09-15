@@ -10,11 +10,16 @@ include_once('../config.php');
 $idUser = $_REQUEST[ 'idUser' ];
 if (Tools::isNotNull($idUser)) {
     $userGameCon = new UserGameController();
-    $scenarioCon = new ScenarioController();
     $userGame = $userGameCon->findByUserId($idUser, TRUE);
-    // var_dump($userGame);
-    echo $userGame->serialize();
-    // echo json_encode($userGame->getVars(), JSON_PRETTY_PRINT);
+    $response = '{';
+    $response .= '"response":200';
+    $response .= ',"userGame":' . $userGame->serialize();
+    $response .= ',"bank":' . $userGame->getBank()->serialize();
+    $response .= ',"scenario":' . $userGame->getScenario()->serialize();
+    $response .= ',"scenarioResource":' . $userGame->getScenario()->getResource();
+    $response .= ',"user":' . $userGame->getUser()->serialize();
+    $response .= '}';
+    echo $response;
     // var_dump(Tools::UnitySuccessResponse($userGame));
 } else {
     echo Tools::UnityErrorResponse("ERROR_NO_USER_GAME");
