@@ -76,7 +76,7 @@ class _PersistenceManager {
         $result = FALSE;
         if (Tools::isNotNull($data)) {
             $data = json_decode($data, TRUE);
-            $data[ COL_ADD_DATE ] = time();
+            $data[ COL_ADD_DATE ] = time() * 1000;
             $data[ COL_FLAG_ACTIVO ] = TRUE;
             if (isset($data[ COL_CODE ])) {
                 $data[ COL_CODE ] = Tools::codeText($data[ COL_CODE ]);

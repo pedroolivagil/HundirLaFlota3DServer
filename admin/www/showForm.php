@@ -26,8 +26,8 @@ if ($clase != NULL) {
             ?>
             <div class="field">
                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <?php if ($key == 'flag_active') { ?>
-                        <div class="input-group-addon"><?php echo ucfirst(str_replace('_', ' ', $key)); ?></div>
+                    <?php if ($key == 'FlagActive') { ?>
+                        <div class="input-group-addon"><?php echo $key; ?></div>
                         <div class="form-control text-left">
                             <div class="form-check" style="width: 100px;">
                                 <label class="form-check-label">
@@ -40,8 +40,8 @@ if ($clase != NULL) {
                                            id="<?php echo $key; ?>_off" value="FALSE"> False</label>
                             </div>
                         </div>
-                    <?php } else if ($key == 'file') { ?>
-                        <div class="input-group-addon"><?php echo ucfirst(str_replace('_', ' ', $key)); ?></div>
+                    <?php } else if ($key == 'File') { ?>
+                        <div class="input-group-addon"><?php echo $key; ?></div>
 
                         <div class="form-control text-left">
                             <button type="button" onsubmit="return false;" class="btn btn-primary btn-sm"
@@ -50,12 +50,12 @@ if ($clase != NULL) {
                         </div>
                         <input class="form-control" style="display: none;" type="file" name="<?php echo $key; ?>"
                                id="<?php echo $key; ?>"/>
-                    <?php } elseif ($key == 'trans') { ?>
-                        <div class="input-group-addon"><?php echo ucfirst(str_replace('_', ' ', $key)); ?></div>
+                    <?php } elseif ($key == 'Trans') { ?>
+                        <div class="input-group-addon"><?php echo $key; ?></div>
                         <textarea class="form-control" type="text" name="<?php echo $key; ?>" style="height: 120px;"
                                   id="<?php echo $key; ?>"></textarea>
                     <?php } else { ?>
-                        <div class="input-group-addon"><?php echo ucfirst(str_replace('_', ' ', $key)); ?></div>
+                        <div class="input-group-addon"><?php echo $key; ?></div>
                         <input class="form-control" type="text" name="<?php echo $key; ?>" id="<?php echo $key; ?>"/>
                     <?php } ?>
                 </div>

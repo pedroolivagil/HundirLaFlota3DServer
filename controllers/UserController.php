@@ -63,13 +63,8 @@ class UserController extends _PersistenceManager {
             if (Tools::isNull($find) && Tools::isNull($find2)) {
                 $total = parent::count();
                 $data->setIdUser($total + 1);
-                $data->setEmailActivation(FALSE);
+                $data->setAcountActive(FALSE);
                 $data->setTypeUser(2);
-                if (Tools::isNotNull($data->getInfo())) {
-                    $info = $data->getInfo()->asArray();
-                    unset($info[ '_id' ]);
-                    $data->setInfo($info);
-                }
                 $result = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
             }
         }

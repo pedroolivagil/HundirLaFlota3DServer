@@ -33,7 +33,7 @@ class ResourceController extends _PersistenceManager {
             );
             $find = parent::exists($key);
             if (Tools::isNull($find)) {
-                $idResource = parent::count() + 1;
+                $idResource = parent::count() + mt_rand(1, 50);
                 $data->setIdResource($idResource);
                 $result = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT )));
                 // $dbPersist = parent::persist($data->serialize(array( COL_ID_DOCUMENT, COL_OBJECT, "file" )));

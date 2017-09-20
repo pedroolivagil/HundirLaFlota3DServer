@@ -27,8 +27,8 @@ if (isset($form[ 'trans' ]) and $form[ 'trans' ] != NULL) {
 $form[ 'trans' ] = $arrayTrans;
 unset($form[ 'clase' ]);
 if ($clase == 'User') {
-    $obj = new $clase($form, FALSE);
-    $obj->criptPass();
+    $obj = new $clase($form);
+    // $obj->criptPass();
 } else {
     $obj = new $clase($form);
 }
@@ -42,7 +42,7 @@ try {
 }
 // si es un resource
 if ($obj instanceof Resource) {
-    $file = $_FILES[ 'file' ];
+    $file = $_FILES[ 'File' ];
     $obj->setName($file[ 'name' ]);
     $obj->setMimetype($file[ 'type' ]);
     $obj->setSize($file[ 'size' ]);

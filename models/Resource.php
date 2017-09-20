@@ -10,91 +10,149 @@
 class Resource extends _EntitySerialize {
 
     private $_id;
-    private $id_resource;
-    private $name;
-    private $mimetype;
-    private $file;
-    private $size;
-    private $flag_active;
-    private $add_date;
+    private $IdResource;
+    private $Code;
+    private $Name;
+    private $MimeType;
+    private $File;
+    private $Size;
+    private $FlagActive;
+    private $EntryDate;
 
     public function __construct1($arrayValues) {
         $this->_id = $arrayValues[ '_id' ];
-        $this->id_resource = (int)$arrayValues[ 'id_resource' ];
-        $this->name = $arrayValues[ 'name' ];
-        $this->mimetype = $arrayValues[ 'mimetype' ];
-        $this->size = (int)$arrayValues[ 'size' ];
-        $this->file = $arrayValues[ 'file' ];
+        $this->IdResource = (int)$arrayValues[ 'IdResource' ];
+        $this->Name = $arrayValues[ 'Name' ];
+        $this->MimeType = $arrayValues[ 'MimeType' ];
+        $this->Size = (int)$arrayValues[ 'Size' ];
+        $this->File = $arrayValues[ 'File' ];
+        $this->Code = $arrayValues[ 'Code' ];
     }
 
     public function getId() {
         return $this->_id;
     }
 
-    public function getName() {
-        return $this->name;
-    }
-
-    public function getMimetype() {
-        return $this->mimetype;
-    }
-
-    public function getFile() {
-        return $this->file;
-    }
-
-    public function getSize() {
-        return $this->size;
-    }
-
+    /**
+     * @return mixed
+     */
     public function getIdResource() {
-        return $this->id_resource;
+        return $this->IdResource;
     }
 
+    /**
+     * @param mixed $IdResource
+     */
+    public function setIdResource($IdResource) {
+        $this->IdResource = $IdResource;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCode() {
+        return $this->Code;
+    }
+
+    /**
+     * @param mixed $Code
+     */
+    public function setCode($Code) {
+        $this->Code = $Code;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName() {
+        return $this->Name;
+    }
+
+    /**
+     * @param mixed $Name
+     */
+    public function setName($Name) {
+        $this->Name = $Name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMimeType() {
+        return $this->MimeType;
+    }
+
+    /**
+     * @param mixed $MimeType
+     */
+    public function setMimeType($MimeType) {
+        $this->MimeType = $MimeType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFile() {
+        return $this->File;
+    }
+
+    /**
+     * @param mixed $File
+     */
+    public function setFile($File) {
+        $this->File = $File;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSize() {
+        return $this->Size;
+    }
+
+    /**
+     * @param mixed $Size
+     */
+    public function setSize($Size) {
+        $this->Size = $Size;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getFlagActive() {
-        return $this->flag_active;
+        return $this->FlagActive;
     }
 
-    public function setFlagActive($flag_active) {
-        $this->flag_active = $flag_active;
+    /**
+     * @param mixed $FlagActive
+     */
+    public function setFlagActive($FlagActive) {
+        $this->FlagActive = $FlagActive;
     }
 
-    public function getAddDate() {
-        return $this->add_date;
+    /**
+     * @return mixed
+     */
+    public function getEntryDate() {
+        return $this->EntryDate;
     }
 
-    public function setAddDate($add_date) {
-        $this->add_date = $add_date;
+    /**
+     * @param mixed $EntryDate
+     */
+    public function setEntryDate($EntryDate) {
+        $this->EntryDate = $EntryDate;
     }
 
-    public function setIdResource($id_resource) {
-        $this->id_resource = $id_resource;
-    }
-
-    public function setName($name) {
-        $this->name = $name;
-    }
-
-    public function setMimetype($mimetype) {
-        $this->mimetype = $mimetype;
-    }
-
-    public function setFile($file) {
-        $this->file = $file;
-    }
-
-    public function setSize($size) {
-        $this->size = $size;
-    }
-
-    public function selectResourceFile() {
-        $filename = $this->getName() . EXTENSION_RESOURCE;
-        $url = _RESOURCE_PATH_ . TABLE_RESOURCE . '/' . $filename;
-        var_dump($url);
-        if (file_exists($url)) {
-            $this->setFile(file_get_contents($url));
-        }
-    }
+    // public function selectResourceFile() {
+    //     $filename = $this->getName() . EXTENSION_RESOURCE;
+    //     $url = _RESOURCE_PATH_ . TABLE_RESOURCE . '/' . $filename;
+    //     var_dump($url);
+    //     if (file_exists($url)) {
+    //         $this->setFile(file_get_contents($url));
+    //     }
+    // }
 
     /**
      *
